@@ -1,0 +1,34 @@
+<?php
+
+include("../db.php");
+
+$del = $mysqli->escape_string($_POST['id']);
+
+if($ImageInfo = $mysqli->query("SELECT * FROM posts WHERE id='$del'")){
+
+    $GetInfo = mysqli_fetch_array($ImageInfo);
+	
+	$CheckImage = $ImageInfo->num_rows;
+	
+	$Image = $GetInfo['image'];
+	
+	$ImageInfo->close();
+	
+}else{
+    
+	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+}
+
+if($CheckImage==1){
+
+unlink("../uploaded_images/$Image");
+
+}
+
+
+$DeletePosts = $mysqli->query("DELETE FROM posts WHERE id='$del'");
+
+
+echo '<div class="alert alert-success" role="alert">Post has been deleted successfully!</div>';
+
+?>
