@@ -12,7 +12,7 @@
 */
 
 $mysqli = new mysqli();
-$mysqli->connect('127.0.0.1', 'user_whatiwant', '2@18f8cB2d8C4.1fa97fBFd0a5.d2c7f', 'web_whatiwant');
+$mysqli->connect('localhost', 'username_of_your_db_user', 'password_of_your_db_user', 'your_db_name');
 
 
 if ($mysqli->connect_errno) { echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error; } 
