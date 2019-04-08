@@ -1,26 +1,23 @@
 RewriteEngine on
-
 ErrorDocument 404 /404.php
 ErrorDocument 500 /404.php
-
+RewriteCond %{HTTP_HOST} ^thisisjustwhatiwant.com [NC]
+RewriteRule ^(.*)$ https://www.thisisjustwhatiwant.com/$1 [L,R=301]
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*[^/]$ /$0/ [L,R]
-
 RewriteCond %{THE_REQUEST} /search(?:\.php)?\?term=([^\s&]+) [NC]
 RewriteRule ^ /search/%1? [R=302,L,NE]
 RewriteRule ^search/([^/\.]+)/$ search.php?term=$1 [L]
-
 RewriteRule gifts-(.*)-([0-9]+)-(.*)/$ gifts.php?sort=$3 [L]
-
 RewriteRule ^popular/ index.php?sort=popular [L]
 RewriteRule ^low-to-high/ index.php?sort=low [L]
 RewriteRule ^high-to-low/ index.php?sort=high [L]
-
 RewriteCond %{THE_REQUEST} /view_post(?:\.php)?\?link=([^\s&]+) [NC]
 RewriteRule ^ blog/%1? [R=302,L,NE]
 RewriteRule ^blog/([^/\.]+)/$ view_post.php?link=$1
 RewriteRule ^blog/ blog.php [L]
-
 RewriteRule ^wish_list/ wish_list.php [L]
 RewriteRule ^profile/ profile.php [L]
 RewriteRule ^login/ login.php [L]
@@ -31,23 +28,17 @@ RewriteRule ^about_us/ about_us.php [L]
 RewriteRule ^privacy_policy/ privacy_policy.php [L]
 RewriteRule ^tos/ tos.php [L]
 RewriteRule ^contact_us/ contact_us.php [L]
-
 RewriteCond %{THE_REQUEST} /listing(?:\.;php)?\?pname=([^\s&]+) [NC]
 RewriteRule ^ %1? [R=302,L,NE]
 RewriteRule ^([^/\.]+)/$ listing.php?pname=$1
-
 RewriteRule ^category/(.*)/(.*)/$ cat.php?cname=$1&sort=$2 [L]
 RewriteRule ^category/(.*)/$ cat.php?cname=$1&sort=newest [L]
-
 RewriteRule ^(.*)\.html$ $1.php [L]
-
-
 # Disable ETags
 <IfModule mod_headers.c>
 	Header unset ETag
 </IfModule>
 FileETag None
-
 <IfModule mod_deflate.c>
   # Compress HTML, CSS, JavaScript, Text, XML and fonts
   AddOutputFilterByType DEFLATE application/javascript
@@ -71,17 +62,14 @@ FileETag None
   AddOutputFilterByType DEFLATE text/javascript
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/xml
-
   # Remove browser bugs (only needed for really old browsers)
   BrowserMatch ^Mozilla/4 gzip-only-text/html
   BrowserMatch ^Mozilla/4\.0[678] no-gzip
   BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
   Header append Vary User-Agent
 </IfModule>
-
 <IfModule mod_expires.c>
   ExpiresActive On
-
   # Images
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/gif "access plus 1 month"
@@ -89,10 +77,8 @@ FileETag None
   ExpiresByType image/webp "access plus 1 month"
   ExpiresByType image/svg+xml "access plus 1 month"
   ExpiresByType image/x-icon "access plus 1 monht"
-
   # CSS, JavaScript
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
-  
 </IfModule>

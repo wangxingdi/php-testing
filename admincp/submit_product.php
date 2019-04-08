@@ -24,7 +24,7 @@ if (!@file_exists($UploadDirectory)) {
 
 if($_POST)
 {		
-	if(!isset($_POST['category']) || strlen($_POST['category'])<1)
+	if(!isset($_POST['category']) || strlen($_POST['category'])<1 || $_POST['category'] <1)
 	{
 		//required variables are empty
 		die('<div class="alert alert-danger" role="alert">Please select a category.</div>');
@@ -99,7 +99,14 @@ if($_POST)
     $pname              = urlencode($pname);
     $pname              = strtolower($pname);
     $pname              = strip_tags($pname);
-	$Category           = $mysqli->escape_string($_POST['category']); // category 
+    if(isset($_POST['category-sub']) && strlen($_POST['category-sub'])>0 && $_POST['category-sub']>0)
+    {
+    	$Category       = $mysqli->escape_string($_POST['category-sub']); // sub category
+    }
+    else
+    {
+    	$Category       = $mysqli->escape_string($_POST['category']); // category 
+    }
 	if($sql_cname2 = $mysqli->query("SELECT cname2 FROM categories WHERE id='$Category' "))
 	{
 		$cname2_row = mysqli_fetch_array($sql_cname2);
@@ -143,7 +150,10 @@ if($_POST)
 	
 		
 // Insert info into database table.. do w.e!
-		$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2')");
+		if(!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2')"))
+		{
+			echo "Error : " . $mysqli->error;
+		}
 
 ?>
 

@@ -9,13 +9,14 @@
 <section class="col-md-10">
 
 <ol class="breadcrumb">
-  <li>Admin CP</li>
+  <li><i class="fa fa-home"></i></li>
   <li>Categories</li>
   <li class="active">Add New Category</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
-  <h3>New Category <small>Add new post category</small></h3>
+  <h3>New Category <small>Add new category</small></h3>
 </div>
 
 <script type="text/javascript" src="js/jquery.form.js"></script>
@@ -72,7 +73,7 @@ function afterSuccess()
 
 <?php
 
-if($cat_sql = $mysqli->query("SELECT * FROM categories"))
+if($cat_sql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0"))
 {
   while($cat_row = mysqli_fetch_array($cat_sql))
   {

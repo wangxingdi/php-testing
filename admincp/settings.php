@@ -11,8 +11,9 @@
 <section class="col-md-10">
 
 <ol class="breadcrumb">
-  <li>Admin CP</li>
+  <li><i class="fa fa-home"></i></li>
   <li class="active">Settings</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -926,12 +927,12 @@ $(document).ready(function()
                                         </div>
                                     </div>
                                 </li>
-                            </div><!-- row -->
-                                <div class="btn-reset"><a id="resetMenuColors" class="btn btn-danger btnDelete" style="margin-top: 35px; float:left;">Reset Menu Colors to Default</a> <a id="resetAllColors" class="btn btn-danger btnDelete" style="margin-top: 35px;float: right;">Reset All Colors to Default</a>
-                                </div>
-                                <div style="clear: both;" id="output-reset"></div>    
+                            </div><!-- row -->   
                             </ul>
                         </li>
+                        <div class="btn-reset"><a id="resetMenuColors" class="btn btn-danger btnDelete" style="margin-top: 35px; float:left;">Reset Menu Colors to Default</a> <a id="resetAllColors" class="btn btn-danger btnDelete" style="margin-top: 35px;float: right;">Reset All Colors to Default</a>
+                        </div>
+                        <div style="clear: both;" id="output-reset"></div> 
                     </ul>
                 </li>
                         

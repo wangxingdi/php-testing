@@ -31,7 +31,7 @@ if($_POST)
     }
     
     
-    if(!isset($_POST['disc']) || strlen($_POST['disc'])<1)
+    if(strlen(strip_tags(($_POST['desc'])))<1)
     {
         //required variables are empty
         die('<div class="alert alert-danger" role="alert">Please add a description.</div>');
@@ -55,21 +55,36 @@ if($_POST)
         die(upload_errors($_FILES['mFile']['error']));
     } 
 
-     $FileName           = strtolower($_FILES['mFile']['name']); //uploaded file name
+    $FileName           = strtolower($_FILES['mFile']['name']); //uploaded file name
     $ImageExt           = substr($FileName, strrpos($FileName, '.')); //file extension
     $FileType           = $_FILES['mFile']['type']; //file type
     $FileSize           = $_FILES['mFile']["size"]; //file size
     $RandNumber         = rand(0, 9999999999); //Random number to make each filename unique.
     $Date               = date("F j, Y");
     $FileTitle          = $mysqli->escape_string(trim($_POST['mName'])); // file title
-    $Description        = $mysqli->escape_string($_POST['disc']); // description
+    $Description        = $mysqli->escape_string($_POST['desc']); // description
     $MetaDescription    = $mysqli->escape_string($_POST['meta_desc']); // meta description
     $Link               = preg_replace("![^a-z0-9]+!i", "-", $FileTitle);
     $Link               = strtolower($Link);
     $Link               = urlencode($Link);
     $Link               = strip_tags($Link);
 
-        switch(strtolower($FileType))
+    if($sql = $mysqli->query("SELECT COUNT(link) AS count FROM posts WHERE link = '$Link' "))
+    {
+        $sqlRow = mysqli_fetch_array($sql);
+        $count = $sqlRow['count'];
+        if($count>0)
+        {
+            $Link = $Link . '-2';
+        }
+        $sql->close();
+    }
+    else
+    {
+        die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
+    }
+
+    switch(strtolower($FileType))
     {
         //allowed file types
         case 'image/png': //png file
@@ -102,7 +117,7 @@ if($_POST)
 ?>
 
 <script>
-$('#AddProduct').delay(1000).resetForm(1000);
+$('#AddPost').delay(1000).resetForm(1000);
 </script>
 
 <?php       

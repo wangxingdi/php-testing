@@ -9,8 +9,9 @@
 <section class="col-md-10">
 
 <ol class="breadcrumb">
-  <li>Admin CP</li>
+  <li><i class="fa fa-home"></i></li>
   <li class="active">Add New Product</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -61,8 +62,6 @@ function countChar(val) {
 
 <section class="col-md-8">
 
-<p>Product listings submitted by administrator will automatically be activated upon submission</p>
-
 <div class="panel panel-default">
 
     <div class="panel-body">
@@ -76,9 +75,9 @@ function countChar(val) {
 <label for="category">Category</label>
 
 <select name="category" class="form-control" id="category">
-<option value="">Select a Category</option>
+<option value="0">Select a Category</option>
 <?php
-if($ProductCat = $mysqli->query("SELECT * FROM categories ORDER BY cname ASC")){
+if($ProductCat = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0 ORDER BY cname ASC")){
 
     while ($ProductCatRow = mysqli_fetch_array($ProductCat)){
     
@@ -94,6 +93,23 @@ $ProductCat->close();
 ?>
 </select>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#category").change(function(){
+        var parent = $("#category option:selected").val();
+        $.ajax({
+            type: "POST",
+            url: "get-sub-cats.php",
+            data: { parent : parent } 
+        }).done(function(data){
+            $("#sub-cats").html(data);
+        });
+    });
+});
+</script>
+
+<div id="sub-cats" class="form-group"></div>
 
 <div class="form-group">
 <label for="mName">Title</label>

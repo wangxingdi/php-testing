@@ -13,6 +13,7 @@
   <li>Categories</li>
   <li>Manage Categories</li>
   <li class="active">Edit Category</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">

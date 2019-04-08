@@ -13,6 +13,7 @@
   <li>Article Listings</li>
   <li>Posts</li>
   <li class="active">Edit Posts</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -21,39 +22,26 @@
 
 <script src="js/bootstrap-filestyle.min.js"></script>
 <script type="text/javascript" src="js/jquery.form.js"></script>
-
+<link href="//oss.maxcdn.com/summernote/0.5.1/summernote.css" rel="stylesheet">
+<script src="//oss.maxcdn.com/summernote/0.5.1/summernote.min.js"></script>
+<script type='text/javascript'>//<![CDATA[ 
+$(function(){
+$('#desc').summernote({height: 500});
+});//]]>  
+</script>
 <script>
-
 $(function(){
 
 $(":file").filestyle({iconName: "glyphicon-picture", buttonText: "Select Photo"});
-
 });
-
 $(document).ready(function()
 {
-    $('#AddProduct').on('submit', function(e)
+    $('#AddPost').on('submit', function(e)
     {
-        tinyMCE.triggerSave();
         e.preventDefault();
-        $('#submit').attr('disabled', ''); // disable upload button
+        $('#submitButton').attr('disabled', ''); // disable upload button
         //show uploading message
         $("#output").html('<div class="alert alert-info" role="alert">Updating... Please Wait...</span></div>');
-        $(this).ajaxSubmit({
-        target: '#output',
-        success:  afterSuccess //call function after success
-        });
-    });
-});
-
-$(document).ready(function()
-{
-    $('#UploadImage').on('submit', function(e)
-    {
-        e.preventDefault();
-        $("#url").hide();
-        //show uploading message
-        $("#output").html('<div class="alert alert-info" role="alert">Uploading image.. Please wait..</span></div>');
         $(this).ajaxSubmit({
         target: '#output',
         success:  afterSuccess //call function after success
@@ -63,23 +51,9 @@ $(document).ready(function()
  
 function afterSuccess()
 {
-    $('#submit').removeAttr('disabled'); //enable submit button
+    $('#submitButton').removeAttr('disabled'); //enable submit button
     //$('#output').html('');
 }
-
-</script>
-
-<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-<script>
-        tinymce.init({
-            selector: "textarea",
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-        });
 </script>
 
 <section class="col-md-8">
@@ -109,23 +83,7 @@ if($Post = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
 
 <div id="output"></div>
 
-<form action="upload_image.php" id="UploadImage" enctype="multipart/form-data" method="post">
-
-<div class="form-group">
-<input type="text" name="url" id="url" class="form-control" value="" placeholder="Upload image to get the URL here">
-</div>
-
-<div class="form-group">
-<label for="file2">Upload Image & Get URL</label>
-<input type='file' class="file" name="mFile2" id="mFile2"/>
-</div>
-
-<button style="margin-bottom: 8px;" type="submit" id="imageSubmitButton" class="btn btn-default btn-primary pull-right">Upload</button>
-
-
-</form>
-
-<form action="update_post.php?id=<?php echo $id;?>" id="AddProduct" enctype="multipart/form-data" method="post">
+<form action="update_post.php?id=<?php echo $id;?>" id="AddPost" enctype="multipart/form-data" method="post">
 
 <div class="form-group">
 <label for="mName">Title</label>
@@ -134,8 +92,8 @@ if($Post = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
 
 
 <div class="form-group">
-<label for="disc">Description</label>
-<textarea name="disc" id="disc" cols=40 rows=5 class="form-control" placeholder="Post description.."><?php echo $PostRow['description'];?></textarea>
+<label for="desc">Description</label>
+<textarea name="desc" id="desc" cols=40 rows=5 class="form-control" placeholder="Post description.."><?php echo $PostRow['description'];?></textarea>
 </div>
 
 <div class="form-group">
@@ -166,19 +124,3 @@ if($Post = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
 </section><!--col-md-10-->
 
 <?php include("footer.php");?>
-
-<script type="text/javascript">
-  function copy() {
-  /* Get the text field */
-  var copyText = document.getElementById("imageUrl");
-
-  /* Select the text field */
-  copyText.select();
-
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-  /* Alert the copied text */
-  $('#copy-output').show();
-}
-</script>

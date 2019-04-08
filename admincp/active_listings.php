@@ -15,9 +15,10 @@ if(isset($_GET['term']))
 <section class="col-md-10">
 
 <ol class="breadcrumb">
-  <li>Admin CP</li>
+  <li><i class="fa fa-home"></i></li>
   <li>Product Listings</li>
   <li class="active">Active Products</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header listings-mod">
@@ -339,9 +340,9 @@ error_reporting(E_ALL ^ E_NOTICE);
                <button class="btn btn-warning btnDeactivate">Deactivate</button>
                <a class="btn btn-success btnEdit" href="edit_product.php?id=<?php echo $Row['id'];?>">Edit</a>
                <?php if($Feat==1){?>
-               <button class="btn btn-default btnUnFeat">unFeat</button>
+               <button class="hide btn btn-default btnUnFeat">unFeat</button>
                <?php }else if($Feat==0){?>
-               <button class="btn btn-primary btnMkFeat">mkFeat</button>
+               <button class="hide btn btn-primary btnMkFeat">mkFeat</button>
                <?php }?>      
                 <!--Testing Modal-->
                 </td>

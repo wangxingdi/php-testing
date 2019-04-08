@@ -18,9 +18,10 @@ if($feat_menu_count_sql = $mysqli->query("SELECT id FROM categories WHERE featur
 <section class="col-md-10">
 
 <ol class="breadcrumb">
-  <li>Admin CP</li>
+  <li><i class="fa fa-home"></i></li>
   <li>Categories</li>
   <li class="active">Manage Categories</li>
+  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -59,7 +60,7 @@ $("#output").html(html);
 });
 </script>
 
-<section class="col-md-8">
+<section class="col-md-12">
 
 <div id="output"></div>
      
@@ -289,7 +290,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
                 <td<?php if($parent == "none"){echo " style='color:grey;font-style:italic;'";} ?>><?php echo $parent;?></td>
                 
-                <td>
+                <td style="width:35%;">
                 <!--Testing Modal-->
 
                 <a href="edit_category.php?id=<?php echo $Row['id'];?>" class="btn btn-success btnEdit">Edit</a>

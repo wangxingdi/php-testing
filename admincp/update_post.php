@@ -37,7 +37,7 @@ if($_POST)
 		die('<div class="alert alert-danger" role="alert">Please add a title.</div>');
 	}
 	
-	if(!isset($_POST['disc']) || strlen($_POST['disc'])<1)
+	if(!isset($_POST['desc']) || strlen($_POST['desc'])<1)
 	{
 		//required variables are empty
 		die('<div class="alert alert-danger" role="alert">Please add a small description.</div>');
@@ -51,7 +51,7 @@ if($_POST)
 	
 	$Date		        = date("F j, Y");
 	$FileTitle			= $mysqli->escape_string(trim($_POST['mName'])); // file title
-	$Description        = $mysqli->escape_string($_POST['disc']); // description
+	$Description        = $mysqli->escape_string($_POST['desc']); // description
 	$MetaDescription    = $mysqli->escape_string($_POST['meta_desc']); // meta description
 	$Link               = preg_replace("![^a-z0-9]+!i", "-", $FileTitle);
     $Link               = strtolower($Link);
