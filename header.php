@@ -135,7 +135,7 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <meta property="og:title" content="<?php echo $settings['name'];?>" />
 <meta property="og:description" content="<?php echo $settings['descrp'];?>" />
 <!--End Twitter Meta Tags-->
-<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://rawcdn.githack.com/img0/tijwiw/ba9193354a2079e839975fb1593b3c38156b9d95/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
@@ -154,7 +154,7 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <i class="fa fa-search"></i><input class="elasticsearch" name="term" type="text" autocomplete="off" placeholder="Search..."></fieldset>
 </form>
 </span>
-<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="images/logo.png" alt="<?php echo $settings['name']; ?>"></a>
+<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="https://rawcdn.githack.com/img0/tijwiw/15283c15fa8d2123a72b0016890684f179098e58/logo/logo.png" alt="<?php echo $settings['name']; ?>"></a>
 <!-- MOBILE LOGIN START -->
     <div>
       <ul class="navbar-nav navbar-right user-icon">
