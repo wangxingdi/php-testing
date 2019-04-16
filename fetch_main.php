@@ -50,8 +50,8 @@ if ($sort=="n"){
       $listing_id = $row['id'];
       $long = $row['discription'];
       $strd = strlen ($long);
-      if ($strd > 243) {
-      $dlong = substr($long,0,240).'...';
+      if ($strd > 260) {
+      $dlong = substr($long,0,257) + '...';
       }else{
       $dlong = $long;}
       $LongTitle = $row['title'];
@@ -67,7 +67,7 @@ if ($sort=="n"){
 <a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a>
 <div class="col-holder">
 <a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
-<!--<img class="img-responsive" src="uploaded_images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>"> -->
+    <?php /* <img class="img-responsive" src="uploaded_images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">  */?>
     <img class="img-responsive" src=<?php echo $row['external_link'];?> alt="<?php echo $LongTitle;?>">
 </a>
 <div class="col-share">

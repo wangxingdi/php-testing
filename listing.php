@@ -37,7 +37,11 @@ else
   }  
  }?>
   <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
-</div><!--col-info-left--></div><a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank"><img src="uploaded_images/resizer/650x550/r/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive slide-img"></a>
+</div><!--col-info-left--></div>
+            <a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
+                <?php /*<img src="uploaded_images/resizer/650x550/r/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive slide-img"> */?>
+                <img src=<?php echo $row['external_link'];?> alt="<?php echo $row['title'];?>" class="img-responsive slide-img" style="width: 650px; height: 550px;">
+            </a>
 <div class="col-share">
   <?php if(!isset($_SESSION['username'])){?>
 <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
