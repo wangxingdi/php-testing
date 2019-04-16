@@ -200,7 +200,7 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <button class="navtoggle" type="button" aria-hidden="true"><i class="fa fa-bars"></i></button>
 <ul><li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><span class="icon"><i class="fa fa-home"></i></span><span><?php echo $txt_home; ?></span></a></li>
 <?php
-if($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORDER BY cname ASC")){
+if($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORDER BY show_order ASC")){
     while($FeatCatRow = mysqli_fetch_array($FeatCatSql)){    
     $FeatCatName = $FeatCatRow['cname'];
     $FeatCatUrl = $FeatCatRow['cname2'];
