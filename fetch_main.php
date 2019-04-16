@@ -50,8 +50,8 @@ if ($sort=="n"){
       $listing_id = $row['id'];
       $long = $row['discription'];
       $strd = strlen ($long);
-      if ($strd > 260) {
-      $dlong = substr($long,0,257) + '...';
+      if ($strd > 300) {
+      $dlong = substr($long,0,297) + '...';
       }else{
       $dlong = $long;}
       $LongTitle = $row['title'];
