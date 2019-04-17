@@ -114,7 +114,7 @@ $CatSelected->close();
 ?>
 
 <?php
-if($CatSql = $mysqli->query("SELECT * FROM categories WHERE id!='$SelectedCat' ORDER BY cname ASC")){
+if($CatSql = $mysqli->query("SELECT * FROM categories WHERE id!='$SelectedCat' ORDER BY show_order ASC")){
 
     while ($CatRow = mysqli_fetch_array($CatSql)){
     

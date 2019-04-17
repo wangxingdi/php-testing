@@ -77,7 +77,7 @@ function countChar(val) {
 <select name="category" class="form-control" id="category">
 <option value="0">Select a Category</option>
 <?php
-if($ProductCat = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0 ORDER BY cname ASC")){
+if($ProductCat = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0 ORDER BY show_order ASC")){
 
     while ($ProductCatRow = mysqli_fetch_array($ProductCat)){
     

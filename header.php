@@ -214,7 +214,7 @@ if($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORD
 ?>
 <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a><div class="dropdown-content">
 <?php
-if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER BY cname ASC")){
+if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")){
  while($CatRow = mysqli_fetch_array($CatSql)){
     $CatName = $CatRow['cname'];
     $CatUrl = $CatRow['cname2'];
@@ -236,7 +236,7 @@ if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER
 <li class="dropdown dropdown-mobile"><a href="javascript:void(0);" id="open-dropdown-mobile" onclick="openMenu()"><i class="fa fa-bars fa-white"><span><?php echo $txt_gift_guides; ?></span></i></a>
 <div class="dropdown-content" id="mobile-dropdown">
 <?php
-if($MobCatSql = $mysqli->query("SELECT * FROM categories ORDER BY cname ASC")){
+if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")){
     while($MobCatRow = mysqli_fetch_array($MobCatSql)){
     $MobCatName = $MobCatRow['cname'];
     $MobCatUrl = $MobCatRow['cname2'];
