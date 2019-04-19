@@ -135,7 +135,7 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <meta property="og:title" content="<?php echo $settings['name'];?>" />
 <meta property="og:description" content="<?php echo $settings['descrp'];?>" />
 <!--End Twitter Meta Tags-->
-<link href="https://rawcdn.githack.com/img0/tijwiw/ba9193354a2079e839975fb1593b3c38156b9d95/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
@@ -154,7 +154,7 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <i class="fa fa-search"></i><input class="elasticsearch" name="term" type="text" autocomplete="off" placeholder="Search..."></fieldset>
 </form>
 </span>
-<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="https://rawcdn.githack.com/img0/tijwiw/15283c15fa8d2123a72b0016890684f179098e58/logo/logo.png" alt="<?php echo $settings['name']; ?>"></a>
+<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/logo.png" alt="<?php echo $settings['name']; ?>"></a>
 <!-- MOBILE LOGIN START -->
     <div>
       <ul class="navbar-nav navbar-right user-icon">
@@ -214,7 +214,7 @@ if($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORD
 ?>
 <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a><div class="dropdown-content">
 <?php
-if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER BY cname ASC")){
+if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")){
  while($CatRow = mysqli_fetch_array($CatSql)){
     $CatName = $CatRow['cname'];
     $CatUrl = $CatRow['cname2'];
@@ -236,7 +236,7 @@ if($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER
 <li class="dropdown dropdown-mobile"><a href="javascript:void(0);" id="open-dropdown-mobile" onclick="openMenu()"><i class="fa fa-bars fa-white"><span><?php echo $txt_gift_guides; ?></span></i></a>
 <div class="dropdown-content" id="mobile-dropdown">
 <?php
-if($MobCatSql = $mysqli->query("SELECT * FROM categories ORDER BY cname ASC")){
+if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")){
     while($MobCatRow = mysqli_fetch_array($MobCatSql)){
     $MobCatName = $MobCatRow['cname'];
     $MobCatUrl = $MobCatRow['cname2'];

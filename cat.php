@@ -5,7 +5,7 @@ $siteurl = $settings['siteurl'];
 $sort = $mysqli->escape_string($_GET['sort']);
 if(!isset($sort)){$sort = 'newest';}
 ?>
-<div class="container container-mod container-pull cat-pull" id="cat-page"><div class="gifts-sidebar ng-scope"><ul class="menu" id="menu-categories"><h3>ALL CATEGORIES</h3>
+<div class="container container-mod container-pull cat-pull" id="cat-page"><div class="gifts-sidebar ng-scope"><ul class="menu" id="menu-categories"><h3>MORE CATEGORIES</h3>
 <?php
 if($cat_list_sql = $mysqli->query("SELECT * FROM categories"))
 {

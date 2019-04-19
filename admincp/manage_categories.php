@@ -125,7 +125,7 @@ error_reporting(E_ALL ^ E_NOTICE);
   else
     $start = 0;               //if no page var is given, set start to 0
   /* Get data. */
-  $result = $mysqli->query("SELECT * FROM categories ORDER BY cname ASC LIMIT $start, $limit");
+  $result = $mysqli->query("SELECT * FROM categories ORDER BY show_order ASC LIMIT $start, $limit");
    
   //$result = $mysqli->query($sql);
   
@@ -214,7 +214,7 @@ error_reporting(E_ALL ^ E_NOTICE);
     $pagination.= "</ul>\n";    
   }
   
-  $q= $mysqli->query("SELECT * FROM categories ORDER BY cname ASC limit $start,$limit");
+  $q= $mysqli->query("SELECT * FROM categories ORDER BY show_order ASC limit $start,$limit");
 
 
   $numr = mysqli_num_rows($q);
