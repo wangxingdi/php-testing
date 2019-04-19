@@ -5,7 +5,7 @@
         $Active = $settings['active'];
         $squ->close();
     }else{
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
+        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
     }
     $UploadDirectory	= '../uploaded_images/';
     if (!@file_exists($UploadDirectory)) {
