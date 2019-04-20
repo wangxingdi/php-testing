@@ -134,6 +134,11 @@ $(document).ready(function(){
 <input type='file' class="file" name="mFile" id="mFile"/>
 </div>
 
+    <div class="form-group">
+        <label for="external">External Link</label>
+        <input type="text"  name="external" id="external" class="form-control" placeholder="Your external Link of the image">
+    </div>
+
 <div class="form-group">
 <label for="price">Price (Without &#36; sign):</label>
 <input type="text" name="price" id="price" class="form-control" placeholder="Product price">

@@ -120,6 +120,7 @@ if($_POST)
 	$Description        = $mysqli->escape_string($_POST['disc']); // description
 	$Price              = $mysqli->escape_string($_POST['price']); // price
 	$MetaDescription    = $mysqli->escape_string($_POST['meta_desc']); // price
+    $external           = $mysqli->escape_string($_POST['external']);
 
 	
 		switch(strtolower($FileType))
@@ -150,7 +151,7 @@ if($_POST)
 	
 		
 // Insert info into database table.. do w.e!
-		if(!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2')"))
+		if(!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')"))
 		{
 			echo "Error : " . $mysqli->error;
 		}
