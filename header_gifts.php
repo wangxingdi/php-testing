@@ -180,7 +180,7 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/">Contact Us</a>
 </div></li><li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>Search</span></i></a></li></ul></div></header>
 <style type="text/css">.wow{visibility: visible !important;}</style>
-<script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>new WOW().init();</script>
 <script async src="js/bootstrap.min.js"></script>
 <script>var yourNavigation=$(".mobile-nav");stickyDiv="stickymobnav",yourHeader=50,$(window).scroll(function(){$(this).scrollTop()>yourHeader?yourNavigation.addClass(stickyDiv):yourNavigation.removeClass(stickyDiv)}),$(".dropdown-content").height()>400&&($(".dropdown-content").css("max-height","400px"),$(".dropdown-content").css("overflow-y","scroll"));</script>
