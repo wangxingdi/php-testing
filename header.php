@@ -140,18 +140,20 @@
             <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
             <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
             <!--End Twitter Meta Tags-->
-            <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-            <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+            <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <link href="templates/default/css/main.php" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
         </head>
         <body>
             <div id="fb-root"></div>
+<!--
             <script>
                 !function (e, t, n) {
                     var c, o = e.getElementsByTagName(t)[0];
                     e.getElementById(n) || ((c = e.createElement(t)).id = n, c.src = "//connect.facebook.net/en_US/all.js#xfbml=1", o.parentNode.insertBefore(c, o))
                 }(document, "script", "facebook-jssdk");
             </script>
+-->
             <div id="cv-top-overlay"></div>
             <header id="masthead">
                 <div id="nav-container">
@@ -183,7 +185,7 @@
                                             </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>登录</a></li>
-                                        <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>Register</a></li>
+                                        <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>注册</a></li>
                                     <?php
                                         } else {
                                     ?>
@@ -193,7 +195,7 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="wish_list/"><span class="fa fa-heart"></span>&nbsp; 愿望清单</a></li>
-                                                <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; 我的资料</a></li>
+                                                <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; 我的信息</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="logout/"><span class="fa fa-unlock-alt"></span>&nbsp; 注销</a></li>
                                             </ul>
@@ -206,7 +208,8 @@
                             </ul>
                         </div><!-- /.navbar-collapse -->
                         <!-- MOBILE LOGIN END -->
-                        <ul id="navbarRight" class="navbar-nav navbar-right"> <!-- LOGIN/REGISTRATION CODE START--->
+                        <!-- LOGIN/REGISTRATION CODE START--->
+                        <ul id="navbarRight" class="navbar-nav navbar-right">
                             <?php
                                 if (!isset($_SESSION['username'])) {
                             ?>
@@ -226,9 +229,12 @@
                             <?php
                                 }
                             ?>
-                        </ul>  <!-- LOGIN/REGISTRATION CODE END--->
-                    </div> <!-- HEADER SECTION END -->
-                    <nav class="nav" id="menu" ng-hide="hide_header"> <!-- MAIN MENU START -->
+                        </ul>
+                        <!-- LOGIN/REGISTRATION CODE END--->
+                    </div>
+                    <!-- HEADER SECTION END -->
+                    <nav class="nav" id="menu" ng-hide="hide_header">
+                        <!-- MAIN MENU START -->
                         <button class="navtoggle" type="button" aria-hidden="true"><i class="fa fa-bars"></i></button>
                         <ul>
                             <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
@@ -245,7 +251,8 @@
                                         $FeatCatUrl = $FeatCatRow['cname2'];
                                         $FeatCatIcon = $FeatCatRow['icon'];
                             ?>
-                            <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?> /">
+                            <li>
+                                <a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?>/">
                                     <span class="icon"><?php echo $FeatCatIcon; ?></span>
                                     <span><?php echo $FeatCatName; ?></span>
                                 </a>
@@ -329,7 +336,7 @@
                 </div>
             </header>
             <style type="text/css">.wow {visibility: visible !important;}</style>
-            <script src="js/jquery.min.js"></script>
+            <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
             <script>new WOW().init();</script>
             <script async src="js/bootstrap.min.js"></script>
             <script>
@@ -340,8 +347,8 @@
                 $(function () {
                     var a = window.location.href;
                     $(".nav ul li a").each(function () {
-                        this.href === a && $(this).addClass("selected")
-                    })
+                        this.href === a && $(this).addClass("selected");
+                    });
                 });
             </script>
             <?php
