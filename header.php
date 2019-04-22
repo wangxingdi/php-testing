@@ -247,7 +247,7 @@
                                         $FeatCatUrl = $FeatCatRow['cname2'];
                                         $FeatCatIcon = $FeatCatRow['icon'];
                             ?>
-                            <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?> /">
+                            <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?>/">
                                     <span class="icon"><?php echo $FeatCatIcon; ?></span>
                                     <span><?php echo $FeatCatName; ?></span>
                                 </a>
