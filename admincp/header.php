@@ -48,7 +48,7 @@ if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 <![endif]-->
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
 <script src="js/jquery.menu.js"></script>
 <script src="js/jquery.pjax.js" type="text/javascript"></script>
 <script src="js/jquery.timeago.js" type="text/javascript"></script>

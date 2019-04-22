@@ -182,6 +182,6 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 <style type="text/css">.wow{visibility: visible !important;}</style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
 <script>new WOW().init();</script>
-<script async src="js/bootstrap.min.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
 <script>var yourNavigation=$(".mobile-nav");stickyDiv="stickymobnav",yourHeader=50,$(window).scroll(function(){$(this).scrollTop()>yourHeader?yourNavigation.addClass(stickyDiv):yourNavigation.removeClass(stickyDiv)}),$(".dropdown-content").height()>400&&($(".dropdown-content").css("max-height","400px"),$(".dropdown-content").css("overflow-y","scroll"));</script>
 <?php if($settings['addthisFilter'] == '3'){echo $settings['addthis'];}?>

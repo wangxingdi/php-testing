@@ -334,7 +334,8 @@
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
             <script src="js/login.js"></script>
             <script>new WOW().init();</script>
-            <script async src="js/bootstrap.min.js"></script>
+            <script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
+            <script async src="js/index.js"></script>
             <script>
                 var yourNavigation = $(".mobile-nav");
                 stickyDiv = "stickymobnav", yourHeader = 50, $(window).scroll(function () {

@@ -31,7 +31,7 @@ include("../db.php");
 <![endif]-->
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
 <script src="js/jquery.pjax.js" type="text/javascript"></script>
 <script src="js/jquery.ui.shake.js"></script>
 

@@ -1,3 +1,8 @@
+/**
+ * the javascript about login and register
+ * @author wangxd
+ * @date 2019-04-22
+ */
 function openMenu() {
     var n = document.getElementById("mobile-dropdown");
     "dropdown-content" === n.className ? n.className += " open" : n.className = "dropdown-content"

@@ -205,7 +205,7 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
 <script defer src="js/jquery-ui.min.js"></script>
-<script async src="js/bootstrap.min.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
 <script>new WOW().init();</script>
 <script>function popup(n){var o=(screen.width-700)/2,t="width=700, height=400";return t+=", top="+(screen.height-400)/2+", left="+o,t+=", directories=no",t+=", location=no",t+=", menubar=no",t+=", resizable=no",t+=", scrollbars=no",t+=", status=no",t+=", toolbar=no",newwin=window.open(n,"windowname5",t),window.focus&&newwin.focus(),!1}$(document).ready(function(){$(".col-link").hover(function(){$(this).parent().find(".col-share").stop().animate({width:"90px"},300)},function(){$(this).parent().find(".col-share").stop().animate({width:"-0"},300)}),$(".col-share").hover(function(){$(this).stop().animate({width:"90px"},300)},function(){$(this).stop().animate({width:"-0"},300)})});</script>
 <script>var yourNavigation=$(".mobile-nav");stickyDiv="stickymobnav",yourHeader=50,$(window).scroll(function(){$(this).scrollTop()>yourHeader?yourNavigation.addClass(stickyDiv):yourNavigation.removeClass(stickyDiv)}),$(".dropdown-content").height()>400&&($(".dropdown-content").css("max-height","400px"),$(".dropdown-content").css("overflow-y","scroll"));$(function(){var a=window.location.href;$(".nav ul li a").each(function(){this.href===a&&$(this).addClass("selected")})});</script>
