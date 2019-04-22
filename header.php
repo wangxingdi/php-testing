@@ -104,10 +104,10 @@
     <html>
         <head>
             <!--
-            Script Name - Amazon Dominator
-            Version - 5.3
-            Release Date - March 30, 2019
-            Author - Webister Labs [webister.net]
+            Script Name - Niche Treasure
+            Version - 1.0
+            Release Date - April 22, 2019
+            Author - wangxd []
             Contact Address - support@webister.net
             Developer Address - admin@webister.net
              -->
@@ -140,9 +140,9 @@
             <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
             <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
             <!--End Twitter Meta Tags-->
-            <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-            <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+            <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <link href="templates/default/css/main.php" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
         </head>
         <body>
             <div id="fb-root"></div>
@@ -169,7 +169,7 @@
                             </form>
                         </span>
                         <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
-                            <img src="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/logo.png" alt="<?php echo $settings['name']; ?>" />
+                            <img src="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/logo.png" alt="<?php echo $settings['name']; ?>"/>
                         </a>
                         <!-- MOBILE LOGIN START -->
                         <div>
@@ -217,7 +217,7 @@
                                 } else {
                             ?>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">我的账户 <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="wish_list/"><span class="fa fa-heart remove-mobile"></span>&nbsp; 愿望清单</a></li>
                                     <li><a href="profile/"><span class="fa fa-user remove-mobile"></span>&nbsp; 我的资料</a></li>
@@ -345,7 +345,7 @@
                     var a = window.location.href;
                     $(".nav ul li a").each(function () {
                         this.href === a && $(this).addClass("selected")
-                    })
+                    });
                 });
             </script>
             <?php
