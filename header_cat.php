@@ -203,7 +203,7 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 </div></li><li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>Search</span></i></a></li></ul></div></header>
 <style type="text/css">.wow{visibility: visible !important;}
 </style>
-<script src="js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
 <script defer src="js/jquery-ui.min.js"></script>
 <script async src="js/bootstrap.min.js"></script>
 <script>new WOW().init();</script>

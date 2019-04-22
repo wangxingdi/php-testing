@@ -69,7 +69,7 @@ if($UserSql = $mysqli->query("SELECT * FROM users WHERE username='$Uname'")){
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script src="js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>new WOW().init();</script>
  <style>@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}

@@ -16,7 +16,7 @@
         $txt_gift_guides = $settings['txt_gift_guides'];
         $squ->close();
     } else {
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings. Please check it.</div>");
     }
     if (empty($settings['siteurl'])) {
         $websiteurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -58,7 +58,7 @@
             }
             $sql_post_title->close();
         } else {
-            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of posts. Please check it.</div>");
         }
     }
     //Get User Info
@@ -72,7 +72,7 @@
             $UserEmail = $UserRow['email'];
             $UserSql->close();
         } else {
-            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of users. Please check it.</div>");
         }
     }
     //Ads
@@ -84,7 +84,7 @@
         $Ad4 = stripslashes($AdsRow['ad4']);
         $AdsSql->close();
     } else {
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of siteads. Please check it.</div>");
     }
     //Tot Site Views
     $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
@@ -146,12 +146,14 @@
         </head>
         <body>
             <div id="fb-root"></div>
+<!--
             <script>
                 !function (e, t, n) {
                     var c, o = e.getElementsByTagName(t)[0];
                     e.getElementById(n) || ((c = e.createElement(t)).id = n, c.src = "//connect.facebook.net/en_US/all.js#xfbml=1", o.parentNode.insertBefore(c, o))
                 }(document, "script", "facebook-jssdk");
             </script>
+-->
             <div id="cv-top-overlay"></div>
             <header id="masthead">
                 <div id="nav-container">
@@ -183,7 +185,7 @@
                                             </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>登录</a></li>
-                                        <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>Register</a></li>
+                                        <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>注册</a></li>
                                     <?php
                                         } else {
                                     ?>
@@ -254,7 +256,7 @@
                                 }
                                 $FeatCatSql->close();
                                 } else {
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                 }
                             ?>
                             <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
@@ -270,7 +272,7 @@
                                         }
                                         $CatSql->close();
                                         } else {
-                                            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+                                            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                         }
                                     ?>
                                     <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="blog/">
@@ -317,7 +319,7 @@
                                         }
                                         $MobCatSql->close();
                                     } else {
-                                        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+                                        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                     }
                                 ?>
                                 <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize" href="blog/">博客</a>
@@ -329,7 +331,8 @@
                 </div>
             </header>
             <style type="text/css">.wow {visibility: visible !important;}</style>
-            <script src="js/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
+            <script src="js/login.js"></script>
             <script>new WOW().init();</script>
             <script async src="js/bootstrap.min.js"></script>
             <script>

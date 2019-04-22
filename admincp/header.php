@@ -47,7 +47,7 @@ if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="js/jquery.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.menu.js"></script>
 <script src="js/jquery.pjax.js" type="text/javascript"></script>
