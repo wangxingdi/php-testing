@@ -19,7 +19,7 @@
   <h3>New Category <small>Add new category</small></h3>
 </div>
 
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
 
 <script>
 $(document).ready(function()

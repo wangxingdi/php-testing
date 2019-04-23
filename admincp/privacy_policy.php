@@ -19,7 +19,7 @@
   <h3>Privacy Policy <small>Update privacy policy page here</small></h3>
 </div>
 
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
 <link href="//oss.maxcdn.com/summernote/0.5.1/summernote.css" rel="stylesheet">
 <script src="//oss.maxcdn.com/summernote/0.5.1/summernote.min.js"></script>
 

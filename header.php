@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+    session_start();
     include("db.php");
     $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
     $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
@@ -103,14 +104,6 @@
     <!doctype html>
     <html>
         <head>
-            <!--
-            Script Name - Niche Treasure
-            Version - 1.0
-            Release Date - April 22, 2019
-            Author - wangxd []
-            Contact Address - support@webister.net
-            Developer Address - admin@webister.net
-             -->
             <base href="<?php echo $protocol . $settings['siteurl']; ?>/">
             <meta charset="utf-8">
             <title>
@@ -146,14 +139,6 @@
         </head>
         <body>
             <div id="fb-root"></div>
-<!--
-            <script>
-                !function (e, t, n) {
-                    var c, o = e.getElementsByTagName(t)[0];
-                    e.getElementById(n) || ((c = e.createElement(t)).id = n, c.src = "//connect.facebook.net/en_US/all.js#xfbml=1", o.parentNode.insertBefore(c, o))
-                }(document, "script", "facebook-jssdk");
-            </script>
--->
             <div id="cv-top-overlay"></div>
             <header id="masthead">
                 <div id="nav-container">
@@ -334,8 +319,9 @@
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
             <script src="js/login.js"></script>
             <script>new WOW().init();</script>
-            <script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
-            <script async src="js/index.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
+            <script src="js/index.js"></script>
             <script>
                 var yourNavigation = $(".mobile-nav");
                 stickyDiv = "stickymobnav", yourHeader = 50, $(window).scroll(function () {

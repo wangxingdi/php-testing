@@ -20,8 +20,8 @@
   <h3>Edit Products <small>Edit/update products</small></h3>
 </div>
 
-<script src="js/bootstrap-filestyle.min.js"></script>
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
 
 <script>
 
