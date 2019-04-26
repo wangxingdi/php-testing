@@ -48,6 +48,6 @@
         <div id="wrap">
             <div class="container-fluid">
                 <header class="main-header">
-                    <a class="logo" href="index.php"><img class="img-responsive" src="images/logo.png" alt="Admin Penal"></a>
-                    <a class="header-link pull-right" href="logout.php">Logout</a>
+                    <a class="logo" href="index.php"><img class="img-responsive" src="images/logo.png" alt="管理员控制台"></a>
+                    <a class="header-link pull-right" href="logout.php">注销</a>
                 </header>
