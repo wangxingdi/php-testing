@@ -30,7 +30,7 @@
 <!-- 首页副分类
             <li><a id="newest" data-sort="110" <?php if ($sort==""){ echo "class=active"; }else if ($sort=="none"){ echo "class=active"; }?>><h3><i class="fas fa-bolt i-mod"></i><?php echo $txt_newest; ?></h3></a></li>
 -->
-            <li><a id="popular" data-sort="112" <?php if ($sort=="popular"){ echo "class=active"; }?>><h3><i class="fas fa-cart-plus i-mod"></i><?php echo $txt_popular_index; ?></h3></a></li>
+            <li><a id="popular" data-sort="112" <?php if ($sort=="popular"){ echo "class=active"; }?>><h3><i class="fas fa-fire i-mod"></i><?php echo $txt_popular_index; ?></h3></a></li>
             <li><a id="low" data-sort="108" <?php if ($sort=="low"){ echo "class=active"; }?>><h3><i class="fas fa-arrow-circle-down i-mod"></i><?php echo $txt_low; ?></h3></a></li>
             <li><a id="high" data-sort="104" <?php if ($sort=="high"){ echo "class=active"; }?>><h3><i class="fas fa-arrow-circle-up i-mod"></i><?php echo $txt_high; ?></h3></a></li>
 <!--
