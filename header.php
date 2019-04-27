@@ -191,9 +191,9 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </div><!-- /.navbar-collapse -->
+                        </div>
                         <!-- MOBILE LOGIN END -->
-                        <ul id="navbarRight" class="navbar-nav navbar-right"> <!-- LOGIN/REGISTRATION CODE START--->
+                        <ul id="navbarRight" class="navbar-nav navbar-right">
                             <?php
                                 if (!isset($_SESSION['username'])) {
                             ?>

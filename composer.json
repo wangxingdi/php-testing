@@ -1,9 +1,0 @@
-{
-	"require":
-	{
-		"guzzlehttp/guzzle": "~6.0",
-		"mailgun/mailgun-php": "^2.4",
-		"php-http/message": "^1.7",
-		"php-http/curl-client": "^1.7"
-	}
-}
