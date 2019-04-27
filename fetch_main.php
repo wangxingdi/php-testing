@@ -86,9 +86,11 @@ if($count_save==1)
 <?php
 }
 } ?>
+    <!--
 <a class="btn-share btn-fb fab fa-facebook-f" href="javascript:void(0);" onclick="popup('https://www.facebook.com/share.php?u=<?php echo $protocol . $settingsRow['siteurl'];?>/<?php echo $PageLink;?>/&amp;title=<?php echo urlencode(ucfirst($LongTitle));?>')"></a>
 <a class="btn-share btn-twitter fab fa-twitter" href="javascript:void(0);" onclick="popup('https://twitter.com/home?status=<?php echo urlencode(ucfirst($LongTitle));?>+<?php echo $protocol . $settingsRow['siteurl'];?>/<?php echo $PageLink;?>/')"></a>
 <a class="btn-share btn-pin fab fa-pinterest" href="javascript:void(0);" onclick="popup('//pinterest.com/pin/create%2Fbutton/?url=<?php echo $protocol . $settingsRow['siteurl'];?>/<?php echo $PageLink;?>/')"></a>
+-->
 </div>
 </div><!-- /.col-holder-->
 <div class="col-description"><p><?php echo $dlong;?></p></div>
