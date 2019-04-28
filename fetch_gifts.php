@@ -119,7 +119,7 @@ if($count_save==1)
 <?php }
 }?>
 <nav id="page-nav"><a href="data_gifts.php?page=2"></a></nav>
-<script async src="js/jquery.infinitescroll.min.js"></script>
+<script async src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
 <script>$("#display-posts-gifts").infinitescroll({navSelector:"#page-nav",nextSelector:"#page-nav a",itemSelector:".col-box",checkLastPage:!0,prefill:!0,scrollThreshold:100,hideNav:"#page-nav",loading:{finishedMsg:"No more posts to load.",img:"templates/default/images/ajaxloader.GIF"}},function(a,t,i){$(".col-link-data").hover(function(){$(this).parent().find(".col-share-data").stop().animate({width:"90px"},300)},function(){$(this).parent().find(".col-share-data").stop().animate({width:"-0"},300)}),$(".col-share-data").hover(function(){$(this).stop().animate({width:"90px"},300)},function(){$(this).stop().animate({width:"-0"},300)}),$(".saves-data").unbind("click"),$(function(){$(".saves-data").click(function(){var a=$(this).data("id"),t=$(this).data("name"),i="id="+a,e=$(this);return"save"==t&&($(this).fadeIn(200).html,$.ajax({type:"POST",url:"save_lists.php",data:i,cache:!1,success:function(a){e.html(a)}})),!1})}),$(".save-list-data").unbind("click"),$(function(){$(".save-list-data").click(function(){var a=$(this).data("id"),t=$(this).data("name"),i="id="+a,e=$(this);return"save"==t&&($(this).fadeIn(200).html,$.ajax({type:"POST",url:"save_lists.php",data:i,cache:!1,success:function(a){e.parent().parent().parent().find(".saves-data").html(a)}})),!1})})});</script>
 </div><!-- /.container -->
 <script async src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>

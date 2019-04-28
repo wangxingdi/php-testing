@@ -97,7 +97,7 @@ return false;
 
 <nav id="page-nav"><a href="data_wish_list.php?page=2&user=<?php echo $Uid;?>"></a></nav>
 
-<script src="js/jquery.infinitescroll.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
   <script>
   
   

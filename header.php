@@ -228,9 +228,11 @@
                             <?php
                                 if ($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORDER BY show_order ASC")) {
                                     while ($FeatCatRow = mysqli_fetch_array($FeatCatSql)) {
+                                        $cid = $FeatCatRow['id'];
                                         $FeatCatName = $FeatCatRow['cname'];
                                         $FeatCatUrl = $FeatCatRow['cname2'];
                                         $FeatCatIcon = $FeatCatRow['icon'];
+                                        $CategoryDesc = $FeatCatRow['description'];
                             ?>
                             <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?>/">
                                     <span class="icon"><?php echo $FeatCatIcon; ?></span>
