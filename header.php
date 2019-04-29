@@ -154,7 +154,7 @@
                             </form>
                         </span>
                         <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
-                            <img src="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/logo.png" alt="<?php echo $settings['name']; ?>"/>
+                            <img src="images/logo.png" alt="<?php echo $settings['name']; ?>"/>
                         </a>
                         <!-- MOBILE LOGIN START -->
                         <div>

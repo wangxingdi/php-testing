@@ -31,8 +31,8 @@ RewriteRule ^contact_us/ contact_us.php [L]
 RewriteCond %{THE_REQUEST} /listing(?:\.;php)?\?pname=([^\s&]+) [NC]
 RewriteRule ^ %1? [R=302,L,NE]
 RewriteRule ^([^/\.]+)/$ listing.php?pname=$1
-RewriteRule ^category/(.*)/(.*)/$ cat.php?cname=$1&sort=$2 [L]
-RewriteRule ^category/(.*)/$ cat.php?cname=$1&sort=newest [L]
+RewriteRule ^category/(.*)/(.*)/$ category.php?cname=$1&sort=$2 [L]
+RewriteRule ^category/(.*)/$ category.php?cname=$1&sort=newest [L]
 RewriteRule ^(.*)\.html$ $1.php [L]
 # Disable ETags
 <IfModule mod_headers.c>
