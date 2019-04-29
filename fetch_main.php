@@ -192,7 +192,7 @@ while ($row = mysqli_fetch_array($result)) {
     <?php }
 } ?>
 <nav id="page-nav"><a href="data_index.php?page=2"></a></nav>
-<script async src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+<script async src="js/jquery.infinitescroll.min.js"></script>
 <script>
     $("#display-posts-main").infinitescroll({
         navSelector: "#page-nav",
