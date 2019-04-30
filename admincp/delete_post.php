@@ -21,7 +21,7 @@ if($ImageInfo = $mysqli->query("SELECT * FROM posts WHERE id='$del'")){
 
 if($CheckImage==1){
 
-unlink("../uploaded_images/$Image");
+unlink("../uploads/$Image");
 
 }
 

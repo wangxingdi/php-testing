@@ -11,7 +11,7 @@ if($ImageInfo = $mysqli->query("SELECT * FROM listings WHERE catid='$del'")){
 	
 	$Image = $GetInfo['image'];
 	
-	unlink("../uploaded_images/$Image");
+	unlink("../uploads/$Image");
 
 }
 	

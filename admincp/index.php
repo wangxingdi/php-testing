@@ -111,7 +111,7 @@
                             <tr>
                                 <td><a href="edit_product.php?id=<?php echo $AppRow['id'];?>">
                                         <!--
-                                        <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploaded_images/<?php echo $AppRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $AppLongTitle;?>" class="img-responsive"></a></td>
+                                        <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploads/<?php echo $AppRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $AppLongTitle;?>" class="img-responsive"></a></td>
                                         -->
                                         <img style="margin:0 auto;" src="timthumb.php?src=<?php echo $AppRow['external_link'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $AppLongTitle;?>" class="img-responsive"></a></td>
                                 <td><a href="edit_product.php?id=<?php echo $AppRow['id'];?>"><?php echo ucfirst($SortAppTitle);?></a></td>
@@ -162,7 +162,7 @@
                 ?>
                         <tr>
                             <td><a href="edit_post.php?id=<?php echo $PenRow['id'];?>">
-                                    <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploaded_images/<?php echo $PenRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $PenLongTitle;?>" class="img-responsive">
+                                    <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploads/<?php echo $PenRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $PenLongTitle;?>" class="img-responsive">
                                 </a>
                             </td>
                             <td><a href="edit_post.php?id=<?php echo $PenRow['id'];?>"><?php echo ucfirst($SortPenTitle);?></a></td>

@@ -13,7 +13,7 @@ if($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
      printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again</div>");;
 }
 
-$UploadDirectory    = '../uploaded_images/';
+$UploadDirectory    = '../uploads/';
 
 if (!@file_exists($UploadDirectory)) {
     //destination folder does not exist

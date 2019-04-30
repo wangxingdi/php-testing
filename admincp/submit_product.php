@@ -1,16 +1,18 @@
 <?php
 include('../db.php');
-if ($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
-    $settings = mysqli_fetch_array($squ);
+if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
+    $settings = mysqli_fetch_array($settings_result_set);
     $Active = $settings['active'];
-    $squ->close();
+    $settings_result_set->close();
 } else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
+    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings, Please check it.</div>");
 }
-$UploadDirectory = '../uploaded_images/';
-if (!@file_exists($UploadDirectory)) {
+$year = date('Y');
+$month = date('m');
+$upload_directory = '../uploads/300x250/'+$year+'/'+$month+"/";
+if (!@file_exists($upload_directory)) {
     //destination folder does not exist
-    die("Make sure Upload directory exist!");
+    die("Make sure upload directory exist!");
 }
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
@@ -62,7 +64,7 @@ if ($_POST) {
     //file size
     $FileSize = $_FILES['mFile']["size"];
     //Random number to make each filename unique.
-    $RandNumber = rand(0, 9999999999);
+    //$RandNumber = rand(0, 9999999999);
     $Date = date("F j, Y");
     // file title
     $FileTitle = $mysqli->escape_string($_POST['mName']);
@@ -102,17 +104,19 @@ if ($_POST) {
             //output error
             die('<div class="alert alert-danger" role="alert">Unsupported Image File. Please upload JPEG, PNG or GIF files</div>');
     }
-    function clean($string){
+    function clean($string)
+    {
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
-
+    $day = date('d');
     //Image File Title will be used as new File name
-    $NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
+    //$NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
+    $NewFileName = preg_replace(array('/\s{1,}/'), array('-'), strtolower($FileTitle));
     $NewFileName = clean($NewFileName);
-    $NewFileName = $NewFileName . '_' . $RandNumber . $ImageExt;
+    $NewFileName = $day . '_' . $NewFileName . $ImageExt;
     //Rename and save uploded image file to destination folder.
-    if (move_uploaded_file($_FILES['mFile']["tmp_name"], $UploadDirectory . $NewFileName)) {
+    if (move_uploaded_file($_FILES['mFile']["tmp_name"], $upload_directory . $NewFileName)) {
         // Insert info into database table.. do w.e!
         if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
             echo "Error : " . $mysqli->error;
@@ -127,7 +131,8 @@ if ($_POST) {
         die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
     }
 }
-function upload_errors($err_code){
+function upload_errors($err_code)
+{
     switch ($err_code) {
         case UPLOAD_ERR_INI_SIZE:
             return '<div class="alert alert-danger" role="alert">Image file size is too big. Please try a smaller image</div>';
@@ -147,4 +152,5 @@ function upload_errors($err_code){
             return '<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>';
     }
 }
+
 ?>

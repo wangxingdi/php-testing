@@ -91,7 +91,7 @@ if ($sql = $mysqli->query("SELECT * FROM settings WHERE id=1")) {
                     </div>
                 </div>
                 <a class="col-link" href="offer_link.php?id=<?php echo $row['id']; ?>" target="_blank">
-                    <?php /*<img src="uploaded_images/resizer/650x550/r/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive slide-img"> */ ?>
+                    <?php /*<img src="uploads/resizer/650x550/r/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive slide-img"> */ ?>
                     <img src=<?php echo $row['external_link']; ?> alt="<?php echo $row['title']; ?>" class="img-responsive slide-img" style="width: 650px; height: 550px;">
                 </a>
                 <div class="col-share">
@@ -214,7 +214,7 @@ if ($sql = $mysqli->query("SELECT * FROM settings WHERE id=1")) {
                 <a href="<?php echo $RelLink; ?>/"><h2 class="title-bottom"><?php echo $tlong; ?></h2></a>
                 <div class="col-holder">
                     <a class="col-link" href="<?php echo $RelLink; ?>/">
-                        <img class="img-responsive" src="uploaded_images/resizer/316x250/r/<?php echo $RelRow['image']; ?>" alt="<?php echo $tlong; ?>">
+                        <img class="img-responsive" src="uploads/resizer/316x250/r/<?php echo $RelRow['image']; ?>" alt="<?php echo $tlong; ?>">
                     </a>
                     <div class="col-share">
                         <?php if (!isset($_SESSION['username'])) { ?>

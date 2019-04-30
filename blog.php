@@ -35,7 +35,7 @@ error_reporting(E_ALL ^ E_NOTICE);
                 ?>
                     <article class="col-md-12 blog-item ng-scope wow fadeIn animation-off-mobile">
                         <div class="image" style="float: left; "><a href="blog/<?php echo $PageLink; ?>/">
-                                <img class="img-responsive" alt="<?php echo $LongTitle; ?>" src="uploaded_images/resizer/300x178/r/<?php echo $row['image']; ?>">
+                                <img class="img-responsive" alt="<?php echo $LongTitle; ?>" src="uploads/resizer/300x178/r/<?php echo $row['image']; ?>">
                             </a>
                         </div>
                         <div class="blog-item-header" style="float: left; padding-right: 10px">

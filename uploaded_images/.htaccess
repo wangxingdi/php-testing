@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c >
-RewriteEngine On
-RewriteRule ^resizer/650x550/r/(.*) resizer/thumb.php?src=/uploaded_images/$1&h=550&w=650&q=100
-RewriteRule ^resizer/(.*)x(.*)/r/(.*) resizer/thumb.php?src=/uploaded_images/$3&h=$2&w=$1&q=50
-</IfModule>
