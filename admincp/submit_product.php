@@ -9,10 +9,10 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
 }
 $year = date('Y');
 $month = date('m');
-$upload_directory = '../uploads/300x250/'+$year+'/'+$month+"/";
+$upload_directory = '../uploads/300x250/' . $year . '/' . $month . "/";
 if (!@file_exists($upload_directory)) {
     //destination folder does not exist
-    die("Make sure upload directory exist!");
+    die("Make sure upload directory exist-" . $upload_directory);
 }
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
