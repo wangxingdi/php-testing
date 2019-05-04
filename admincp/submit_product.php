@@ -11,45 +11,40 @@ $year = date('Y');
 $month = date('m');
 $upload_directory = '../uploads/300x250/' . $year . '/' . $month . "/";
 if (!@file_exists($upload_directory)) {
-    //destination folder does not exist
-    die("Make sure upload directory exist-" . $upload_directory);
+    die("图片上传路径不存在-" . $upload_directory);
 }
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please select a category.</div>');
+        die('<div class="alert alert-danger" role="alert">请先选择一个分类.</div>');
     }
     if (!isset($_POST['mName']) || strlen($_POST['mName']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a title.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入标题.</div>');
     }
     if (!isset($_POST['meta_desc']) || strlen($_POST['meta_desc']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a meta description.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入网页元信息描述.</div>');
     }
     if (!isset($_POST['aff']) || strlen($_POST['aff']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please enter product purchase link.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入商品推广链接.</div>');
     }
     if (!isset($_POST['aff']) || strlen($_POST['aff']) > 1) {
         $CheckLink = $mysqli->escape_string($_POST['aff']);
         if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $CheckLink)) {
             //do nothing
         } else {
-            die('<div class="alert alert-danger" role="alert">Please enter full product purchase link.</div>');
+            die('<div class="alert alert-danger" role="alert">请输入完整的商品推广链接.</div>');
         }
     }
     if (!isset($_POST['disc']) || strlen($_POST['disc']) < 1) {
         //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a small description.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入一段商品描述.</div>');
     }
     if (!isset($_FILES['mFile'])) {
         //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a image</div>');
+        die('<div class="alert alert-danger" role="alert">请选择一张300x250的图片</div>');
     }
     if (!isset($_POST['price']) || strlen($_POST['price']) < 1) {
         //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add price.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入商品价格.</div>');
     }
     if ($_FILES['mFile']['error']) {
         //File upload error encountered
@@ -110,7 +105,6 @@ if ($_POST) {
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
     $day = date('d');
-    //Image File Title will be used as new File name
     //$NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
     $NewFileName = preg_replace(array('/\s{1,}/'), array('-'), strtolower($FileTitle));
     $NewFileName = clean($NewFileName);
@@ -126,13 +120,12 @@ if ($_POST) {
             $('#AddProduct').delay(1000).resetForm(1000);
         </script>
         <?php
-        die('<div class="alert alert-success" role="alert">Product added successfully.</div>');
+        die('<div class="alert alert-success" role="alert">商品添加成功.</div>');
     } else {
-        die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
+        die('<div class="alert alert-danger" role="alert">图片上传遇到问题，请仔细检查.</div>');
     }
 }
-function upload_errors($err_code)
-{
+function upload_errors($err_code){
     switch ($err_code) {
         case UPLOAD_ERR_INI_SIZE:
             return '<div class="alert alert-danger" role="alert">Image file size is too big. Please try a smaller image</div>';
