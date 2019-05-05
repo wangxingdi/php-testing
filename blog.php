@@ -3,7 +3,8 @@ error_reporting(E_ALL ^ E_NOTICE);
 ?>
 <div class="container" id="page" style="margin-top: 70px;">
     <div id="view" class="ng-scope ready">
-        <div class="row ng-scope"><h1 class="recent">最近的文章</h1>
+        <div class="row ng-scope">
+            <h1 class="recent">最近的文章</h1>
             <div class="blog">
                 <?php
                 $sql_posts = $mysqli->query("SELECT * FROM posts WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
@@ -34,7 +35,8 @@ error_reporting(E_ALL ^ E_NOTICE);
                     $date = $row['date'];
                 ?>
                     <article class="col-md-12 blog-item ng-scope wow fadeIn animation-off-mobile">
-                        <div class="image" style="float: left; "><a href="blog/<?php echo $PageLink; ?>/">
+                        <div class="image" style="float: left; ">
+                            <a href="blog/<?php echo $PageLink; ?>/">
                                 <img class="img-responsive" alt="<?php echo $LongTitle; ?>" src="uploads/resizer/300x178/r/<?php echo $row['image']; ?>">
                             </a>
                         </div>
@@ -47,7 +49,9 @@ error_reporting(E_ALL ^ E_NOTICE);
                         </div>
                     </article>
                 <?php } ?>
-                <nav id="page-nav"><a href="data_post.php?page=2"></a></nav>
+                <nav id="page-nav">
+                    <a href="data_post.php?page=2"></a>
+                </nav>
                 <script src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
                 <script>
                     $(".blog").infinitescroll({
