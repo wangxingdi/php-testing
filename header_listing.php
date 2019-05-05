@@ -135,10 +135,14 @@ $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
 <!--End Twitter Meta Tags-->
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
+<link href="css/test1.css" rel="stylesheet" type="text/css">
+<link href="css/test2.css" rel="stylesheet" type="text/css">
+<link href="css/test3.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
 <div id="fb-root"></div>
+<!--
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -146,6 +150,7 @@ $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+-->
 <div id="cv-top-overlay"></div>
 <header id="masthead">
 <div id="nav-container"><div class="nav-accent nav-accent-left" ng-hide="hide_header"></div><div class="nav-accent nav-accent-right" ng-hide="hide_header"></div><div id="logo"><span id="search-bar"><form class="search-form" role="search" name="srch-term" method="get" action="search.php" ng-controller="SearchPartialCtrl"><fieldset class="searchbox"><i class="fa fa-search"></i><input class="elasticsearch" name="term" type="text" autocomplete="off" placeholder="Search..." ng-change="search(term)" ng-model="term"></fieldset></form></span><a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="images/logo.png" alt="<?php echo $settings['name']; ?>"></a>

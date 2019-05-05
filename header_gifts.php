@@ -72,10 +72,14 @@ $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
 <!--End Twitter Meta Tags-->
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
+<link href="css/test1.css" rel="stylesheet" type="text/css">
+<link href="css/test2.css" rel="stylesheet" type="text/css">
+<link href="css/test3.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
 <div id="fb-root"></div>
+<!--
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -83,6 +87,7 @@ $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+-->
 <div id="cv-top-overlay"></div>
 <header id="masthead">
 <div id="nav-container">
