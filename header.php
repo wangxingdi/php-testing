@@ -134,7 +134,7 @@
             <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
             <!--End Twitter Meta Tags-->
             <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-            <link href="templates/default/css/main.php" rel="stylesheet" type="text/css" />
+            <link href="css/main.php" rel="stylesheet" type="text/css" />
             <link href="css/test1.css" rel="stylesheet" type="text/css">
             <link href="css/test2.css" rel="stylesheet" type="text/css">
             <link href="css/test3.css" rel="stylesheet" type="text/css">

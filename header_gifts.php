@@ -71,7 +71,7 @@ $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
 <meta property="og:description" content="<?php echo $settings['descrp'];?>" />
 <!--End Twitter Meta Tags-->
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
+<link href="css/main.php" rel="stylesheet" type="text/css">
 <link href="css/test1.css" rel="stylesheet" type="text/css">
 <link href="css/test2.css" rel="stylesheet" type="text/css">
 <link href="css/test3.css" rel="stylesheet" type="text/css">

@@ -202,7 +202,7 @@ while ($row = mysqli_fetch_array($result)) {
         prefill: !0,
         scrollThreshold: 100,
         hideNav: "#page-nav",
-        loading: {finishedMsg: "No more posts to load.", img: "templates/default/images/ajaxloader.GIF"}
+        loading: {finishedMsg: "No more posts to load.", img: "images/ajaxloader.gif"}
     }, function (a, t, i) {
         $(".col-link-data").hover(function () {
             $(this).parent().find(".col-share-data").stop().animate({width: "90px"}, 300)

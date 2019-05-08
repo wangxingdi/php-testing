@@ -223,7 +223,7 @@ if($count_save==1)
         hideNav : '#page-nav',
         loading: {
                         finishedMsg: 'No more posts to load.',
-                        img: 'templates/default/images/ajaxloader.GIF'
+                        img: 'images/ajaxloader.gif'
     }
     }, function(newElements, data, url){
         
