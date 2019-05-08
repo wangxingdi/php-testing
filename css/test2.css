@@ -2217,6 +2217,10 @@ nav.nav .icon .fa.fa-gift, .icon .fas.fa-gift {
     content: "\f04c"
 }
 
+.fa-forward:before{
+    content: "\f04e"
+}
+
 .fa-plus:before {
     content: "\f067"
 }

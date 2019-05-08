@@ -33,7 +33,7 @@ $(":file").filestyle({iconName: "glyphicon-picture", buttonText: "Select Photo"}
 
 $(document).ready(function()
 {
-    $('#AddProduct').on('submit', function(e)
+    $('#form-add-product').on('submit', function(e)
     {
         e.preventDefault();
         $('#submit').attr('disabled', ''); // disable upload button
@@ -89,7 +89,7 @@ if($Post = $mysqli->query("SELECT * FROM listings WHERE id='$id'")){
 
 <div id="output"></div>
 
-<form action="update_product.php?id=<?php echo $id;?>" id="AddProduct" enctype="multipart/form-data" method="post">
+<form action="update_product.php?id=<?php echo $id;?>" id="form-add-product" enctype="multipart/form-data" method="post">
 
 <div class="form-group">
 <label for="category">Category</label>

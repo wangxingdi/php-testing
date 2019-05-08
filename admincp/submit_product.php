@@ -5,49 +5,45 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
     $Active = $settings['active'];
     $settings_result_set->close();
 } else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings, Please check it.</div>");
+    printf("<div class='alert alert-danger alert-pull'>settings表似乎有问题，请检查一下。</div>");
 }
 $year = date('Y');
 $month = date('m');
-$upload_directory = '../uploads/300x250/' . $year . '/' . $month . "/";
+$upload_directory = '../uploads/300x250/'.$year.'/'.$month."/";
 if (!@file_exists($upload_directory)) {
-    die("图片上传路径不存在-" . $upload_directory);
+    die('<div class="alert alert-danger" role="alert">图片上传路径不存在。</div>');
 }
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
-        die('<div class="alert alert-danger" role="alert">请先选择一个分类.</div>');
+        die('<div class="alert alert-danger" role="alert">请先选择一个分类。</div>');
     }
     if (!isset($_POST['mName']) || strlen($_POST['mName']) < 1) {
-        die('<div class="alert alert-danger" role="alert">请输入标题.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入标题。</div>');
     }
     if (!isset($_POST['meta_desc']) || strlen($_POST['meta_desc']) < 1) {
-        die('<div class="alert alert-danger" role="alert">请输入网页元信息描述.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入网页元信息描述。</div>');
     }
     if (!isset($_POST['aff']) || strlen($_POST['aff']) < 1) {
-        die('<div class="alert alert-danger" role="alert">请输入商品推广链接.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入商品推广链接。</div>');
     }
     if (!isset($_POST['aff']) || strlen($_POST['aff']) > 1) {
         $CheckLink = $mysqli->escape_string($_POST['aff']);
         if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $CheckLink)) {
             //do nothing
         } else {
-            die('<div class="alert alert-danger" role="alert">请输入完整的商品推广链接.</div>');
+            die('<div class="alert alert-danger" role="alert">请输入完整的商品推广链接。</div>');
         }
     }
     if (!isset($_POST['disc']) || strlen($_POST['disc']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">请输入一段商品描述.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入一段商品描述。</div>');
     }
     if (!isset($_FILES['mFile'])) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">请选择一张300x250的图片</div>');
+        die('<div class="alert alert-danger" role="alert">请选择一张图片(推荐300px*250px)。</div>');
     }
     if (!isset($_POST['price']) || strlen($_POST['price']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">请输入商品价格.</div>');
+        die('<div class="alert alert-danger" role="alert">请输入商品价格。</div>');
     }
     if ($_FILES['mFile']['error']) {
-        //File upload error encountered
         die(upload_errors($_FILES['mFile']['error']));
     }
     //uploaded file name
@@ -78,26 +74,23 @@ if ($_POST) {
         $cname2_row = mysqli_fetch_array($sql_cname2);
         $cname2 = $cname2_row['cname2'];
     } else {
-        die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
+        die('<div class="alert alert-danger" role="alert">获取分类代码失败，请检查您的分类配置。</div>');
     }
-    // afflite url
+
     $AffURL = $mysqli->escape_string($_POST['aff']);
-    // description
     $Description = $mysqli->escape_string($_POST['disc']);
-    // price
     $Price = $mysqli->escape_string($_POST['price']);
-    // price
     $MetaDescription = $mysqli->escape_string($_POST['meta_desc']);
     $external = $mysqli->escape_string($_POST['external']);
     switch (strtolower($FileType)) {
-        //allowed file types
         case 'image/png':
+            break;
         case 'image/gif':
+            break;
         case 'image/jpeg':
             break;
         default:
-            //output error
-            die('<div class="alert alert-danger" role="alert">Unsupported Image File. Please upload JPEG, PNG or GIF files</div>');
+            die('<div class="alert alert-danger" role="alert">仅支持JPEG，PNG或者GIF类型的文件。</div>');
     }
     function clean($string)
     {
@@ -110,19 +103,19 @@ if ($_POST) {
     $NewFileName = clean($NewFileName);
     $NewFileName = $day . '_' . $NewFileName . $ImageExt;
     //Rename and save uploded image file to destination folder.
+    echo  $upload_directory . $NewFileName;
     if (move_uploaded_file($_FILES['mFile']["tmp_name"], $upload_directory . $NewFileName)) {
-        // Insert info into database table.. do w.e!
         if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
             echo "Error : " . $mysqli->error;
         }
         ?>
         <script>
-            $('#AddProduct').delay(1000).resetForm(1000);
+            $('#form-add-product').delay(1000).resetForm(1000);
         </script>
         <?php
-        die('<div class="alert alert-success" role="alert">商品添加成功.</div>');
+        die('<div class="alert alert-success" role="alert">商品添加成功。</div>');
     } else {
-        die('<div class="alert alert-danger" role="alert">图片上传遇到问题，请仔细检查.</div>');
+        die('<div class="alert alert-danger" role="alert">图片上传遇到问题，请仔细检查。</div>');
     }
 }
 function upload_errors($err_code){
