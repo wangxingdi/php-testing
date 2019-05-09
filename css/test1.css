@@ -1,10 +1,9 @@
-hr, img {
-    border: 0
+/** 个性化begin **/
+* {
+    margin: 0px;
+    padding: 0px;
 }
-
-body {
-    margin: 0
-}
+/** 个性化end **/
 
 html {
     font-family: sans-serif;
@@ -367,12 +366,6 @@ address, blockquote .small, blockquote footer, blockquote small, dd, dt, pre {
 
 pre code, table {
     background-color: transparent
-}
-
-.page-header {
-    padding-bottom: 9px;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #eee
 }
 
 dl, ol, ul {
@@ -1295,10 +1288,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     }
 }
 
-.breadcrumb > li, .pagination {
-    display: inline-block
-}
-
 .navbar-nav > li > .dropdown-menu {
     margin-top: 0;
     border-top-right-radius: 0;
@@ -1317,24 +1306,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     .navbar-right ~ .navbar-right {
         margin-right: 0
     }
-}
-
-.breadcrumb {
-    padding: 8px 15px;
-    margin-bottom: 20px;
-    list-style: none;
-    background-color: #f5f5f5;
-    border-radius: 4px
-}
-
-.breadcrumb > li + li:before {
-    content: "/\00a0";
-    padding: 0 5px;
-    color: #ccc
-}
-
-.breadcrumb > .active {
-    color: #777
 }
 
 .pagination {
