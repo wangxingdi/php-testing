@@ -18,53 +18,53 @@
                     <div class="panel-body">
                         <ul>
                             <?php
-                                if($TotalProducts = $mysqli->query("SELECT id FROM listings")){
-                                    $CountTotal = $TotalProducts->num_rows;
+                                if($products_result_set = $mysqli->query("SELECT id FROM listings")){
+                                    $products_num = $products_result_set->num_rows;
                             ?>
-                            <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-home"></i> <a href="active_listings.php"><?php echo $CountTotal . ' '; if($CountTotal==1){echo '商品';}else{echo '商品';};?></a></span></li>
+                            <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-cart-plus"></i> <a href="active_listings.php"><?php echo $products_num . ' 个产品';?></a></span></li>
                             <?php
-                                    $TotalProducts->close();
+                                    $products_result_set->close();
                                 }else{
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of listings. Please check it.</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>查询产品表出现异常。</div>");
                                 }
-                                if($TotalPosts = $mysqli->query("SELECT id FROM posts")){
-                                    $CountTotalPosts = $TotalPosts->num_rows;
+                                if($posts_result_set = $mysqli->query("SELECT id FROM posts")){
+                                    $posts_num = $posts_result_set->num_rows;
                             ?>
-                            <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-wordpress"></i> <a href="manage_posts.php"><?php echo $CountTotalPosts . ' '; if($CountTotalPosts==1){echo '文章';}else{echo '文章';} ?></a></span></li>
+                            <li><span><i style="padding-right:5px;font-size:18px;" class="fab fa-wordpress"></i> <a href="manage_posts.php"><?php echo $posts_num . ' 篇文章'; ?></a></span></li>
                             <?php
-                                    $TotalPosts->close();
+                                    $posts_result_set->close();
                                 }else{
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of listings. Please check it.</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>查询文章表出现异常</div>");
                                 }
                             ?>
-                            <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-chart-bar"></i> <?php echo $Settings['site_hits'];?> 网站访问量</span></li>
+                            <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php echo $Settings['site_hits'];?> 网站访问量</span></li>
                             <?php
-                                if($TotalProducts = $mysqli->query("SELECT SUM(views) AS VIEWS FROM listings")){
-                                    $TotalProductsCount = mysqli_fetch_array($TotalProducts);
+                                if($products_view_result_set = $mysqli->query("SELECT SUM(views) AS VIEWS FROM listings")){
+                                    $products_view_num = mysqli_fetch_array($products_view_result_set);
                             ?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-chart-bar"></i> <?php echo $TotalProductsCount['VIEWS'];?> 商品访问量</span></li>
+                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-pie"></i> <?php echo $products_view_num['VIEWS'];?> 产品访问量</span></li>
                             <?php
-                                    $TotalProducts->close();
+                                    $products_view_result_set->close();
                                 }else{
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of listings. Please check it</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>查询产品访问量出现异常</div>");
                                 }
-                                if($LinkHits = $mysqli->query("SELECT SUM(hits) AS HITS FROM listings")){
-                                    $CountLinkHits = mysqli_fetch_array($LinkHits);
+                                if($products_click_result_set = $mysqli->query("SELECT SUM(hits) AS HITS FROM listings")){
+                                    $products_click_num = mysqli_fetch_array($products_click_result_set);
                             ?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-chart-bar"></i> <?php echo $CountLinkHits['HITS'];?> 推广链接点击量</span></li>
+                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-dollar-sign"></i> <?php echo $products_click_num['HITS'];?> 营销点击量</span></li>
                             <?php
-                                    $LinkHits->close();
+                                    $products_click_result_set->close();
                                 }else{
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of listings. Please check it.</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>查询产品营销量出现异常</div>");
                                 }
-                                if($Saves = $mysqli->query("SELECT save_id FROM saves")){
-                                    $CountSaves = $Saves->num_rows;
+                                if($saves_result_set = $mysqli->query("SELECT save_id FROM saves")){
+                                    $saves_num = $saves_result_set->num_rows;
                             ?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fa fa-heart"></i> <?php echo $CountSaves;?> 关注</span></li>
+                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-heart"></i> <?php echo $saves_num;?> 关注</span></li>
                             <?php
-                                    $Saves->close();
+                                    $saves_result_set->close();
                                 }else{
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of saves. Please check it.</div>");
+                                    printf("<div class='alert alert-danger alert-pull'>查询关注表出现异常</div>");
                                 }
                             ?>
                         </ul>
@@ -75,16 +75,16 @@
         <section class="col-md-8 box-space-top">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>最近上架商品</h4>
+                    <h4>最近上架的产品</h4>
                 </div>
                 <div class="panel-body">
                     <?php
-                        $DisplayApproved= $mysqli->query("SELECT * FROM listings WHERE active='1' ORDER BY id DESC LIMIT 10");
-                        $NumberOfApp = $DisplayApproved->num_rows;
-                        if ($NumberOfApp==0) {
-                            echo '<div class="alert alert-danger">现在你还没有上架任何商品.</div>';
+                        $products_result_set= $mysqli->query("SELECT * FROM listings WHERE active='1' ORDER BY id DESC LIMIT 5");
+                        $products_num = $products_result_set->num_rows;
+                        if ($products_num==0) {
+                            echo '<div class="alert alert-danger">现在你还没有上架任何产品。</div>';
                         }
-                        if ($NumberOfApp>0){
+                        if ($products_num>0){
                     ?>
                     <table class="table table-bordered">
                         <thead>
@@ -97,28 +97,24 @@
                         <tbody>
                     <?php
                         }
-                        while($AppRow = mysqli_fetch_assoc($DisplayApproved)){
-                            $AppLongTitle = stripslashes($AppRow['title']);
-                            $CropAppTitle = strlen ($AppLongTitle);
-                            if ($CropAppTitle > 200) {
-                                $SortAppTitle = substr($AppLongTitle,0,200).'...';
-                            }else{
-                                $SortAppTitle = $AppLongTitle;}
-                            $AppPostLink = preg_replace("![^a-z0-9]+!i", "-", $AppLongTitle);
-                            $AppPostLink = urlencode($AppPostLink);
-                            $AppPostLink = strtolower($AppPostLink);
+                        while($products_row = mysqli_fetch_assoc($products_result_set)){
+                            $id = $products_row['id'];
+                            $title = $products_row['title'];
+                            $external_link = $products_row['external_link'];
+                            $date = $products_row['date'];
                     ?>
                             <tr>
-                                <td><a href="edit_product.php?id=<?php echo $AppRow['id'];?>">
-                                        <!--
-                                        <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploads/<?php echo $AppRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $AppLongTitle;?>" class="img-responsive"></a></td>
-                                        -->
-                                        <img style="margin:0 auto;" src="timthumb.php?src=<?php echo $AppRow['external_link'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $AppLongTitle;?>" class="img-responsive"></a></td>
-                                <td><a href="edit_product.php?id=<?php echo $AppRow['id'];?>"><?php echo ucfirst($SortAppTitle);?></a></td>
-                                <td><?php echo $AppRow['date'];?></td>
+                                <td>
+                                    <a href="edit_product.php?id=<?php echo $id;?>">
+                                        <img style="margin:0 auto;" src="timthumb.php?src=<?php echo $external_link;?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $title;?>" class="img-responsive" />
+                                    </a>
+                                </td>
+                                <td><a href="edit_product.php?id=<?php echo $id;?>"><?php echo $title;?></a></td>
+                                <td><?php echo $date;?></td>
                             </tr>
                     <?php
                         }
+                    $posts_result_set->close();
                     ?>
                         </tbody>
                     </table>
@@ -127,15 +123,17 @@
         </section>
         <section class="col-md-8 box-space-top">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>最近发表的文章</h4></div>
+                <div class="panel-heading">
+                    <h4>最近发表的文章</h4>
+                </div>
                 <div class="panel-body">
                 <?php
-                    $posts= $mysqli->query("SELECT * FROM posts ORDER BY id DESC LIMIT 10");
-                    $NumberOfPen = $posts->num_rows;
-                    if ($NumberOfPen==0) {
-                        echo '<div class="alert alert-danger">目前你还没有发表任何文章.</div>';
+                    $posts_result_set= $mysqli->query("SELECT * FROM posts ORDER BY id DESC LIMIT 5");
+                    $posts_num = $posts_result_set->num_rows;
+                    if ($posts_num==0) {
+                        echo '<div class="alert alert-danger">目前您还没有发表任何文章。</div>';
                     }
-                    if ($NumberOfPen>0){
+                    if ($posts_num>0){
                 ?>
                     <table class="table table-bordered">
                         <thead>
@@ -148,44 +146,28 @@
                         <tbody>
                 <?php
                     }
-                    while($PenRow = mysqli_fetch_assoc($posts)){
-                        $PenLongTitle = stripslashes($PenRow['title']);
-                        $CropPenTitle = strlen ($PenLongTitle);
-                        if ($CropPenTitle > 200) {
-                            $SortPenTitle = substr($PenLongTitle,0,200).'...';
-                        }else{
-                            $SortPenTitle = $PenLongTitle;
-                        }
-                        $PenPostLink = preg_replace("![^a-z0-9]+!i", "-", $PenLongTitle);
-                        $PenPostLink = urlencode($PenPostLink);
-                        $PenPostLink = strtolower($PenPostLink);
+                    while($posts_row = mysqli_fetch_assoc($posts_result_set)){
+                        $id = $posts_row['id'];
+                        $title = $posts_row['title'];
+                        $external_link = $posts_row['external_link'];
+                        $date = $posts_row['date'];
                 ?>
                         <tr>
-                            <td><a href="edit_post.php?id=<?php echo $PenRow['id'];?>">
-                                    <img style="margin:0 auto;" src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploads/<?php echo $PenRow['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $PenLongTitle;?>" class="img-responsive">
+                            <td><a href="edit_post.php?id=<?php echo $id;?>">
+                                    <img style="margin:0 auto;" src="timthumb.php?src=<?php echo $external_link;?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $title;?>" class="img-responsive" />
                                 </a>
                             </td>
-                            <td><a href="edit_post.php?id=<?php echo $PenRow['id'];?>"><?php echo ucfirst($SortPenTitle);?></a></td>
-                            <td><?php echo $PenRow['date'];?></td>
+                            <td><a href="edit_post.php?id=<?php echo $id;?>"><?php echo $title;?></a></td>
+                            <td><?php echo $date;?></td>
                         </tr>
                 <?php
                     }
+                $posts_result_set->close();
                 ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="ProductModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    </div>
-                </div>
-            </div>
-            <script>
-                $('body').on('hidden.bs.modal', '.modal', function () {
-                    $(this).removeData('bs.modal');
-                });
-            </script>
         </section>
     </section>
 <?php include("footer.php");?>

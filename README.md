@@ -1,4 +1,5 @@
 # php-testing
+## 待完成
 1. 广告图片需要自己制作;
 2. gif不能播放问题需要解决; - Done(fetch_main.php)
 3. 图片动静分离问题需要解决; - Done(listings表增加外链字段,在fetch_main.php中获取外链url并展示)
@@ -13,3 +14,8 @@
 12. 商品来源标签小功能;
 13. 字体和样式美化-标题的字体和简介的字体分别使用两种字体;
 14. 微信机器人接入多个联盟api;
+
+## 已完成
+1. admincp/login.php
+2. admincp/index.php
+3. admincp/left_menu.php

@@ -22,7 +22,7 @@
         <link href="../images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.staticfile.org/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.staticfile.org/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" type="text/css"/>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
