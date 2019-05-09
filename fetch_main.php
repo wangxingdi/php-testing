@@ -1,23 +1,18 @@
-<?php session_start();
+<?php
+session_start();
 include("db.php");
 error_reporting(E_ALL ^ E_NOTICE);
 $sort = $mysqli->escape_string(chr($_POST["sort"]));
 $_SESSION['sort'] = $sort;
 $user_id = $_SESSION['user_id'];
 $count = 0;
-if ($siteurl_sql = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
-    $settingsRow = mysqli_fetch_array($siteurl_sql);
-    $siteurl = $settingsRow['siteurl'];
-    $symbol = stripslashes($settingsRow['price_symbol']);
-    $strActive = strlen($symbol);
-    if ($strActive > 4) {
-        $ActiveSymbol = substr($symbol, 0, 4) . '...';
-    } else {
-        $ActiveSymbol = $symbol;
-    }
-    $txt_save = $settingsRow['txt_save'];
-    $txt_remove = $settingsRow['txt_remove'];
-    $siteurl_sql->close();
+if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
+    $settings_row = mysqli_fetch_array($settings_result_set);
+    $siteurl = $settings_row['siteurl'];
+    $price_symbol = stripslashes($settings_row['price_symbol']);
+    $txt_save = $settings_row['txt_save'];
+    $txt_remove = $settings_row['txt_remove'];
+    $settings_result_set->close();
 } else {
     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 } ?>
@@ -66,96 +61,84 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
 <?php
 if ($sort == "n") {
     $sortpage = "newest";
-    $result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 15");
+    $products_result_set = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
 } else if ($sort == "p") {
     $sortpage = "popular";
-    $result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY views DESC LIMIT 0, 15");
+    $products_result_set = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY views DESC LIMIT 0, 9");
 } else if ($sort == "l") {
     $sortpage = "low";
-    $result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY CAST(price AS DECIMAL(10,2)) ASC LIMIT 0, 15");
+    $products_result_set = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY CAST(price AS DECIMAL(10,2)) ASC LIMIT 0, 9");
 } else if ($sort == "h") {
     $sortpage = "high";
-    $result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY CAST(price AS DECIMAL(10,2)) DESC LIMIT 0, 15");
+    $products_result_set = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY CAST(price AS DECIMAL(10,2)) DESC LIMIT 0, 9");
 } else {
     $sortpage = "none";
-    $result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 15");
+    $products_result_set = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
 }
-$NumResults = mysqli_num_rows($result);
-if ($NumResults < 1) {
+$products_num = mysqli_num_rows($products_result_set);
+if ($products_num < 1) {
     ?>
     <div class="no-lisings alert alert-info">We're still searching for the best products for you. Please check back later!</div>
 <?php }
-while ($row = mysqli_fetch_array($result)) {
+while ($products_row = mysqli_fetch_array($products_result_set)) {
     $count++;
-    $listing_id = $row['id'];
-    $long = $row['discription'];
-    $strd = strlen($long);
-    if ($strd > 300) {
-        $dlong = substr($long, 0, 297) + '...';
-    } else {
-        $dlong = $long;
-    }
-    $LongTitle = $row['title'];
-    $strt = strlen($LongTitle);
-    if ($strt > 40) {
-        $tlong = substr($LongTitle, 0, 37) . '...';
-    } else {
-        $tlong = $LongTitle;
-    }
-    $PageLink = $row['pname'];;
-    $view_count = $row['views'];
+    $products_id = $products_row['id'];
+    $discription = $products_row['discription'];
+    $title = $products_row['title'];
+    $pname = $products_row['pname'];;
+    $views = $products_row['views'];
     ?>
     <div <?php if ($count > 3) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?> style="padding-left:15px; padding-right:15px;">
-        <a href="<?php echo $PageLink; ?>/"><h2><?php echo $tlong; ?></h2></a>
+        <a href="<?php echo $pname; ?>/"><h2><?php echo $title; ?></h2></a>
         <div class="col-holder">
-            <a class="col-link" href="offer_link.php?id=<?php echo $row['id']; ?>" target="_blank">
-                <img class="img-responsive" src=<?php echo $row['external_link']; ?> alt="<?php echo $LongTitle; ?>">
+            <a class="col-link" href="offer_link.php?id=<?php echo $products_row['id']; ?>" target="_blank">
+                <img class="img-responsive" src=<?php echo $products_row['external_link']; ?> alt="<?php echo $title; ?>">
             </a>
             <div class="col-share">
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
                 <?php } else {
-                    $user_sql = $mysqli->query("SELECT * FROM saves WHERE listing_id='$listing_id' AND user_id='$user_id'");
+                    $user_sql = $mysqli->query("SELECT * FROM saves WHERE listing_id='$products_id' AND user_id='$user_id'");
                     $count_save = mysqli_num_rows($user_sql);
                     $user_sql->close();
                     if ($count_save == 1) { ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list" id="<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save"><?php echo $txt_remove; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list" id="<?php echo $products_id; ?>" data-id="<?php echo $products_id; ?>" data-name="save"><?php echo $txt_remove; ?></a>
                         <?php
                     } else { ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save"><?php echo $txt_save; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="<?php echo $products_id; ?>" data-id="<?php echo $products_id; ?>" data-name="save"><?php echo $txt_save; ?></a>
                         <?php
                     }
                 } ?>
             </div>
         </div>
         <div class="col-description">
-            <p><?php echo $dlong; ?></p>
+            <p><?php echo $discription; ?></p>
         </div>
         <div class="col-bottom">
             <div class="col-left">
                 <span class="info-price">
-                    <h3><?php echo $ActiveSymbol; ?><?php echo $row['price']; ?></h3>
+                    <h3><?php echo $price_symbol; ?><?php echo $products_row['price']; ?></h3>
                 </span>
                 <?php
                     if (!isset($_SESSION['username'])) { ?>
-                        <span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $row['saves']; ?> saves</a></span>
+                        <span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $products_row['saves']; ?> </a></span>
                 <?php
                     } else {
                             if ($count_save == 1) { ?>
                                 <span class="info-saves">
-                                    <a class="saves remove-save" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="You have saved this. Click to remove.">
-                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $row['saves']; ?> saves
+                                    <a class="saves remove-save" id="save-<?php echo $products_id; ?>" data-id="<?php echo $products_id; ?>" data-name="save" title="You have saved this. Click to remove.">
+                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $products_row['saves']; ?> saves
                                     </a>
                                 </span>
                                 <?php
                             } else { ?>
                                 <span class="info-saves">
-                                    <a class="saves" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="Click to save this item."><span class="fas fa-heart">
-                                        </span> &nbsp;<?php echo $row['saves']; ?> saves
+                                    <a class="saves" id="save-<?php echo $products_id; ?>" data-id="<?php echo $products_id; ?>" data-name="save" title="Click to save this item."><span class="fas fa-heart">
+                                        </span> &nbsp;<?php echo $products_row['saves']; ?> saves
                                     </a>
                                 </span>
                                 <?php
@@ -163,11 +146,11 @@ while ($row = mysqli_fetch_array($result)) {
                     }
                 ?>
                 <span class="info-saves"> &nbsp;
-                    <i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views
+                    <i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $views; ?>
                 </span>
             </div>
             <div class="col-right">
-                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['id']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $products_row['id']; ?>" target="_blank"><?php echo $settings_row['buy_button']; ?></a>
             </div>
         </div>
     </div>
