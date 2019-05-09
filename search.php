@@ -101,7 +101,7 @@ return false;
 <?php
 
 
-  $result = $mysqli->query("SELECT * FROM listings WHERE (title like '%$term%' OR discription like '%$term%') AND active='1' ORDER BY id DESC LIMIT 0, 27");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE (product_name like '%$term%' OR product_description like '%$term%') AND product_state='1' ORDER BY product_id DESC LIMIT 0, 27");
   
   $NumResults = mysqli_num_rows($result);
   

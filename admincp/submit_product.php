@@ -1,5 +1,6 @@
 <?php
 include('../db.php');
+/*
 if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
     $settings = mysqli_fetch_array($settings_result_set);
     $Active = $settings['active'];
@@ -7,12 +8,11 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
 } else {
     printf("<div class='alert alert-danger alert-pull'>settings表似乎有问题，请检查一下。</div>");
 }
+*/
 $year = date('Y');
 $month = date('m');
-$upload_directory = '../uploads/300x250/'.$year.'/'.$month."/";
-if (!@file_exists($upload_directory)) {
-    die('<div class="alert alert-danger" role="alert">图片上传路径不存在。</div>');
-}
+$upload_directory = '../uploads/';
+//$upload_directory = '../uploads/'.$year.'/'.$month."/";
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
         die('<div class="alert alert-danger" role="alert">请先选择一个分类。</div>');
@@ -103,7 +103,6 @@ if ($_POST) {
     $NewFileName = clean($NewFileName);
     $NewFileName = $day . '_' . $NewFileName . $ImageExt;
     //Rename and save uploded image file to destination folder.
-    echo  $upload_directory . $NewFileName;
     if (move_uploaded_file($_FILES['mFile']["tmp_name"], $upload_directory . $NewFileName)) {
         if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
             echo "Error : " . $mysqli->error;

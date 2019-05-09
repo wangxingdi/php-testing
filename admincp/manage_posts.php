@@ -3,7 +3,7 @@
 
 <?php include("left_menu.php");?>
                     
-</section><!--col-md-2-->
+</section>
 
 <section class="col-md-10">
 

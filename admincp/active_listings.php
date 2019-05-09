@@ -151,14 +151,12 @@ error_reporting(E_ALL ^ E_NOTICE);
   
   if(isset($_GET['term']))
   {
-   $query = $mysqli->query("SELECT COUNT(*) as num FROM listings WHERE (title like '%$term%' OR discription like '%$term%') AND active='1' ORDER BY id DESC");
+   $query = $mysqli->query("SELECT COUNT(*) as num FROM mp_products WHERE (product_name like '%$term%' OR product_description like '%$term%') AND product_state='1' ORDER BY product_id DESC");
   }
   else
   {
-   $query = $mysqli->query("SELECT COUNT(*) as num FROM listings WHERE active='1' ORDER BY id DESC");
+   $query = $mysqli->query("SELECT COUNT(*) as num FROM mp_products WHERE product_state='1' ORDER BY product_id DESC");
   }
-  
-  //$query = $mysqli->query("SELECT COUNT(*) as num FROM photos WHERE  photos.active=1 ORDER BY photos.id DESC");
   
   $total_pages = mysqli_fetch_array($query);
   $total_pages = $total_pages['num'];
@@ -174,11 +172,11 @@ error_reporting(E_ALL ^ E_NOTICE);
   /* Get data. */
   if(isset($_GET['term']))
   {
-   $result = $mysqli->query("SELECT * FROM listings WHERE (title like '%$term%' OR discription like '%$term%') AND active='1' ORDER BY id DESC LIMIT $start, $limit");
+   $result = $mysqli->query("SELECT * FROM mp_products WHERE (product_name like '%$term%' OR product_description like '%$term%') AND product_state='1' ORDER BY product_id DESC LIMIT $start, $limit");
   }
   else
   {
-    $result = $mysqli->query("SELECT * FROM listings WHERE active='1' ORDER BY id DESC LIMIT $start, $limit");
+    $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state='1' ORDER BY product_id DESC LIMIT $start, $limit");
   }
   //$result = $mysqli->query($sql);
   
@@ -269,11 +267,11 @@ error_reporting(E_ALL ^ E_NOTICE);
   
   if(isset($_GET['term']))
   {
-   $q= $mysqli->query("SELECT * FROM listings WHERE (title like '%$term%' OR discription like '%$term%') AND active='1' ORDER BY id DESC LIMIT $start,$limit");
+   $q= $mysqli->query("SELECT * FROM mp_products WHERE (product_name like '%$term%' OR product_description like '%$term%') AND product_state='1' ORDER BY product_id DESC LIMIT $start,$limit");
   }
   else
   {
-    $q= $mysqli->query("SELECT * FROM listings WHERE active='1' ORDER BY id DESC limit $start,$limit");
+    $q= $mysqli->query("SELECT * FROM mp_products WHERE product_state='1' ORDER BY product_id DESC limit $start,$limit");
   }
  
   $numr = mysqli_num_rows($q);

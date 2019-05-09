@@ -43,9 +43,7 @@ return false;
 <div class="other-titles"><h1 style="margin-top:15px;">My Wish List</h1></div>
 
 <?php
-  //$result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
-  
-  $result = $mysqli->query("SELECT * FROM saves LEFT JOIN listings ON saves.listing_id=listings.id WHERE saves.user_id=$Uid ORDER BY saves.save_id DESC LIMIT 0, 9");
+  $result = $mysqli->query("SELECT * FROM saves LEFT JOIN mp_products ON saves.listing_id=mp_products.product_id WHERE saves.user_id=$Uid ORDER BY saves.save_id DESC LIMIT 0, 9");
   
   $NumResults = mysqli_num_rows($result);
   
