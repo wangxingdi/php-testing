@@ -89,7 +89,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     $product_views = $products_row['product_views'];
     $year = date('Y');
     $month = date('m');
-    $upload_directory = 'uploads/300x250/'.$year.'/'.$month."/";
+    $upload_directory = 'uploads/';
     $img_path = $products_row['product_external_link'];
     if(empty($img_path)){
         $img_path = $upload_directory . $products_row['product_image'];
@@ -132,7 +132,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
                 </span>
                 <?php
                     if (!isset($_SESSION['username'])) { ?>
-                        <span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $products_row['product_saves']; ?> </a></span>
+                        <span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $products_row['product_saves']; ?> saves</a></span>
                 <?php
                     } else {
                             if ($count_save == 1) { ?>
@@ -153,7 +153,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
                     }
                 ?>
                 <span class="info-saves"> &nbsp;
-                    <i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $product_views; ?>
+                    <i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $product_views; ?> views
                 </span>
             </div>
             <div class="col-right">

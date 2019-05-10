@@ -38,7 +38,7 @@
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i></li>
             <li class="active">新增商品</li>
-            <span class="theme-label">Amazon Dominator v<?php echo $Settings['version']; ?></span>
+            <span class="theme-label">MarketPress v<?php echo $Settings['version']; ?></span>
         </ol>
         <div class="page-header">
             <h3>商品信息录入
@@ -84,33 +84,37 @@
                         </script>
                         <div id="sub-cats" class="form-group"></div>
                         <div class="form-group">
-                            <label for="mName">标题</label>
-                            <input type="text" name="mName" id="mName" class="form-control" placeholder="请输入标题">
+                            <label for="product_name">产品名称</label>
+                            <input type="text" name="product_name" id="product_name" class="form-control" placeholder="请输入产品名称">
                         </div>
                         <div class="form-group">
-                            <label for="aff">商品推荐链接</label>
-                            <input type="text" name="aff" id="aff" class="form-control" placeholder="请输入商品推荐链接">
+                            <label for="product_affiliate_url">产品推荐链接</label>
+                            <input type="text" name="product_affiliate_url" id="product_affiliate_url" class="form-control" placeholder="请输入产品推广链接">
                         </div>
                         <div class="form-group">
-                            <label for="disc">商品简介</label>
-                            <textarea name="disc" id="disc" cols=40 rows=5 class="form-control" onkeyup="countChar(this)" placeholder="请输入商品简介"></textarea>
+                            <label for="product_description">产品介绍</label>
+                            <textarea name="product_description" id="product_description" cols=40 rows=5 class="form-control" onkeyup="countChar(this)" placeholder="请输入产品介绍"></textarea>
                             建议录入文字长度在125内，还剩余<span id="charNum">125</span>个文字
                         </div>
                         <div class="form-group">
-                            <label for="file">商品图片 (若图片没有外部链接，则加载此图片)</label>
-                            <input type='file' class="file" name="mFile" id="mFile"/>
+                            <label for="product_image">产品图片 (若图片没有外部链接，则加载此图片，请不要重名)</label>
+                            <input type='file' class="file" name="product_image" id="product_image"/>
                         </div>
                         <div class="form-group">
-                            <label for="external">商品图片外部链接</label>
-                            <input type="text" name="external" id="external" class="form-control" placeholder="优先从外部链接加载图片">
+                            <label for="product_external_link">产品图片外部链接</label>
+                            <input type="text" name="product_external_link" id="product_external_link" class="form-control" placeholder="优先从外部链接加载图片">
                         </div>
                         <div class="form-group">
-                            <label for="price">商品价格:</label>
-                            <input type="text" name="price" id="price" class="form-control" placeholder="单位元，精确到两位小数">
+                            <label for="product_price">产品价格:</label>
+                            <input type="text" name="product_price" id="product_price" class="form-control" placeholder="单位元，精确到两位小数">
                         </div>
                         <div class="form-group">
-                            <label for="meta_desc">Meta描述</label>
-                            <textarea name="meta_desc" id="meta_desc" cols=40 rows=3 class="form-control" placeholder="录入SEO优化meta描述"></textarea>
+                            <label for="product_permalink">固定链接:</label>
+                            <input type="text" name="product_permalink" id="product_permalink" class="form-control" placeholder="录入利于SEO的固定链接">
+                        </div>
+                        <div class="form-group">
+                            <label for="product_meta_description">Meta描述</label>
+                            <textarea name="product_meta_description" id="product_meta_description" cols=40 rows=3 class="form-control" placeholder="录入SEO优化meta描述"></textarea>
                         </div>
                     </div>
                     <div class="panel-footer clearfix">
