@@ -1,23 +1,13 @@
 <?php
 
 include('../db.php');
-
-
 $id = $mysqli->escape_string($_GET['id']);
-
-//Get Photo Info
-
-if($results = $mysqli->query("SELECT * FROM listings WHERE id='$id'")){
-
-    $row = mysqli_fetch_array($results);
-	
-	$ImageFile = $row['image'];
-	
-    $results->close();
-	
+if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_id='$id'")){
+    $products_row = mysqli_fetch_array($products_result_set);
+	$ImageFile = $products_row['product_image'];
+    $products_result_set->close();
 }else{
-    
-	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
+	 printf("<div class='alert alert-danger alert-pull'>产品查询失败(update_product.php)</div>");
 }
 
 $UploadDirectory	= '../uploads/'; //Upload Directory, ends with slash & make sure folder exist

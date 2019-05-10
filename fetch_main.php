@@ -31,7 +31,7 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
             $(this).stop().animate({width: "-0"}, 300)
         }),
         $(".saves").click(function () {
-            var t = $(this).data("id"), a = $(this).data("name"), i = "id=" + t, n = $(this);
+            var t = $(this).data("product_id"), a = $(this).data("product_name"), i = "product_id=" + t, n = $(this);
             return "save" == a && ($(this).fadeIn(200).html, $.ajax({
                 type: "POST",
                 url: "save_lists.php",
@@ -45,7 +45,7 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
     }),
     $(function () {
         $(".save-list").click(function () {
-            var t = $(this).data("id"), a = $(this).data("name"), i = "id=" + t, n = $(this);
+            var t = $(this).data("product_id"), a = $(this).data("product_name"), i = "product_id=" + t, n = $(this);
             return "save" == a && $.ajax({
                 type: "POST",
                 url: "save_lists.php",
@@ -67,10 +67,10 @@ if ($sort == "n") {
     $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_views DESC LIMIT 0, 9");
 } else if ($sort == "l") {
     $sortpage = "low";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 9");
 } else if ($sort == "h") {
     $sortpage = "high";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 9");
 } else {
     $sortpage = "none";
     $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 9");
@@ -204,7 +204,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
             $(this).stop().animate({width: "-0"}, 300)
         }), $(".saves-data").unbind("click"), $(function () {
             $(".saves-data").click(function () {
-                var a = $(this).data("id"), t = $(this).data("name"), i = "id=" + a, e = $(this);
+                var a = $(this).data("product_id"), t = $(this).data("product_name"), i = "product_id=" + a, e = $(this);
                 return "save" == t && ($(this).fadeIn(200).html, $.ajax({
                     type: "POST",
                     url: "save_lists.php",
@@ -217,7 +217,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
             })
         }), $(".save-list-data").unbind("click"), $(function () {
             $(".save-list-data").click(function () {
-                var a = $(this).data("id"), t = $(this).data("name"), i = "id=" + a, e = $(this);
+                var a = $(this).data("product_id"), t = $(this).data("product_name"), i = "product_id=" + a, e = $(this);
                 return "save" == t && ($(this).fadeIn(200).html, $.ajax({
                     type: "POST",
                     url: "save_lists.php",

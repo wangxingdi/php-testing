@@ -18,67 +18,48 @@ if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 }
 
 $id = $mysqli->escape_string($_GET['id']);
-
-	if($result = $mysqli->query("SELECT * FROM listings WHERE id=$id LIMIT 1")){	
-	$row = mysqli_fetch_array($result);
-	
-	$catid = $row['catid'];
-	
-	$UserId = $row['uid'];
-	
-	$GetCname =  $mysqli->query("SELECT cname FROM categories WHERE id=$catid LIMIT 1");	
-	$Crow = mysqli_fetch_array($GetCname);
-	
-	$LongDisc = $row['discription'];
-	$StrDisc = strlen ($LongDisc);
+	if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_id=$id LIMIT 1")){
+	    $products_row = mysqli_fetch_array($products_result_set);
+	    $category_id = $products_row['category_id'];
+//	    $UserId = $products_row['uid'];
+	    $GetCname =  $mysqli->query("SELECT cname FROM categories WHERE id=$category_id LIMIT 1");
+	    $Crow = mysqli_fetch_array($GetCname);
+	    $LongDisc = $products_row['product_discription'];
+	    $StrDisc = strlen ($LongDisc);
 	if ($StrDisc > 275) {
 	$DsicLong = substr($LongDisc,0,275).'...';
 	}else{
 	$DsicLong = $LongDisc;}
 	
-	$ProductTitle = $row['title'];
+	$ProductTitle = $products_row['title'];
 	$PageLink = preg_replace("![^a-z0-9]+!i", "-", $ProductTitle);
 	$PageLink = strtolower($PageLink);
-
-$result->close();
+	$products_result_set->close();
 
 }else{
      printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
 }
 
-if($UserId==0){
+if(false){
 	$Username = "Admin ('You')";
 
 }else{
 
 //Get user info
 
-$Uname = $_SESSION['username'];
-
+/*$Uname = $_SESSION['username'];
 if($UserSql = $mysqli->query("SELECT * FROM users WHERE user_id='$UserId'")){
-
     $UserRow = mysqli_fetch_array($UserSql);
-	
-	 $CountUsers = $UserSql->num_rows;
-	
+    $CountUsers = $UserSql->num_rows;
     $UserSql->close();
-	
 }else{
-     
 	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
-	 
 }
-
 if($CountUsers==0){
-	
 	$Username = "User no longer exist (Deleted)";
-			
 }else{
-	
 	$Username = $UserRow['username'];
-
-}
-	
+}*/
 }
 
 //Get Category

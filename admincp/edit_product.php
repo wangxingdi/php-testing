@@ -69,22 +69,14 @@ function countChar(val) {
     <div class="panel-body">
     
 <?php
-
-$id = $mysqli->escape_string($_GET['id']); 
-
-if($Post = $mysqli->query("SELECT * FROM listings WHERE id='$id'")){
-
-    $PostRow = mysqli_fetch_array($Post);
-  
-  $SelectedCat = $PostRow['catid'];
-  
-    $Post->close();
-  
+$id = $mysqli->escape_string($_GET['id']);
+if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_id='$id'")){
+    $products_row = mysqli_fetch_array($products_result_set);
+    $SelectedCat = $products_row['category_id'];
+    $products_result_set->close();
 }else{
-    
-   printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
+   printf("<div class='alert alert-danger alert-pull'>产品查询失败(edit_product.php)</div>");
 }
-
 ?>    
 
 <div id="output"></div>

@@ -1,34 +1,18 @@
 <?php
-
 include("../db.php");
-
-$del = $mysqli->escape_string($_POST['id']);
-
-if($ImageInfo = $mysqli->query("SELECT * FROM listings WHERE id='$del'")){
-
-    $GetInfo = mysqli_fetch_array($ImageInfo);
-	
-	$CheckImage = $ImageInfo->num_rows;
-	
-	$Image = $GetInfo['image'];
-	
-	$ImageInfo->close();
-	
-}else{
-    
-	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
+$product_id = $mysqli->escape_string($_POST['id']);
+if ($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_id='$product_id'")) {
+    $products_row = mysqli_fetch_array($products_result_set);
+    $products_num = $products_result_set->num_rows;
+    $product_image = $products_row['product_image'];
+    $products_result_set->close();
+} else {
+    printf("<div class='alert alert-danger alert-pull'>产品删除失败：查询不到被删除的产品</div>");
 }
-
-if($CheckImage==1){
-
-unlink("../uploads/$Image");
-
+if ($products_num == 1) {
+    unlink("../uploads/$product_image");
 }
-
-
-$DeletePosts = $mysqli->query("DELETE FROM listings WHERE id='$del'");
-
-
-echo '<div class="alert alert-success" role="alert">Product listing successfully deleted</div>';
-
+$products_del = $mysqli->query("DELETE FROM mp_products WHERE id='$product_id'");
+$products_del->close();
+echo '<div class="alert alert-success" role="alert">产品删除成功</div>';
 ?>
