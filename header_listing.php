@@ -58,7 +58,7 @@ if (isset($_GET['pname'])) {
             $count_save_listing = mysqli_num_rows($saves_result_set);
             $saves_result_set->close();
         }
-        $result->close();
+        $products_result_set->close();
     } else {
         printf("<div class='alert alert-danger alert-pull'>产品表查询异常(header_listing.php)</div>");;
     }
@@ -314,11 +314,11 @@ if ($strActive > 4) {
 <?php if (!isset($settings['addthisFilter']) || $settings['addthisFilter'] == '2') {
     echo $settings['addthis'];
 } ?>
-<script type="text/javascript">function popup(n) {
+<script type="text/javascript">
+    function popup(n) {
         var o = (screen.width - 700) / 2, t = "width=700, height=400";
         return t += ", top=" + (screen.height - 400) / 2 + ", left=" + o, t += ", directories=no", t += ", location=no", t += ", menubar=no", t += ", resizable=no", t += ", scrollbars=no", t += ", status=no", t += ", toolbar=no", newwin = window.open(n, "windowname5", t), window.focus && newwin.focus(), !1
     }
-
     $(document).ready(function () {
         $(".col-link").hover(function () {
             $(this).parent().find(".col-share").stop().animate({width: "90px"}, 300)
@@ -329,4 +329,5 @@ if ($strActive > 4) {
         }, function () {
             $(this).stop().animate({width: "-0"}, 300)
         })
-    });</script>
+    });
+</script>
