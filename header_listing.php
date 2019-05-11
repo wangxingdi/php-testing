@@ -66,7 +66,7 @@ if (isset($_GET['pname'])) {
 //for blog posts
 if (isset($_GET['link'])) {
     $post = $mysqli->escape_string($_GET['link']);
-    if ($sql_post = $mysqli->query("SELECT * FROM posts WHERE link='$post' LIMIT 1")) {
+    if ($sql_post = $mysqli->query("SELECT * FROM mp_posts WHERE link='$post' LIMIT 1")) {
         if (mysqli_num_rows($sql_post) < 1) {
             http_response_code(404);
             include('404.php');

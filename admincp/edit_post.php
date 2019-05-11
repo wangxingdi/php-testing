@@ -66,7 +66,7 @@ function afterSuccess()
 
 $id = $mysqli->escape_string($_GET['id']); 
 
-if($Post = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
+if($Post = $mysqli->query("SELECT * FROM mp_posts WHERE id='$id'")){
 
     $PostRow = mysqli_fetch_array($Post);
   

@@ -84,7 +84,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 // How many adjacent pages should be shown on each side?
 	$adjacents = 5;
 	
-	$query = $mysqli->query("SELECT COUNT(*) as num FROM posts WHERE active=2 ORDER BY id DESC");
+	$query = $mysqli->query("SELECT COUNT(*) as num FROM mp_posts WHERE active=2 ORDER BY id DESC");
 	
 	//$query = $mysqli->query("SELECT COUNT(*) as num FROM photos WHERE  photos.active=1 ORDER BY photos.id DESC");
 	
@@ -100,7 +100,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 	else
 		$start = 0;								//if no page var is given, set start to 0
  	/* Get data. */
-	$result = $mysqli->query("SELECT * FROM posts WHERE active=2 ORDER BY id DESC LIMIT $start, $limit");
+	$result = $mysqli->query("SELECT * FROM mp_posts WHERE active=2 ORDER BY id DESC LIMIT $start, $limit");
 	 
 	//$result = $mysqli->query($sql);
 	
@@ -189,7 +189,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 		$pagination.= "</ul>\n";		
 	}
 	
-	$q= $mysqli->query("SELECT * FROM posts WHERE active=2 ORDER BY id DESC limit $start,$limit");
+	$q= $mysqli->query("SELECT * FROM mp_posts WHERE active=2 ORDER BY id DESC limit $start,$limit");
 
 
 	$numr = mysqli_num_rows($q);

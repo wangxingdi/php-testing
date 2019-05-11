@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_NOTICE);
             <h1 class="recent">最近的文章</h1>
             <div class="blog">
                 <?php
-                $sql_posts = $mysqli->query("SELECT * FROM posts WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
+                $sql_posts = $mysqli->query("SELECT * FROM mp_posts WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
                 $NumResults = mysqli_num_rows($sql_posts);
                 if ($NumResults < 1) {
                 ?>

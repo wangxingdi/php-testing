@@ -49,7 +49,7 @@
     }
     if (isset($_GET['link'])) {
         $post = $mysqli->escape_string($_GET['link']);
-        if ($sql_post_title = $mysqli->query("SELECT title, meta_description FROM posts WHERE link='$post' LIMIT 1")) {
+        if ($sql_post_title = $mysqli->query("SELECT title, meta_description FROM mp_posts WHERE link='$post' LIMIT 1")) {
             $post_row_title = mysqli_fetch_array($sql_post_title);
             $pageTitle = $post_row_title['title'] . ' | ';
             $meta_description = $post_row_title['meta_description'];

@@ -18,7 +18,7 @@ error_reporting(E_ALL ^ E_NOTICE);
     <h1>Recent Articles</h1>
 
 <?php
-    $posts_sql = $mysqli->query("SELECT * FROM posts WHERE active=1 ORDER BY id DESC LIMIT 20");
+    $posts_sql = $mysqli->query("SELECT * FROM mp_posts WHERE active=1 ORDER BY id DESC LIMIT 20");
     while($posts_row = mysqli_fetch_array($posts_sql))
     {
         

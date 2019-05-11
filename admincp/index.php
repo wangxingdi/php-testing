@@ -27,7 +27,7 @@
                                 }else{
                                     printf("<div class='alert alert-danger alert-pull'>查询产品表出现异常。</div>");
                                 }
-                                if($posts_result_set = $mysqli->query("SELECT id FROM posts")){
+                                if($posts_result_set = $mysqli->query("SELECT id FROM mp_posts")){
                                     $posts_num = $posts_result_set->num_rows;
                             ?>
                             <li><span><i style="padding-right:5px;font-size:18px;" class="fab fa-wordpress"></i> <a href="manage_posts.php"><?php echo $posts_num . ' 篇文章'; ?></a></span></li>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="panel-body">
                 <?php
-                    $posts_result_set= $mysqli->query("SELECT * FROM posts ORDER BY id DESC LIMIT 5");
+                    $posts_result_set= $mysqli->query("SELECT * FROM mp_posts ORDER BY id DESC LIMIT 5");
                     $posts_num = $posts_result_set->num_rows;
                     if ($posts_num==0) {
                         echo '<div class="alert alert-danger">目前您还没有发表任何文章。</div>';

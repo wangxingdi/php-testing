@@ -11,7 +11,7 @@ error_reporting(E_ALL ^ E_NOTICE);
  $page = $mysqli->escape_string($_GET["page"]);
  $start = ($page - 1) * 9;
 
-    $sql_posts = $mysqli->query("SELECT * FROM posts WHERE active=1 ORDER BY id DESC LIMIT $start, 9");
+    $sql_posts = $mysqli->query("SELECT * FROM mp_posts WHERE active=1 ORDER BY id DESC LIMIT $start, 9");
     
     $NumResults = mysqli_num_rows($sql_posts);
     

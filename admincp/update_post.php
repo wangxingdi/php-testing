@@ -7,7 +7,7 @@ $id = $mysqli->escape_string($_GET['id']);
 
 //Get Photo Info
 
-if($results = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
+if($results = $mysqli->query("SELECT * FROM mp_posts WHERE id='$id'")){
 
     $row = mysqli_fetch_array($results);
 	
@@ -101,12 +101,12 @@ if($_POST)
 	   
 	unlink("../uploads/".$ImageFile);
 	
-	$mysqli->query("UPDATE posts SET title='$FileTitle', description='$Description', meta_description='$MetaDescription', image='$NewFileName', link='$Link' WHERE id='$id'");
+	$mysqli->query("UPDATE mp_posts SET title='$FileTitle', description='$Description', meta_description='$MetaDescription', image='$NewFileName', link='$Link' WHERE id='$id'");
 
    }
    }else{
 	   
-	$mysqli->query("UPDATE posts SET title='$FileTitle', description='$Description', meta_description='$MetaDescription', link='$Link' WHERE id='$id'");
+	$mysqli->query("UPDATE mp_posts SET title='$FileTitle', description='$Description', meta_description='$MetaDescription', link='$Link' WHERE id='$id'");
 	   
  }
 
