@@ -2,37 +2,37 @@
 include("db.php");
 $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
 $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
-if ($squ = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
-    $settings = mysqli_fetch_array($squ);
+if ($options_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
+    $settings = mysqli_fetch_array($options_result_set);
     $txt_home = $settings['txt_home'];
     $txt_all_cat = $settings['txt_all_cat'];
     $txt_popular = $settings['txt_popular'];
     $txt_gift_guides = $settings['txt_gift_guides'];
-    $squ->close();
+    $options_result_set->close();
 } else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");;
+    printf("<div class='alert alert-danger alert-pull'>配置表查询失败(header_listing.php)</div>");;
 }
 if (isset($_SESSION['username'])) {
-    $Uname = $_SESSION['username'];
-    if ($UserSql = $mysqli->query("SELECT * FROM mp_users WHERE user_name='$Uname'")) {
-        $UserRow = mysqli_fetch_array($UserSql);
-        $UsName = strtolower($UserRow['user_name']);
-        $_SESSION['user_id'] = $UserRow['user_id'];
+    $user_name = $_SESSION['username'];
+    if ($users_result_set = $mysqli->query("SELECT * FROM mp_users WHERE user_name='$user_name'")) {
+        $users_row = mysqli_fetch_array($users_result_set);
+        $UsName = strtolower($users_row['user_name']);
+        $_SESSION['user_id'] = $users_row['user_id'];
         $Uid = $_SESSION['user_id'];
-        $UserEmail = $UserRow['user_email'];
-        $UserSql->close();
+//        $UserEmail = $users_row['user_email'];
+        $users_result_set->close();
     } else {
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+        printf("<div class='alert alert-danger alert-pull'>用户表查询失败(header_listing.php)</div>");
     }
 }
-if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
-    $AdsRow = mysqli_fetch_array($AdsSql);
-    $Ad1 = stripslashes($AdsRow['ads_ad1']);
-    $Ad2 = stripslashes($AdsRow['ads_ad2']);
-    $Ad3 = stripslashes($AdsRow['ads_ad3']);
-    $AdsSql->close();
+if ($ads_result_set = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
+    $ads_row = mysqli_fetch_array($ads_result_set);
+    $Ad1 = stripslashes($ads_row['ads_ad1']);
+    $Ad2 = stripslashes($ads_row['ads_ad2']);
+    $Ad3 = stripslashes($ads_row['ads_ad3']);
+    $ads_result_set->close();
 } else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
+    printf("<div class='alert alert-danger alert-pull'>广告表查询失败(header_listing.php)</div>");
 }
 if (isset($_GET['pname'])) {
     $product_permalink = $mysqli->escape_string($_GET['pname']);
@@ -60,7 +60,7 @@ if (isset($_GET['pname'])) {
         }
         $result->close();
     } else {
-        printf("<div class='alert alert-danger alert-pull'>查询出现异常(header_listing.php)</div>");;
+        printf("<div class='alert alert-danger alert-pull'>产品表查询异常(header_listing.php)</div>");;
     }
 }
 //for blog posts

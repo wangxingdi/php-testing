@@ -57,28 +57,28 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
         <div class="col-md-8 col-md-8-mod listing-mobile wow fadeIn">
             <div class="col-holder">
                 <div class="col-info mobile-remove">
-                    <div class="col-info-left"><h1 class="title-mod"><?php echo $row['title']; ?></h1>
+                    <div class="col-info-left"><h1 class="title-mod"><?php echo $products_row['product_name']; ?></h1>
                         <?php
                         if (!isset($_SESSION['username'])) { ?>
                             <span class="info-saves">
                                 <a onclick="openLogin()">
                                     <span class="fas fa-heart"></span> &nbsp;
-                                    <?php echo $row['saves']; ?> saves</a>
+                                    <?php echo $products_row['product_saves']; ?> saves</a>
                             </span>
                         <?php } else {
                             if ($count_save_listing == 1) { ?>
                                 <span class="info-saves">
-                                    <a class="saves remove-save" id="save-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save" title="You have saved this. Click to remove.">
+                                    <a class="saves remove-save" id="save-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save" title="You have saved this. Click to remove.">
                                         <span class="fas fa-heart"></span> &nbsp;
-                                        <?php echo $row['saves']; ?> saves
+                                        <?php echo $products_row['product_saves']; ?> saves
                                     </a>
                                 </span>
                         <?php
                             } else { ?>
                                 <span class="info-saves">
-                                    <a class="saves" id="save-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save" title="Click to save this item.">
+                                    <a class="saves" id="save-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save" title="Click to save this item.">
                                         <span class="fas fa-heart"></span> &nbsp;
-                                        <?php echo $row['saves']; ?> saves
+                                        <?php echo $products_row['product_saves']; ?> saves
                                     </a>
                                 </span>
                                 <?php
@@ -86,13 +86,12 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                         } ?>
                         <span class="info-saves"> &nbsp;
                             <i class="fas fa-eye"></i>&nbsp;&nbsp;
-                            <?php echo $view_count; ?> views
+                            <?php echo $product_views; ?> views
                         </span>
                     </div>
                 </div>
-                <a class="col-link" href="offer_link.php?id=<?php echo $row['id']; ?>" target="_blank">
-                    <?php /*<img src="uploads/resizer/650x550/r/<?php echo $row['image'];?>" alt="<?php echo $row['title'];?>" class="img-responsive slide-img"> */ ?>
-                    <img src=<?php echo $row['external_link']; ?> alt="<?php echo $row['title']; ?>" class="img-responsive slide-img" style="width: 650px; height: 550px;">
+                <a class="col-link" href="offer_link.php?id=<?php echo $products_row['product_id']; ?>" target="_blank">
+                    <img src=<?php echo $products_row['product_external_link']; ?> alt="<?php echo $products_row['product_name']; ?>" class="img-responsive slide-img" style="width: 650px; height: 550px;">
                 </a>
                 <div class="col-share">
                 <?php
@@ -103,11 +102,11 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                     } else {
                         if ($count_save_listing == 1) {
                 ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list" id="listing-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save"><?php echo $txt_remove; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list" id="listing-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save"><?php echo $txt_remove; ?></a>
                 <?php
                         } else {
                 ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="listing-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save"><?php echo $txt_save; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="listing-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save"><?php echo $txt_save; ?></a>
                 <?php
                         }
                     }
@@ -124,10 +123,10 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                 ?>
             </div>
             <div class="col-sm-top col-description">
-                <h1 class="desktop-remove"><?php echo $row['title']; ?></h1>
-                <p style="text-align:justify;"><?php echo $DsicLong; ?></p>
+                <h1 class="desktop-remove"><?php echo $products_row['product_name']; ?></h1>
+                <p style="text-align:justify;"><?php echo $product_description; ?></p>
                 <div class="col-center-items col-center-items-mod">
-                    <h1 class="price"><?php echo $ActiveSymbol; ?><?php echo $row['price']; ?></h1>
+                    <h1 class="price"><?php echo $ActiveSymbol; ?><?php echo $products_row['product_price']; ?></h1>
                     <?php if (!isset($_SESSION['username'])) { ?>
                         <a onclick="openLogin()" class="btn-product btn-product-mod btn btn-warning btn-block btn-lg btn-font btn-wishlist desktop-remove">
                             <i class="fas fa-cart-plus"></i> ADD TO WISHLIST
@@ -135,13 +134,13 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                     <?php } else {
                         if ($count_save_listing == 1) { ?>
                             <a id="btn-wishlist" class="btn-product btn-product-mod btn btn-warning btn-block btn-lg btn-font btn-wishlist-remove desktop-remove save-list remove-list"
-                               id="wishlist-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save">
+                               id="wishlist-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save">
                                 <i class="fas fa-trash-alt"></i> REMOVE FROM WISHLIST
                             </a>
                             <?php
                         } else { ?>
                             <a id="btn-wishlist" class="btn-product btn-product-mod btn btn-warning btn-block btn-lg btn-font btn-wishlist desktop-remove save-list"
-                               id="wishlist-<?php echo $listing; ?>" data-id="<?php echo $listing; ?>" data-name="save">
+                               id="wishlist-<?php echo $product_id; ?>" data-id="<?php echo $product_id; ?>" data-name="save">
                                 <i class="fas fa-cart-plus"></i> ADD TO WISHLIST
                             </a>
                             <?php
@@ -165,7 +164,7 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                         });
                     </script>
                     <a class="btn-product btn-product-mod btn btn-warning btn-block btn-lg btn-font btn-pull btn-pull-mod btn-checkout"
-                       href="offer_link.php?id=<?php echo $row['id']; ?>" target="_blank">
+                       href="offer_link.php?id=<?php echo $products_row['product_id']; ?>" target="_blank">
                         <i class="fas fa-money-check-alt"></i> <?php echo $settings['buy_button']; ?>
                     </a>
                     <br/>
@@ -180,41 +179,41 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
         <a id="twitter-bg" class="socail-icons csbuttons" data-type="twitter"><span class="fab fa-twitter"></span></a>
         <a id="pinterest-bg" class="socail-icons csbuttons" data-type="pinterest"><span class="fab fa-pinterest"></span></a>
         <a id="gplus-bg" class="socail-icons csbuttons" data-type="google"><span class="fab fa-google-plus"></span></a>
-    </div><!--col-social-page-->
+    </div>
     <div class="col-comments">
         <div class="fb-comments" data-href="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $PageLink; ?>/" data-num-posts="6" data-width="100%"></div>
-    </div><!--col-comments-->
-</div><!-- /.container -->
+    </div>
+</div>
 <div class="container prod-container display-posts" style="padding-left: 10px;padding-right: 10px;margin-top:0;">
     <div class="other-titles">
         <h3><?php echo $txt_related; ?></h3>
     </div>
     <?php
-    if ($RelSql = $mysqli->query("SELECT * FROM mp_products WHERE cname='$catid' and product_state=1 ORDER BY RAND() LIMIT 9")) {
+    if ($RelSql = $mysqli->query("SELECT * FROM mp_products WHERE category_id='$catid' and product_state=1 ORDER BY RAND() LIMIT 9")) {
         while ($RelRow = mysqli_fetch_array($RelSql)) {
-            $listing_id = $RelRow['id'];
-            $RelLongDisc = $RelRow['discription'];
+            $listing_id = $RelRow['product_id'];
+            $RelLongDisc = $RelRow['product_description'];
             $RelStrDisc = strlen($RelLongDisc);
             if ($RelStrDisc > 243) {
                 $RelDsicLong = substr($RelLongDisc, 0, 240) . '...';
             } else {
                 $RelDsicLong = $RelLongDisc;
             }
-            $RelTitle = $RelRow['title'];
+            $RelTitle = $RelRow['product_name'];
             $RelStrt = strlen($RelTitle);
             if ($RelStrt > 29) {
                 $tlong = substr($RelTitle, 0, 26) . '...';
             } else {
                 $tlong = $RelTitle;
             }
-            $RelLink = $RelRow['pname'];
-            $view_count = $RelRow['views'];
+            $RelLink = $RelRow['product_permalink'];
+            $view_count = $RelRow['product_views'];
             ?>
             <div class="col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn">
                 <a href="<?php echo $RelLink; ?>/"><h2 class="title-bottom"><?php echo $tlong; ?></h2></a>
                 <div class="col-holder">
                     <a class="col-link" href="<?php echo $RelLink; ?>/">
-                        <img class="img-responsive" src="uploads/resizer/316x250/r/<?php echo $RelRow['image']; ?>" alt="<?php echo $tlong; ?>">
+                        <img class="img-responsive" src="uploads/resizer/316x250/r/<?php echo $RelRow['product_image']; ?>" alt="<?php echo $tlong; ?>">
                     </a>
                     <div class="col-share">
                         <?php if (!isset($_SESSION['username'])) { ?>
@@ -239,25 +238,25 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                 <div class="col-description"><p><?php echo $RelDsicLong; ?></p></div>
                 <div class="col-bottom">
                     <div class="col-left">
-                        <span class="info-price"><h3><?php echo $ActiveSymbol; ?><?php echo $RelRow['price']; ?></h3></span>
+                        <span class="info-price"><h3><?php echo $ActiveSymbol; ?><?php echo $RelRow['product_price']; ?></h3></span>
                         <?php if (!isset($_SESSION['username'])) { ?>
                             <span class="info-saves">
                                 <a onclick="openLogin()">
-                                    <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['saves']; ?> saves
+                                    <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['product_saves']; ?> saves
                                 </a>
                             </span>
                         <?php } else {
                             if ($count_save == 1) { ?>
                                 <span class="info-saves">
                                     <a class="saves remove-save" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="You have saved this. Click to remove.">
-                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['saves']; ?> saves
+                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['product_saves']; ?> saves
                                     </a>
                                 </span>
                                 <?php
                             } else { ?>
                                 <span class="info-saves">
                                     <a class="saves" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="Click to save this item.">
-                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['saves']; ?> saves
+                                        <span class="fas fa-heart"></span> &nbsp;<?php echo $RelRow['product_saves']; ?> saves
                                     </a>
                                 </span>
                                 <?php
@@ -268,7 +267,7 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                         </span>
                     </div>
                     <div class="col-right">
-                        <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $RelRow['id']; ?>" target="_blank"><?php echo $settings['buy_button']; ?></a>
+                        <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $RelRow['product_id']; ?>" target="_blank"><?php echo $settings['buy_button']; ?></a>
                     </div>
                 </div><!-- /.col-bottom -->
             </div><!-- /.col-box -->
