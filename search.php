@@ -154,7 +154,7 @@ return false;
 <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
 <?php }else{
 
-$user_sql=$mysqli->query("SELECT * FROM saves WHERE listing_id='$listing_id' AND user_id='$user_id'");
+$user_sql=$mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$listing_id' AND user_id='$user_id'");
 
 $count_save=mysqli_num_rows($user_sql);
 

@@ -57,7 +57,7 @@
                                 }else{
                                     printf("<div class='alert alert-danger alert-pull'>查询产品营销量出现异常</div>");
                                 }
-                                if($saves_result_set = $mysqli->query("SELECT save_id FROM saves")){
+                                if($saves_result_set = $mysqli->query("SELECT save_id FROM mp_saves")){
                                     $saves_num = $saves_result_set->num_rows;
                             ?>
                                     <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-heart"></i> <?php echo $saves_num;?> 关注</span></li>

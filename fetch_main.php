@@ -100,7 +100,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?> style="padding-left:15px; padding-right:15px;">
-        <a href="<?php echo $product_permalink; ?>/">
+        <a href="<?php echo $product_permalink; ?>/" target="_blank">
             <h2><?php echo $product_name; ?></h2>
         </a>
         <div class="col-holder">
@@ -111,7 +111,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
                 <?php } else {
-                    $user_sql = $mysqli->query("SELECT * FROM saves WHERE listing_id='$product_id' AND user_id='$user_id'");
+                    $user_sql = $mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$product_id' AND user_id='$user_id'");
                     $count_save = mysqli_num_rows($user_sql);
                     $user_sql->close();
                     if ($count_save == 1) { ?>

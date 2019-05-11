@@ -8,7 +8,7 @@ $user = $mysqli->escape_string($_GET['user']);
 
     $page = $_GET["page"];
     $start = ($page - 1) * 9;
-    $result = $mysqli->query("SELECT * FROM saves LEFT JOIN mp_products ON saves.listing_id=mp_products.product_id WHERE saves.user_id=$user ORDER BY saves.save_id DESC LIMIT $start, 9");
+    $result = $mysqli->query("SELECT * FROM mp_saves LEFT JOIN mp_products ON mp_saves.listing_id=mp_products.product_id WHERE mp_saves.user_id=$user ORDER BY mp_saves.save_id DESC LIMIT $start, 9");
     while ($row = mysqli_fetch_array($result)) {
         $long = $row['product_description'];
         $strd = strlen($long);

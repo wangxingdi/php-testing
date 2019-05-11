@@ -45,7 +45,7 @@ $id = $mysqli->escape_string($id);
 
 //Verify IP address in favip table
 
-$user_sql=$mysqli->query("SELECT user_id, listing_id FROM saves WHERE listing_id='$id' AND user_id='$Uid'");
+$user_sql=$mysqli->query("SELECT user_id, listing_id FROM mp_saves WHERE listing_id='$id' AND user_id='$Uid'");
 
 $count_of_save=mysqli_num_rows($user_sql);
 
@@ -71,7 +71,7 @@ if($count_of_save==0)
 $mysqli->query("UPDATE mp_products SET product_saves=product_saves+1 WHERE product_id='$id'");
 
 // Insert IP address and Message Id in favip table.
-$mysqli->query("INSERT INTO saves (listing_id, user_id) values ('$id','$Uid')");
+$mysqli->query("INSERT INTO mp_saves (listing_id, user_id) values ('$id','$Uid')");
 
 //disply results
 $products_result_set=$mysqli->query("SELECT * FROM mp_products WHERE product_id='$id'");
@@ -86,7 +86,7 @@ echo '<span class="fa fa-heart-o"></span> '.$product_saves.' saves</span>';
 $mysqli->query("UPDATE mp_products SET product_saves=product_saves-1 WHERE product_id='$id'");
 
 // Insert IP address and Message Id in favip table.
-$mysqli->query("DELETE FROM saves WHERE listing_id='$id' AND user_id='$Uid'");
+$mysqli->query("DELETE FROM mp_saves WHERE listing_id='$id' AND user_id='$Uid'");
 ?>
 
 <script>
