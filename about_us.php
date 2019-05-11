@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_NOTICE);
         <div class="col-md-8">
             <div class="page-titles"><h1>关于我们</h1></div>
             <?php
-            if ($pages = $mysqli->query("SELECT * FROM  pages WHERE id='1'")) {
+            if ($pages = $mysqli->query("SELECT * FROM  mp_pages WHERE id='1'")) {
                 $pagerow = mysqli_fetch_array($pages);
             ?>
                 <p><?php echo $pagerow['page']; ?></p>

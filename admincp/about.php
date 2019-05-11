@@ -12,7 +12,7 @@
   <li><i class="fa fa-home"></i></li>
   <li>Manage Pages</li>
   <li class="active">About Page</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -63,17 +63,12 @@ function afterSuccess()
 
 <?php 
 
-if($Pages = $mysqli->query("SELECT * FROM pages WHERE id='1'")){
-
+if($Pages = $mysqli->query("SELECT * FROM mp_pages WHERE id='1'")){
     $PageRow = mysqli_fetch_array($Pages);
-	
     $Pages->close();
-	
 }else{
-    
 	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
 }
-
 
 ?>
 

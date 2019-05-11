@@ -63,7 +63,7 @@ function afterSuccess()
 
 <?php 
 
-if($Pages = $mysqli->query("SELECT * FROM pages WHERE id='3'")){
+if($Pages = $mysqli->query("SELECT * FROM mp_pages WHERE id='3'")){
 
     $PageRow = mysqli_fetch_array($Pages);
 	
