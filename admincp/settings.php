@@ -310,7 +310,7 @@
                 }else{
                     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings. Please check it.</div>");
                 }
-                if($ColorSettings = $mysqli->query("SELECT * FROM colors WHERE id='1'")){
+                if($ColorSettings = $mysqli->query("SELECT * FROM mp_colors WHERE id='1'")){
                     $ColorsRow = mysqli_fetch_array($ColorSettings);
                     $ColorSettings->close();
                 }else{

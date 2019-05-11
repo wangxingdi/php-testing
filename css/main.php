@@ -1,6 +1,6 @@
 <?php header("Content-type: text/css"); 
 include("../db.php");
-$sql_colors = $mysqli->query("SELECT * FROM colors");
+$sql_colors = $mysqli->query("SELECT * FROM mp_colors");
 $ActiveRowColors = mysqli_fetch_array($sql_colors);
 $sql_colors->close();
 
