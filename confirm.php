@@ -1,7 +1,7 @@
 <?php include("header.php"); 
 require_once "vendor/autoload.php";
 
-if($sqlemail = $mysqli->query("SELECT * FROM settings WHERE id='1'"))
+if($sqlemail = $mysqli->query("SELECT * FROM mp_options WHERE id='1'"))
 {
   $emailRow = mysqli_fetch_array($sqlemail);
 

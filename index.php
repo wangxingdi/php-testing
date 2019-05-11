@@ -1,7 +1,7 @@
 <?php include("header.php");
     error_reporting(E_ALL ^ E_NOTICE);
     $count = 0;
-    if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+    if($SiteSettings = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
         $SettingsRow = mysqli_fetch_array($SiteSettings);
         $txt_gifts_under = $SettingsRow['txt_gifts_under'];
         $gifts_under_limit = $SettingsRow['gifts_under_limit'];

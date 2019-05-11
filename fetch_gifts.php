@@ -5,7 +5,7 @@ $sort = $mysqli->escape_string(chr($_POST["sort"]));
 $_SESSION['sort'] = $sort;
 $user_id = $_SESSION['user_id'];
 $count = 0;
-if($siteurl_sql = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+if($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
     $settingsRow = mysqli_fetch_array($siteurl_sql);
     $siteurl = $settingsRow['siteurl'];
     $symbol = stripslashes($settingsRow['price_symbol']);
@@ -25,15 +25,15 @@ if($siteurl_sql = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 <?php
 if ($sort=="n"){
     $sortpage = "newest";
-  $result = $mysqli->query("SELECT * FROM listings WHERE active=1 AND CAST(price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY id DESC LIMIT 0, 27"); 
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_id DESC LIMIT 0, 27");
   }else if ($sort=="p"){
     $sortpage = "popular";
-  $result = $mysqli->query("SELECT * FROM listings WHERE active=1 AND CAST(price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY views DESC LIMIT 0, 27");  
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_views DESC LIMIT 0, 27");
   }
   else
   {
     $sortpage = "none";
-  $result = $mysqli->query("SELECT * FROM listings WHERE active=1 AND CAST(price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY id DESC LIMIT 0, 27");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_id DESC LIMIT 0, 27");
   }
   $NumResults = mysqli_num_rows($result);
   if($NumResults<1){ 
@@ -43,24 +43,24 @@ if ($sort=="n"){
   while($row = mysqli_fetch_array($result))
     {
     $count++;
-    $listing_id = $row['id'];
-    $long = $row['discription'];
+    $listing_id = $row['product_id'];
+    $long = $row['product_description'];
     $strd = strlen ($long);
     if ($strd > 243) {
     $dlong = substr($long,0,240).'...';
     }else{
     $dlong = $long;}  
-    $LongTitle = $row['title'];
+    $LongTitle = $row['product_name'];
     $strt = strlen ($LongTitle);
     if ($strt > 40) {
     $tlong = substr($LongTitle,0,37).'...';
     }else{
     $tlong = $LongTitle;}
-    $PageLink = $row['pname'];
-    $view_count = $row['views'];
+    $PageLink = $row['product_permalink'];
+    $view_count = $row['product_views'];
 ?>
 <div <?php if($count>3){ echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";}else{echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";} ?> style="padding-left:15px; padding-right:15px;">
-<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank"><img class="img-responsive" src="uploads/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>"></a>
+<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank"><img class="img-responsive" src="uploads/resizer/301x250/r/<?php echo $row['product_image'];?>" alt="<?php echo $LongTitle;?>"></a>
 <div class="col-share">
 <?php if(!isset($_SESSION['username'])){?>
 <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
@@ -81,23 +81,23 @@ if($count_save==1)
 <a class="btn-share btn-twitter fab fa-twitter" href="javascript:void(0);" onclick="popup('https://twitter.com/home?status=<?php echo urlencode(ucfirst($LongTitle));?>+<?php echo $protocol . $settingsRow['siteurl'];?>/<?php echo $PageLink;?>/')"></a>
 <a class="btn-share btn-pin fab fa-pinterest" href="javascript:void(0);" onclick="popup('//pinterest.com/pin/create%2Fbutton/?url=<?php echo $protocol . $settingsRow['siteurl'];?>/<?php echo $PageLink;?>/')"></a>
 </div></div><!-- /.col-holder--><div class="col-description"><p><?php echo $dlong;?></p></div>
-<div class="col-bottom"><div class="col-left"><span class="info-price"><h3><?php echo $ActiveSymbol; ?><?php echo $row['price'];?></h3></span>
+<div class="col-bottom"><div class="col-left"><span class="info-price"><h3><?php echo $ActiveSymbol; ?><?php echo $row['product_price'];?></h3></span>
 <?php if(!isset($_SESSION['username'])){?>
-<span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $row['saves'];?> saves</a></span>
+<span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves'];?> saves</a></span>
 <?php }else{
   if($count_save==1)
   { ?>
-    <span class="info-saves"><a class="saves remove-save" id="save-<?php echo $listing_id;?>" data-id="<?php echo $listing_id;?>" data-name="save" title="You have saved this. Click to remove."><span class="fas fa-heart"></span> &nbsp;<?php echo $row['saves'];?> saves</a></span>
+    <span class="info-saves"><a class="saves remove-save" id="save-<?php echo $listing_id;?>" data-id="<?php echo $listing_id;?>" data-name="save" title="You have saved this. Click to remove."><span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves'];?> saves</a></span>
 <?php  
   }
   else
   { ?>
-    <span class="info-saves"><a class="saves" id="save-<?php echo $listing_id;?>" data-id="<?php echo $listing_id;?>" data-name="save" title="Click to save this item."><span class="fas fa-heart"></span> &nbsp;<?php echo $row['saves'];?> saves</a></span>
+    <span class="info-saves"><a class="saves" id="save-<?php echo $listing_id;?>" data-id="<?php echo $listing_id;?>" data-name="save" title="Click to save this item."><span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves'];?> saves</a></span>
 <?php  
   }  
  }?> 
 <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
-</div><div class="col-right"><a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank"><?php echo $settingsRow['buy_button'];?></a></div></div><!-- /.col-bottom --></div><!-- /.col-box -->
+</div><div class="col-right"><a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank"><?php echo $settingsRow['buy_button'];?></a></div></div><!-- /.col-bottom --></div><!-- /.col-box -->
 <?php 
  if($count==5)
  { ?>

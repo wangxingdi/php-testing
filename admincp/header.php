@@ -5,7 +5,7 @@
     header("location:login.php");
 }
     include("../db.php");
-    if ($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
+    if ($SiteSettings = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
     $Settings = mysqli_fetch_array($SiteSettings);
     $SiteLink = $Settings['siteurl'];
     $SiteSettings->close();

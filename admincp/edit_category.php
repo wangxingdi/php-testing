@@ -13,7 +13,7 @@
   <li>Categories</li>
   <li>Manage Categories</li>
   <li class="active">Edit Category</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -64,12 +64,12 @@ function afterSuccess()
 
 $id = $mysqli->escape_string($_GET['id']); 
 
-if($Categories = $mysqli->query("SELECT * FROM categories WHERE id='$id'")){
+if($Categories = $mysqli->query("SELECT * FROM mp_categories WHERE id='$id'")){
 
     $CategoryRow = mysqli_fetch_array($Categories);
     
     $ParentId = $CategoryRow['parent_id'];
-    $ParentCategory = $mysqli->query("SELECT cname FROM categories WHERE id='$ParentId'");
+    $ParentCategory = $mysqli->query("SELECT cname FROM mp_categories WHERE id='$ParentId'");
     $ParentCategoryName = mysqli_fetch_array($ParentCategory);
   
     $Categories->close();
@@ -111,7 +111,7 @@ if($Categories = $mysqli->query("SELECT * FROM categories WHERE id='$id'")){
            <option value="0">Select a parent category</option>
   <?php }
 
-if($cat_sql = $mysqli->query("SELECT * FROM categories"))
+if($cat_sql = $mysqli->query("SELECT * FROM mp_categories"))
 {
   while($cat_row = mysqli_fetch_array($cat_sql))
   {

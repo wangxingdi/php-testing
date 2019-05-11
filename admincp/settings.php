@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i></li>
             <li class="active">设置</li>
-            <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+            <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
         </ol>
         <div class="page-header">
             <h3>全部设置 <small> 更新你的网站设置</small></h3>
@@ -304,7 +304,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
             <?php
-                if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+                if($SiteSettings = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
                     $SettingsRow = mysqli_fetch_array($SiteSettings);
                     $SiteSettings->close();
                 }else{

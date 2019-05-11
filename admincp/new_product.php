@@ -55,7 +55,7 @@
                             <select name="category" class="form-control" id="category">
                                 <option value="0">请选择</option>
                                 <?php
-                                if ($categories_result_set = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0 ORDER BY show_order ASC")) {
+                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat=0 ORDER BY show_order ASC")) {
                                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                                 ?>
                                     <option value="<?php echo $categories_row['id']; ?>"><?php echo $categories_row['cname']; ?></option>

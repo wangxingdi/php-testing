@@ -1,5 +1,5 @@
 <?php include("db.php");
-if($sql_analytics = $mysqli->query("SELECT * FROM settings WHERE id=1"))
+if($sql_analytics = $mysqli->query("SELECT * FROM mp_options WHERE id=1"))
 {
   $row = mysqli_fetch_array($sql_analytics);
   $code = $row['analytics'];

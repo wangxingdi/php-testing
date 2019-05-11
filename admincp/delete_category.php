@@ -1,32 +1,16 @@
 <?php
-
 include("../db.php");
-
-$del = $mysqli->escape_string($_POST['id']);
-
-if($ImageInfo = $mysqli->query("SELECT * FROM listings WHERE catid='$del'")){
-
-    while($GetInfo = mysqli_fetch_array($ImageInfo)){
-
-	
-	$Image = $GetInfo['image'];
-	
-	unlink("../uploads/$Image");
-
+$category_id = $mysqli->escape_string($_POST['id']);
+if ($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE category_id='$category_id'")) {
+    while ($products_rows = mysqli_fetch_array($products_result_set)) {
+        $product_image = $products_rows['product_image'];
+        unlink("../uploads/$product_image");
+    }
+    $products_result_set->close();
+} else {
+    printf("<div class='alert alert-danger alert-pull'>删除分类失败(delete_category.php)</div>");
 }
-	
-	$ImageInfo->close();
-	
-}else{
-    
-	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");
-}
-
-$mysqli->query("DELETE FROM listings WHERE catid='$del'");
-
-$mysqli->query("DELETE FROM categories WHERE id='$del'");
-
-
+$mysqli->query("DELETE FROM mp_products WHERE category_id='$category_id'");
+$mysqli->query("DELETE FROM mp_categories WHERE id='$category_id'");
 echo '<div class="alert alert-success" role="alert">Category successfully deleted</div>';
-
 ?>

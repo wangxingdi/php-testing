@@ -4,7 +4,7 @@ include('../db.php');
 
 //Get User Settings
 
-if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+if($SiteSettings = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
 
     $Settings = mysqli_fetch_array($SiteSettings);
   

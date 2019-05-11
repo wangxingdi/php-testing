@@ -2,7 +2,7 @@
 
 include("db.php");
 
-if($sql = $mysqli->query("SELECT * FROM settings WHERE id = 1"))
+if($sql = $mysqli->query("SELECT * FROM mp_options WHERE id = 1"))
 {
 	$sqlRow = mysqli_fetch_array($sql);
 	$txt_save = $sqlRow['txt_save'];
@@ -24,7 +24,7 @@ if(isset($_SESSION['username'])){
   
 $Uname = $_SESSION['username'];
 
-if($UserSql = $mysqli->query("SELECT * FROM users WHERE username='$Uname'")){
+if($UserSql = $mysqli->query("SELECT * FROM mp_users WHERE user_name='$Uname'")){
 
     $UserRow = mysqli_fetch_array($UserSql);
     

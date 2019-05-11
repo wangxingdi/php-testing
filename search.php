@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 $term = $mysqli->escape_string(trim($_GET['term']));
 $user_id = $_SESSION['user_id'];
-if($sql = $mysqli->query("SELECT * FROM settings WHERE id=1"))
+if($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1"))
  {
 
   $ActiveRow2 = mysqli_fetch_array($sql);

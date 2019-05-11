@@ -73,7 +73,7 @@ function afterSuccess()
 
 <?php
 
-if($cat_sql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0"))
+if($cat_sql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat=0"))
 {
   while($cat_row = mysqli_fetch_array($cat_sql))
   {

@@ -57,7 +57,7 @@ if ($_POST) {
         // category
         $Category = $mysqli->escape_string($_POST['category']);
     }
-    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM categories WHERE id='$Category' ")) {
+    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE id='$Category' ")) {
         $cname2_row = mysqli_fetch_array($sql_cname2);
         $cname2 = $cname2_row['cname2'];
     } else {
@@ -81,7 +81,6 @@ if ($_POST) {
         default:
             die('<div class="alert alert-danger" role="alert">仅支持JPEG，PNG或者GIF类型的文件。</div>');
     }
-    echo $upload_directory . $image_path;
     if (move_uploaded_file($_FILES['product_image']["tmp_name"], $upload_directory . $image_path)) {
         if (!$mysqli->query("INSERT INTO mp_products(product_name, product_affiliate_url, product_description, product_price, product_image, category_id, product_load_date, product_permalink, product_meta_description, product_external_link) VALUES 
                                                             ('$product_name', '$product_affiliate_url','$product_description','$product_price','$image_path','$Category','$date','$product_permalink', '$product_meta_description', '$product_external_link')")) {

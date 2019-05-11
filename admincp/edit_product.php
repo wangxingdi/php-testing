@@ -88,7 +88,7 @@ if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE produc
 
 <select name="category" class="form-control" id="category">
 <?php
-if($CatSelected = $mysqli->query("SELECT * FROM categories WHERE id='$SelectedCat' LIMIT 1")){
+if($CatSelected = $mysqli->query("SELECT * FROM mp_categories WHERE id='$SelectedCat' LIMIT 1")){
 
 $CatSelectedRow = mysqli_fetch_array($CatSelected);
 
@@ -106,7 +106,7 @@ $CatSelected->close();
 ?>
 
 <?php
-if($CatSql = $mysqli->query("SELECT * FROM categories WHERE id!='$SelectedCat' ORDER BY show_order ASC")){
+if($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE id!='$SelectedCat' ORDER BY show_order ASC")){
 
     while ($CatRow = mysqli_fetch_array($CatSql)){
     

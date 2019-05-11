@@ -3,7 +3,7 @@
     include("db.php");
     $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
     $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
-    if ($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
+    if ($squ = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
         $settings = mysqli_fetch_array($squ);
         $privateKey = $settings['MailgunPrivateKey'];
         $publicKey = $settings['MailgunPublicKey'];
@@ -23,7 +23,7 @@
         $websiteurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $websiteurl = parse_url($websiteurl);
         $websiteurl = $websiteurl['host'];
-        $updateUrl = $mysqli->query("UPDATE settings SET siteurl = '$websiteurl' WHERE id=1");
+        $updateUrl = $mysqli->query("UPDATE mp_options SET siteurl = '$websiteurl' WHERE id=1");
     }
     $pageName = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if ($pageName == $protocol . $settings['siteurl'] . '/wish_list/') {
@@ -65,30 +65,30 @@
     //Get User Info
     if (isset($_SESSION['username'])) {
         $Uname = $_SESSION['username'];
-        if ($UserSql = $mysqli->query("SELECT * FROM users WHERE username='$Uname'")) {
+        if ($UserSql = $mysqli->query("SELECT * FROM mp_users WHERE user_name='$Uname'")) {
             $UserRow = mysqli_fetch_array($UserSql);
-            $UsName = strtolower($UserRow['username']);
+            $UsName = strtolower($UserRow['user_name']);
             $_SESSION['user_id'] = $UserRow['user_id'];
             $Uid = $_SESSION['user_id'];
-            $UserEmail = $UserRow['email'];
+            $UserEmail = $UserRow['user_email'];
             $UserSql->close();
         } else {
             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of users. Please check it.</div>");
         }
     }
     //Ads
-    if ($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")) {
+    if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
         $AdsRow = mysqli_fetch_array($AdsSql);
-        $Ad1 = stripslashes($AdsRow['ad1']);
-        $Ad2 = stripslashes($AdsRow['ad2']);
-        $Ad3 = stripslashes($AdsRow['ad3']);
-        $Ad4 = stripslashes($AdsRow['ad4']);
+        $Ad1 = stripslashes($AdsRow['ads_ad1']);
+        $Ad2 = stripslashes($AdsRow['ads_ad2']);
+        $Ad3 = stripslashes($AdsRow['ads_ad3']);
+        $Ad4 = stripslashes($AdsRow['ads_ad4']);
         $AdsSql->close();
     } else {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of siteads. Please check it.</div>");
     }
     //Tot Site Views
-    $mysqli->query("UPDATE settings SET site_hits=site_hits+1 WHERE id='1'");
+    $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
     //Other settings
     $symbol = stripslashes($settings['price_symbol']);
     $strActive = strlen($symbol);
@@ -229,7 +229,7 @@
                                 </a>
                             </li>
                             <?php
-                                if ($FeatCatSql = $mysqli->query("SELECT * FROM categories WHERE featured = 1 ORDER BY show_order ASC")) {
+                                if ($FeatCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
                                     while ($FeatCatRow = mysqli_fetch_array($FeatCatSql)) {
                                         $cid = $FeatCatRow['id'];
                                         $FeatCatName = $FeatCatRow['cname'];
@@ -252,7 +252,7 @@
                             <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
                                 <div class="dropdown-content">
                                     <?php
-                                        if ($CatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")) {
+                                        if ($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")) {
                                             while ($CatRow = mysqli_fetch_array($CatSql)) {
                                                 $CatName = $CatRow['cname'];
                                                 $CatUrl = $CatRow['cname2'];
@@ -299,7 +299,7 @@
                             </a>
                             <div class="dropdown-content" id="mobile-dropdown">
                                 <?php
-                                    if ($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")) {
+                                    if ($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")) {
                                         while ($MobCatRow = mysqli_fetch_array($MobCatSql)) {
                                             $MobCatName = $MobCatRow['cname'];
                                             $MobCatUrl = $MobCatRow['cname2'];

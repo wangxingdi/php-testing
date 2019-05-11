@@ -2,7 +2,7 @@
 $successMsg = "";
 $errorMsg = "";
 
-if ($sql = $mysqli->query("SELECT email FROM settings WHERE id=1")) {
+if ($sql = $mysqli->query("SELECT email FROM mp_options WHERE id=1")) {
     $ActiveRow = mysqli_fetch_array($sql);
     $email = $ActiveRow['email'];
 } else {

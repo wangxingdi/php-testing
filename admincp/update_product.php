@@ -81,7 +81,7 @@ if($_POST)
     $pname              = strtolower($pname);
     $pname              = strip_tags($pname);
 	$Category           = $mysqli->escape_string($_POST['category']); // category 
-	if($sql_cname2 = $mysqli->query("SELECT cname2 FROM categories WHERE id='$Category' "))
+	if($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE id='$Category' "))
 	{
 		$cname2_row = mysqli_fetch_array($sql_cname2);
 		$cname2 = $cname2_row['cname2'];

@@ -4,7 +4,7 @@ include("../db.php");
 
 //Get Site Settings
 
-if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+if($SiteSettings = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
 
     $Settings = mysqli_fetch_array($SiteSettings);
 	
@@ -22,7 +22,7 @@ $id = $mysqli->escape_string($_GET['id']);
 	    $products_row = mysqli_fetch_array($products_result_set);
 	    $category_id = $products_row['category_id'];
 //	    $UserId = $products_row['uid'];
-	    $GetCname =  $mysqli->query("SELECT cname FROM categories WHERE id=$category_id LIMIT 1");
+	    $GetCname =  $mysqli->query("SELECT cname FROM mp_categories WHERE id=$category_id LIMIT 1");
 	    $Crow = mysqli_fetch_array($GetCname);
 	    $LongDisc = $products_row['product_discription'];
 	    $StrDisc = strlen ($LongDisc);
@@ -64,7 +64,7 @@ if($CountUsers==0){
 
 //Get Category
 
-if($CatSelected = $mysqli->query("SELECT * FROM categories WHERE id='$catid' LIMIT 1")){
+if($CatSelected = $mysqli->query("SELECT * FROM mp_categories WHERE id='$catid' LIMIT 1")){
 
 $CatSelectedRow = mysqli_fetch_array($CatSelected);
 

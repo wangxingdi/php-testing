@@ -1,6 +1,6 @@
 <?php include("header_listing.php");
 error_reporting(E_ALL ^ E_NOTICE);
-if ($sql = $mysqli->query("SELECT * FROM settings WHERE id=1")) {
+if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
     $ActiveRow2 = mysqli_fetch_array($sql);
     $symbol = stripslashes($ActiveRow2['price_symbol']);
     $strActive = strlen($symbol);
@@ -190,7 +190,7 @@ if ($sql = $mysqli->query("SELECT * FROM settings WHERE id=1")) {
         <h3><?php echo $txt_related; ?></h3>
     </div>
     <?php
-    if ($RelSql = $mysqli->query("SELECT * FROM listings WHERE cname='$catid' and active=1 ORDER BY RAND() LIMIT 9")) {
+    if ($RelSql = $mysqli->query("SELECT * FROM mp_products WHERE cname='$catid' and product_state=1 ORDER BY RAND() LIMIT 9")) {
         while ($RelRow = mysqli_fetch_array($RelSql)) {
             $listing_id = $RelRow['id'];
             $RelLongDisc = $RelRow['discription'];

@@ -14,7 +14,7 @@
 <ol class="breadcrumb">
   <li><i class="fa fa-home"></i></li>
   <li class="active">Advertisements</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -77,7 +77,7 @@ $(document).ready(function()
 
 <?php 
 
-if($Ads = $mysqli->query("SELECT * FROM siteads")){
+if($Ads = $mysqli->query("SELECT * FROM mp_siteads")){
 
     $AdRow = mysqli_fetch_array($Ads);
     
@@ -116,22 +116,22 @@ if($Ads = $mysqli->query("SELECT * FROM siteads")){
 
 <div class="form-group">
 <label for="inputAd4">Generated Code For Featured Image (You can also paste your own code)</label>
-<textarea class="form-control" id="inputAd4" name="inputAd4" rows="3" placeholder="Image on top of the content"><?php echo $AdRow['ad4']?></textarea>
+<textarea class="form-control" id="inputAd4" name="inputAd4" rows="3" placeholder="Image on top of the content"><?php echo $AdRow['ads_ad4']?></textarea>
 </div>
 
 <div class="form-group">
 <label for="inputAd1">HTML/JavaScript Based Advertisements</label>
-<textarea class="form-control" id="inputAd1" name="inputAd1" rows="3" placeholder="Rectangle responsive advertisement code"><?php echo $AdRow['ad1']?></textarea>
+<textarea class="form-control" id="inputAd1" name="inputAd1" rows="3" placeholder="Rectangle responsive advertisement code"><?php echo $AdRow['ads_ad1']?></textarea>
 </div>
 
 <div class="form-group">
 <label for="inputAd2">HTML/JavaScript Based Advertisements</label>
-<textarea class="form-control" id="inputAd2" name="inputAd2" rows="3" placeholder="Leaderboard responsive advertisement code"><?php echo $AdRow['ad2']?></textarea>
+<textarea class="form-control" id="inputAd2" name="inputAd2" rows="3" placeholder="Leaderboard responsive advertisement code"><?php echo $AdRow['ads_ad2']?></textarea>
 </div>
 
 <div class="form-group">
 <label for="inputAd3">HTML/JavaScript Based Advertisements</label>
-<textarea class="form-control" id="inputAd3" name="inputAd3" rows="3" placeholder="Leaderboard mobile or responsive advertisement code (display on mobile devices only)"><?php echo $AdRow['ad3']?></textarea>
+<textarea class="form-control" id="inputAd3" name="inputAd3" rows="3" placeholder="Leaderboard mobile or responsive advertisement code (display on mobile devices only)"><?php echo $AdRow['ads_ad3']?></textarea>
 </div>
 
 </div><!-- panel body -->

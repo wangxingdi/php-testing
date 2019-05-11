@@ -18,7 +18,7 @@
                     <div class="panel-body">
                         <ul>
                             <?php
-                                if($products_result_set = $mysqli->query("SELECT id FROM listings")){
+                                if($products_result_set = $mysqli->query("SELECT product_id FROM mp_products")){
                                     $products_num = $products_result_set->num_rows;
                             ?>
                             <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-cart-plus"></i> <a href="active_listings.php"><?php echo $products_num . ' 个产品';?></a></span></li>
@@ -39,7 +39,7 @@
                             ?>
                             <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php echo $Settings['site_hits'];?> 网站访问量</span></li>
                             <?php
-                                if($products_view_result_set = $mysqli->query("SELECT SUM(views) AS VIEWS FROM listings")){
+                                if($products_view_result_set = $mysqli->query("SELECT SUM(product_views) AS VIEWS FROM mp_products")){
                                     $products_view_num = mysqli_fetch_array($products_view_result_set);
                             ?>
                                     <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-pie"></i> <?php echo $products_view_num['VIEWS'];?> 产品访问量</span></li>
@@ -48,7 +48,7 @@
                                 }else{
                                     printf("<div class='alert alert-danger alert-pull'>查询产品访问量出现异常</div>");
                                 }
-                                if($products_click_result_set = $mysqli->query("SELECT SUM(hits) AS HITS FROM listings")){
+                                if($products_click_result_set = $mysqli->query("SELECT SUM(product_hits) AS HITS FROM mp_products")){
                                     $products_click_num = mysqli_fetch_array($products_click_result_set);
                             ?>
                                     <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-dollar-sign"></i> <?php echo $products_click_num['HITS'];?> 营销点击量</span></li>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="panel-body">
                     <?php
-                        $products_result_set= $mysqli->query("SELECT * FROM listings WHERE active='1' ORDER BY id DESC LIMIT 5");
+                        $products_result_set= $mysqli->query("SELECT * FROM mp_products WHERE product_state='1' ORDER BY product_id DESC LIMIT 5");
                         $products_num = $products_result_set->num_rows;
                         if ($products_num==0) {
                             echo '<div class="alert alert-danger">现在你还没有上架任何产品。</div>';
@@ -98,10 +98,10 @@
                     <?php
                         }
                         while($products_row = mysqli_fetch_assoc($products_result_set)){
-                            $id = $products_row['id'];
-                            $title = $products_row['title'];
-                            $external_link = $products_row['external_link'];
-                            $date = $products_row['date'];
+                            $id = $products_row['product_id'];
+                            $title = $products_row['product_name'];
+                            $external_link = $products_row['product_external_link'];
+                            $date = $products_row['product_load_date'];
                     ?>
                             <tr>
                                 <td>

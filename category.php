@@ -11,7 +11,7 @@ if (!isset($sort)) {
     <div class="gifts-sidebar ng-scope">
         <ul class="menu" id="menu-categories"><h3>全部分类</h3>
             <?php
-            if ($cat_list_sql = $mysqli->query("SELECT * FROM categories")) {
+            if ($cat_list_sql = $mysqli->query("SELECT * FROM mp_categories")) {
                 while ($cat_list_row = mysqli_fetch_array($cat_list_sql)) {
                     $cat_name = $cat_list_row['cname'];
                     $Cat_Url = $cat_list_row['cname2'];
@@ -25,7 +25,7 @@ if (!isset($sort)) {
                             } ?>auto-localize" href="category/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>
                         <?php if ($is_a_branch == 1) {
-                            if ($sub_cat_list = $mysqli->query("SELECT * FROM categories WHERE parent_id = $cat_id")) {
+                            if ($sub_cat_list = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = $cat_id")) {
                                 while ($sub_cat_list_row = mysqli_fetch_array($sub_cat_list)) {
                                     $sub_cat_name = $sub_cat_list_row['cname'];
                                     $sub_Cat_Url = $sub_cat_list_row['cname2'];
@@ -74,7 +74,7 @@ if (!isset($sort)) {
         <p class="small-screen-remove gifts-description ng-binding"><?php echo $CategoryDesc; ?></p>
         <div id="row" class="row">
             <?php
-            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(price AS UNSIGNED)) AS max_price FROM listings WHERE catid = '$cid' ")) {
+            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$cid' ")) {
                 $max_price_sql_row = mysqli_fetch_array($max_price_sql);
                 $max_price = $max_price_sql_row['max_price'];
                 if (!isset($max_price)) {

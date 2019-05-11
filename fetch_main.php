@@ -6,7 +6,7 @@ $sort = $mysqli->escape_string(chr($_POST["sort"]));
 $_SESSION['sort'] = $sort;
 $user_id = $_SESSION['user_id'];
 $count = 0;
-if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
+if ($settings_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
     $settings_row = mysqli_fetch_array($settings_result_set);
     $siteurl = $settings_row['siteurl'];
     $price_symbol = stripslashes($settings_row['price_symbol']);
@@ -100,7 +100,9 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?> style="padding-left:15px; padding-right:15px;">
-        <a href="<?php echo $product_permalink; ?>/"><h2><?php echo $product_name; ?></h2></a>
+        <a href="<?php echo $product_permalink; ?>/">
+            <h2><?php echo $product_name; ?></h2>
+        </a>
         <div class="col-holder">
             <a class="col-link" href="offer_link.php?id=<?php echo $product_id; ?>" target="_blank">
                 <img class="img-responsive" src=<?php echo $img_path; ?> alt="<?php echo $product_name; ?>">

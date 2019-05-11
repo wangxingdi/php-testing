@@ -39,8 +39,8 @@ if($_POST)
     $is_sub_cat = 1;
   }
   
-  $mysqli->query("INSERT INTO categories(cname, description, parent_id, is_sub_cat, icon, cname2) VALUES ('$CategoryTitle', '$CategoryDescription', '$ParentCategory', '$is_sub_cat', '$CategoryIcon', '$cname2')");
-  $mysqli->query("UPDATE categories SET branch = 1 WHERE id = '$ParentCategory'");
+  $mysqli->query("INSERT INTO mp_categories(cname, description, parent_id, is_sub_cat, icon, cname2) VALUES ('$CategoryTitle', '$CategoryDescription', '$ParentCategory', '$is_sub_cat', '$CategoryIcon', '$cname2')");
+  $mysqli->query("UPDATE mp_categories SET branch = 1 WHERE id = '$ParentCategory'");
   
   
     die('<div class="alert alert-success" role="alert">New category added successfully.</div>');

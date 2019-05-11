@@ -9,7 +9,7 @@ use Mailgun\Mailgun;
 $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
 $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
   
-if($sqlemail = $mysqli->query("SELECT * FROM settings WHERE id='1'"))
+if($sqlemail = $mysqli->query("SELECT * FROM mp_options WHERE id='1'"))
 {
   $emailRow = mysqli_fetch_array($sqlemail);
 

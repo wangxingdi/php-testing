@@ -8,7 +8,7 @@ if($_POST)
 {
 	$parent = $_POST['parent'];
 
-	if($sql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=1 AND parent_id = '$parent'"))
+	if($sql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat=1 AND parent_id = '$parent'"))
 	{
 		while ($sqlRow = mysqli_fetch_array($sql))
 		{?>   

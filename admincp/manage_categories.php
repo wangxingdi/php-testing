@@ -1,6 +1,6 @@
 <?php include("header.php");
 
-if($feat_menu_count_sql = $mysqli->query("SELECT id FROM categories WHERE featured = 1"))
+if($feat_menu_count_sql = $mysqli->query("SELECT id FROM mp_categories WHERE featured = 1"))
 {
   $feat_count  = mysqli_num_rows($feat_menu_count_sql);
 }
@@ -21,7 +21,7 @@ if($feat_menu_count_sql = $mysqli->query("SELECT id FROM categories WHERE featur
   <li><i class="fa fa-home"></i></li>
   <li>Categories</li>
   <li class="active">Manage Categories</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -75,7 +75,7 @@ if($_POST)
 
     if($feat_count<5)
     {
-      if($CatSql = $mysqli->query("UPDATE categories SET featured = 1 WHERE id = '$catId'"))
+      if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 1 WHERE id = '$catId'"))
       {
       printf("<div class='alert alert-success alert-pull'>Featured menu added.</div>");
       }
@@ -93,7 +93,7 @@ if($_POST)
   if(isset($_POST['rf_cat_' . $catId]))
   {
 
-    if($CatSql = $mysqli->query("UPDATE categories SET featured = 0 WHERE id = '$catId'"))
+    if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 0 WHERE id = '$catId'"))
     {
       printf("<div class='alert alert-success alert-pull'>Featured menu removed.</div>");
     }
@@ -109,7 +109,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 // How many adjacent pages should be shown on each side?
   $adjacents = 5;
   
-  $query = $mysqli->query("SELECT COUNT(*) as num FROM categories ORDER BY cname ASC");
+  $query = $mysqli->query("SELECT COUNT(*) as num FROM mp_categories ORDER BY cname ASC");
   
   //$query = $mysqli->query("SELECT COUNT(*) as num FROM photos WHERE  photos.active=1 ORDER BY photos.id DESC");
   
@@ -125,7 +125,7 @@ error_reporting(E_ALL ^ E_NOTICE);
   else
     $start = 0;               //if no page var is given, set start to 0
   /* Get data. */
-  $result = $mysqli->query("SELECT * FROM categories ORDER BY show_order ASC LIMIT $start, $limit");
+  $result = $mysqli->query("SELECT * FROM mp_categories ORDER BY show_order ASC LIMIT $start, $limit");
    
   //$result = $mysqli->query($sql);
   
@@ -214,7 +214,7 @@ error_reporting(E_ALL ^ E_NOTICE);
     $pagination.= "</ul>\n";    
   }
   
-  $q= $mysqli->query("SELECT * FROM categories ORDER BY show_order ASC limit $start,$limit");
+  $q= $mysqli->query("SELECT * FROM mp_categories ORDER BY show_order ASC limit $start,$limit");
 
 
   $numr = mysqli_num_rows($q);
@@ -270,7 +270,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
       if($Row['is_sub_cat'] == 1)
       {
-        $parent_sql = $mysqli->query("SELECT cname FROM categories WHERE id = '$parent_id' ");
+        $parent_sql = $mysqli->query("SELECT cname FROM mp_categories WHERE id = '$parent_id' ");
         $parent_row = mysqli_fetch_array($parent_sql);
         $parent = $parent_row['cname'];
         $parent_sql->close();
