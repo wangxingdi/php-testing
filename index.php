@@ -11,7 +11,7 @@
         $txt_low = $SettingsRow['txt_low'];
         $SiteSettings->close();
     }else{
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings. Please check it</div>");
+        printf("<div class='alert alert-danger alert-pull'>配置表查询失败(index.php)</div>");
     }
     $sort = $mysqli->escape_string($_GET['sort']);
     if(!empty($Ad4)) {
