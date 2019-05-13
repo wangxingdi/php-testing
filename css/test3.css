@@ -10,9 +10,9 @@
 }
 .feat-img img {
     max-width: 100%;
-    max-height: 100%;
     text-align: center;
-    margin: auto
+    margin: auto;
+    display: block;
 }
 .feat-img-hidden {
     padding-top: 60px

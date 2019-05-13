@@ -327,7 +327,7 @@
                 </div>
             </header>
             <style type="text/css">.wow {visibility: visible !important;}</style>
-            <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
             <script src="js/login.js"></script>
             <script>new WOW().init();</script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>

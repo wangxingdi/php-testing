@@ -19,3 +19,7 @@
 1. admincp/login.php
 2. admincp/index.php
 3. admincp/left_menu.php
+
+
+## 静态文件说明
+1. jquery.min.js 目前最新版本3.4.1

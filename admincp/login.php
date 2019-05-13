@@ -22,7 +22,7 @@ include("../db.php");
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js" type="text/javascript"></script>
         <![endif]-->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-shake@1.0.0/jquery.ui.shake.min.js" type="text/javascript"></script>
