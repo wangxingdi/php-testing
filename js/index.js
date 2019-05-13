@@ -3,9 +3,6 @@
  * @author wangxd
  * @date 2019-04-22
  */
-$("#feat-img-close").click(function () {
-    $("#container").addClass("feat-img-hidden"), $(".feat-img").fadeOut(500);
-});
 $(document).ready(function () {
     $("#listNav ul li a").on("click", function (a) {
         a.preventDefault();

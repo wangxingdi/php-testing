@@ -1,7 +1,29 @@
-/*style.css*/
-h1, h2, h3, h4, h5, h6, p {
+* {
     margin: 0;
     padding: 0
+}
+/*banner ads of home*/
+.feat-img {
+    position: relative;
+    margin-top: 67px;
+    margin-bottom: -20px
+}
+.feat-img img {
+    height: auto;
+    text-align: center;
+    margin: auto
+}
+.feat-img-hidden {
+    padding-top: 60px
+}
+@media (max-width: 990px) {
+    .feat-img {
+        margin-top: 85px;
+        margin-bottom: -50px
+    }
+    .feat-img-hidden {
+        padding-top: 90px
+    }
 }
 
 @font-face {
@@ -1035,11 +1057,6 @@ p {
     }
 }
 
-.blog-post img, .feat-img img {
-    max-width: 100%;
-    display: block
-}
-
 @media (max-width: 650px) {
     .col-sm-12-mod {
         flex: 1 1 100%;
@@ -1629,29 +1646,6 @@ form.sidebar-subscribe-box-form {
     background: url(../images/loading_spinner.gif) center no-repeat
 }
 
-.feat-img {
-    position: relative;
-    margin-top: 67px;
-    margin-bottom: -20px
-}
-
-.feat-img img {
-    height: auto;
-    text-align: center;
-    margin: auto
-}
-
-.feat-img-hidden {
-    padding-top: 60px
-}
-
-@media (max-width: 990px) {
-    .feat-img {
-        margin-top: 85px;
-        margin-bottom: -50px
-    }
-}
-
 @media (max-width: 590px) {
     h1.cat-main-title {
         width: 97%;
@@ -1667,10 +1661,6 @@ form.sidebar-subscribe-box-form {
 }
 
 @media (max-width: 992px) {
-    .feat-img-hidden {
-        padding-top: 90px
-    }
-
     .listing-mobile {
         padding-left: 5px;
         padding-right: 5px
@@ -1686,28 +1676,6 @@ form.sidebar-subscribe-box-form {
 .col-top-mod {
     margin-bottom: 0;
     padding-bottom: 30px
-}
-
-@media (min-width: 650px) {
-    .feat-img-close {
-        position: absolute;
-        top: 20px;
-        right: 20px
-    }
-
-    .feat-img-close a {
-        font-size: 20px;
-        background-color: #000;
-        opacity: .8;
-        padding: 1px 7px;
-        color: #fff;
-        border-radius: 5px;
-        outline: 0
-    }
-
-    .feat-img-close a:hover {
-        opacity: .7
-    }
 }
 
 @media (min-width: 993px) {

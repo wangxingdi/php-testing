@@ -3,46 +3,52 @@
     include("db.php");
     $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
     $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
-    if ($squ = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
-        $settings = mysqli_fetch_array($squ);
-        $privateKey = $settings['MailgunPrivateKey'];
-        $publicKey = $settings['MailgunPublicKey'];
-        $domain = $settings['MailgunDomain'];
-        $list = $settings['MailgunList'];
-        $secret = $settings['MailgunSecret'];
-        $meta_description = $settings['descrp'];
-        $txt_home = $settings['txt_home'];
-        $txt_all_cat = $settings['txt_all_cat'];
-        $txt_popular = $settings['txt_popular'];
-        $txt_gift_guides = $settings['txt_gift_guides'];
-        $squ->close();
+    if ($options_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
+        $options_row = mysqli_fetch_array($options_result_set);
+//        $privateKey = $options_row['MailgunPrivateKey'];
+//        $publicKey = $options_row['MailgunPublicKey'];
+//        $domain = $options_row['MailgunDomain'];
+//        $list = $options_row['MailgunList'];
+//        $secret = $options_row['MailgunSecret'];
+        $meta_description = $options_row['descrp'];
+        $txt_home = $options_row['txt_home'];
+        $txt_all_cat = $options_row['txt_all_cat'];
+        $txt_popular = $options_row['txt_popular'];
+        $txt_gift_guides = $options_row['txt_gift_guides'];
+        $txt_gifts_under = $options_row['txt_gifts_under'];
+        $gifts_under_limit = $options_row['gifts_under_limit'];
+        $txt_newest = $options_row['txt_newest'];
+        $txt_popular_index = $options_row['txt_popular_index'];
+        $txt_high = $options_row['txt_high'];
+        $txt_low = $options_row['txt_low'];
+        $options_result_set->close();
     } else {
-        printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of settings. Please check it.</div>");
+        printf("<div class='alert alert-danger alert-pull'>查询配置表失败(header.php)</div>");
     }
-    if (empty($settings['siteurl'])) {
+    if (empty($options_row['siteurl'])) {
         $websiteurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $websiteurl = parse_url($websiteurl);
         $websiteurl = $websiteurl['host'];
         $updateUrl = $mysqli->query("UPDATE mp_options SET siteurl = '$websiteurl' WHERE id=1");
     }
     $pageName = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    if ($pageName == $protocol . $settings['siteurl'] . '/wish_list/') {
+    if ($pageName == $protocol . $options_row['siteurl'] . '/wish_list/') {
         $pageTitle = 'Wish List | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/profile/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/profile/') {
         $pageTitle = 'My Profile | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/login/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/login/') {
         $pageTitle = 'Login | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/register/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/register/') {
         $pageTitle = 'Sign Up | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/recover/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/recover/') {
         $pageTitle = 'Recover Your Account | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/about_us/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/about_us/') {
         $pageTitle = 'About Us | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/contact_us/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/contact_us/') {
         $pageTitle = 'Contact Us | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/privacy_policy/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/privacy_policy/') {
         $pageTitle = 'Privacy Policy | ';
-    } else if ($pageName == $protocol . $settings['siteurl'] . '/tos/') {
+    } else if ($pageName == $protocol . $options_row['siteurl'] . '/tos/') {
         $pageTitle = 'Terms of Use | ';
     } else {
         $pageTitle = '';
@@ -90,21 +96,21 @@
     //Tot Site Views
     $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
     //Other settings
-    $symbol = stripslashes($settings['price_symbol']);
+    $symbol = stripslashes($options_row['price_symbol']);
     $strActive = strlen($symbol);
     if ($strActive > 4) {
         $ActiveSymbol = substr($symbol, 0, 4) . '...';
     } else {
         $ActiveSymbol = $symbol;
     }
-    $_SESSION['mobSubBoxTitle'] = stripslashes($settings['mobSubBoxTitle']);
-    $_SESSION['mobSubBoxBtnText'] = stripslashes($settings['mobSubBoxBtnText']);
-    $_SESSION['mobSubBoxDesc'] = stripslashes($settings['mobSubBoxDesc']);
+    $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
+    $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
+    $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);
 ?>
     <!doctype html>
     <html>
         <head>
-            <base href="<?php echo $protocol . $settings['siteurl']; ?>/">
+            <base href="<?php echo $protocol . $options_row['siteurl']; ?>/">
             <meta charset="utf-8">
             <title>
                 <?php
@@ -113,25 +119,25 @@
                     } else {
                         echo $pageTitle;
                     }
-                    echo $settings['name'];
+                    echo $options_row['name'];
                 ?>
             </title>
             <meta name="description" content="<?php echo $meta_description; ?>"/>
-            <meta name="keywords" content="<?php echo $settings['keywords']; ?>"/>
+            <meta name="keywords" content="<?php echo $options_row['keywords']; ?>"/>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <!--Facebook Meta Tags-->
-            <meta property="fb:app_id" content="<?php echo $settings['fbapp']; ?>"/>
-            <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>"/>
-            <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
-            <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
-            <meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/images/logo.png"/>
+            <meta property="fb:app_id" content="<?php echo $options_row['fbapp']; ?>"/>
+            <meta property="og:url" content="<?php echo $protocol . $options_row['siteurl']; ?>"/>
+            <meta property="og:title" content="<?php echo $options_row['name']; ?>"/>
+            <meta property="og:description" content="<?php echo $options_row['descrp']; ?>"/>
+            <meta property="og:image" content="<?php echo $protocol . $options_row['siteurl']; ?>/images/logo.png"/>
             <!--End Facebook Meta Tags-->
             <!--Twitter Meta Tags-->
             <meta name="twitter:card" content="summary_large_image"/>
-            <meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/images/logo.png"/>
-            <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>"/>
-            <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
-            <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
+            <meta property="og:image" content="<?php echo $protocol . $options_row['siteurl']; ?>/images/logo.png"/>
+            <meta property="og:url" content="<?php echo $protocol . $options_row['siteurl']; ?>"/>
+            <meta property="og:title" content="<?php echo $options_row['name']; ?>"/>
+            <meta property="og:description" content="<?php echo $options_row['descrp']; ?>"/>
             <!--End Twitter Meta Tags-->
             <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
             <link href="css/main.php" rel="stylesheet" type="text/css" />
@@ -156,8 +162,8 @@
                                 </fieldset>
                             </form>
                         </span>
-                        <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
-                            <img src="images/logo.png" alt="<?php echo $settings['name']; ?>"/>
+                        <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $options_row['siteurl']; ?>" target="_self">
+                            <img src="images/logo.png" alt="<?php echo $options_row['name']; ?>"/>
                         </a>
                         <!-- MOBILE LOGIN START -->
                         <div>
@@ -221,7 +227,7 @@
                     <nav class="nav" id="menu" ng-hide="hide_header"> <!-- MAIN MENU START -->
                         <button class="navtoggle" type="button" aria-hidden="true"><i class="fa fa-bars"></i></button>
                         <ul>
-                            <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
+                            <li><a class="auto-localize" href="<?php echo $protocol . $options_row['siteurl']; ?>" target="_self">
                                     <span class="icon"><i class="fa fa-home"></i></span>
                                     <span>
                                         <?php echo $txt_home; ?>
@@ -276,7 +282,7 @@
                 </div>
                 <div id="mobile-nav">
                     <ul id="mobile-stick-top">
-                        <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>">
+                        <li><a class="auto-localize" href="<?php echo $protocol . $options_row['siteurl']; ?>">
                                 <i class="fa fa-home fa-white"><span><?php echo $txt_home; ?></span></i>
                             </a>
                         </li>
@@ -340,8 +346,8 @@
                 });
             </script>
             <?php
-                if ($settings['addthisFilter'] == '3') {
-                    echo $settings['addthis'];
+                if ($options_row['addthisFilter'] == '3') {
+                    echo $options_row['addthis'];
                 }
             ?>
         </body>
