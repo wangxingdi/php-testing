@@ -7,9 +7,11 @@ if (!empty($Ad4)) {
     <?php
 } else {
     ?>
-    <script type='text/javascript'>$(function () {
+    <script type='text/javascript'>
+        $(function () {
             $("#container").addClass("feat-img-hidden")
-        });</script>
+        });
+    </script>
     <?php
 }
 ?>
@@ -49,9 +51,9 @@ if (!empty($Ad4)) {
         <div class="loader" style="text-align:center;"><img src="images/loader_3.svg"/></div>
     </div>
 </div>
-<!-- /.container -->
 <?php include("footer.php"); ?>
-<script type="text/javascript">var sort_default = "<?php echo $sort; ?>";
+<script type="text/javascript">
+    var sort_default = "<?php echo $sort; ?>";
     sort_default = sort_default.charCodeAt(0), $.ajax({
         url: "fetch_main.php",
         method: "post",
@@ -59,4 +61,5 @@ if (!empty($Ad4)) {
         success: function (t) {
             $("#display-posts-main").html(t)
         }
-    });</script>
+    });
+</script>
