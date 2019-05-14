@@ -27,9 +27,8 @@ if (!empty($Ad4)) {
             <li><a id="high" data-sort="104" <?php if ($sort == "high") {
                     echo "class=active";
                 } ?>><h3><i class="fas fa-arrow-circle-up i-mod"></i><?php echo $txt_high; ?></h3></a></li>
-            <!--
-            <span><a class="icon gifts-alone" id="gifts" href="gifts-under-20-newest/" data-sort="103" class=""><h3><i class="fas fa-gift i-mod fa-rotate-90"></i><?php echo $txt_gifts_under; ?> <?php echo $ActiveSymbol; ?><?php echo $gifts_under_limit; ?></h3></a></span>
--->
+            <span><a class="icon gifts-alone" id="gifts" href="gifts-under-20-newest/" data-sort="103" class=""><h3><i
+                                class="fas fa-gift i-mod fa-rotate-90"></i><?php echo $txt_gifts_under; ?></h3></a></span>
         </ul>
     </div>
 

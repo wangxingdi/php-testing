@@ -5,11 +5,6 @@
     $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
     if ($options_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
         $options_row = mysqli_fetch_array($options_result_set);
-//        $privateKey = $options_row['MailgunPrivateKey'];
-//        $publicKey = $options_row['MailgunPublicKey'];
-//        $domain = $options_row['MailgunDomain'];
-//        $list = $options_row['MailgunList'];
-//        $secret = $options_row['MailgunSecret'];
         $meta_description = $options_row['descrp'];
         $txt_home = $options_row['txt_home'];
         $txt_all_cat = $options_row['txt_all_cat'];
@@ -96,13 +91,13 @@
     //Tot Site Views
     $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
     //Other settings
-    $symbol = stripslashes($options_row['price_symbol']);
+    /*$symbol = stripslashes($options_row['price_symbol']);
     $strActive = strlen($symbol);
     if ($strActive > 4) {
         $ActiveSymbol = substr($symbol, 0, 4) . '...';
     } else {
         $ActiveSymbol = $symbol;
-    }
+    }*/
     $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
     $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
     $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);

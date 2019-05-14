@@ -1,11 +1,9 @@
-.panel
-{
+.panel {
     border: 1px solid #32373e;
     border-radius: 0;
 }
 
-.panel-body, .panel-body ul, .panel-body ul li, .panel-body ul li a, .panel-body ul li ul li a
-{
+.panel-body, .panel-body ul, .panel-body ul li, .panel-body ul li a, .panel-body ul li ul li a {
     margin: 0;
     padding: 0;
     border: 0;
@@ -19,7 +17,7 @@
     color: #fff;
 }
 
-.panel-body > ul > li > a{
+.panel-body > ul > li > a {
     padding: 15px 20px;
     border-left: 1px solid #272a30;
     border-right: 1px solid #272a30;
@@ -39,7 +37,7 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.panel-body > ul > li > ul > li > a{
+.panel-body > ul > li > ul > li > a {
     padding: 15px 20px;
     border-left: 1px solid #272a30;
     border-right: 1px solid #272a30;
@@ -59,35 +57,31 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.panel-body ul ul
-{
-    display:none;
-    margin:10px;
-}
-.panel-body label
-{
-    font-weight:normal !important;
+.panel-body ul ul {
+    display: none;
+    margin: 10px;
 }
 
-.btn-reset > a
-{
-    opacity:0.9;
-    display:inline-block  !important;
-    background:#d43f3a !important;
-    padding:10px 20px !important;
-}
-.btn-reset > a:hover
-{
-    opacity:1;
+.panel-body label {
+    font-weight: normal !important;
 }
 
-table.palette
-{
+.btn-reset > a {
+    opacity: 0.9;
+    display: inline-block !important;
+    background: #d43f3a !important;
+    padding: 10px 20px !important;
+}
+
+.btn-reset > a:hover {
+    opacity: 1;
+}
+
+table.palette {
     border-collapse: separate;
     border-spacing: 0 1em;
 }
 
-.palette td
-{
-    padding:15px;
+.palette td {
+    padding: 15px;
 }
