@@ -2,7 +2,7 @@
 .feat-img {
     position: relative;
     margin-top: 67px;
-    margin-bottom: -20px;
+    margin-bottom: -5px;
 }
 .feat-img img {
     max-width: 100%;
@@ -32,7 +32,7 @@
     display: block;
     overflow: hidden;
     background: #f8f8f8;
-    margin: 0 15px 10px 17px
+    margin: 0 15px 15px 17px;
 }
 .list-nav ul li a {
     float: left;
@@ -964,7 +964,7 @@ p {
 }
 
 .col-box h2 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 400;
     color: #606060
 }
