@@ -30,7 +30,8 @@ include("../db.php");
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="js/jquery.min.js"></script>	
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="js/login.js"></script>-->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.pjax.js" type="text/javascript"></script>
 <script src="js/jquery.ui.shake.js"></script>

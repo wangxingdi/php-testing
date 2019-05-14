@@ -240,7 +240,7 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
     while($MobCatRow = mysqli_fetch_array($MobCatSql)){
     $MobCatName = $MobCatRow['cname'];
     $MobCatUrl = $MobCatRow['cname2'];
-?>    
+?>
 <a id="mobile-menu" class="auto-localize" href="category/<?php echo $MobCatUrl;?>/"><?php echo $MobCatName;?></a>
 <?php
 }$MobCatSql->close(); 
@@ -253,7 +253,8 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 <li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>Search</span></i></a></li></ul></div>
 </header>
 <style type="text/css">.wow{visibility: visible !important;}</style>
-<script src="js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
 <script>new WOW().init();</script>
 <script async src="js/bootstrap.min.js"></script>
 <script>var yourNavigation=$(".mobile-nav");stickyDiv="stickymobnav",yourHeader=50,$(window).scroll(function(){$(this).scrollTop()>yourHeader?yourNavigation.addClass(stickyDiv):yourNavigation.removeClass(stickyDiv)}),$(".dropdown-content").height()>400&&($(".dropdown-content").css("max-height","400px"),$(".dropdown-content").css("overflow-y","scroll"));$(function(){var a=window.location.href;$(".nav ul li a").each(function(){this.href===a&&$(this).addClass("selected")})});</script>
