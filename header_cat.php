@@ -209,6 +209,7 @@ if($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0
 <style type="text/css">.wow{visibility: visible !important;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/wow/1.1.2/wow.min.js"></script>
 <script defer src="https://cdn.staticfile.org/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
 <script>new WOW().init();</script>
