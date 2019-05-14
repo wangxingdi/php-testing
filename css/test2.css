@@ -1877,7 +1877,7 @@ nav.nav .icon .fa.fa-gift, .icon .fas.fa-gift {
 
     #mobile-nav ul {
         list-style: none;
-        margin-left: -40px
+        /*margin-left: -40px*/
     }
 
     #mobile-nav ul li:nth-child(7n+1) {
