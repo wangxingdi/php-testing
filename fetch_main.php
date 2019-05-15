@@ -104,7 +104,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
             <h2><?php echo $product_name; ?></h2>
         </a>
         <div class="col-holder">
-            <!--
+            <!-- stop marketing
             <a class="col-link" href="offer_link.php?id=<?php /*echo $product_id; */?>" target="_blank">
             -->
             <a class="col-link" href="<?php echo $product_permalink; ?>/" target="_blank">
@@ -162,33 +162,36 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
                 </span>
             </div>
             <div class="col-right">
-                <!--
+                <!--stop marketing
                 <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php /*echo $product_id; */?>" target="_blank"><?php /*echo $settings_row['buy_button']; */?></a>
                 -->
                 <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $product_permalink; ?>/" target="_blank"><?php echo $settings_row['buy_button']; ?></a>
             </div>
         </div>
     </div>
-    <?php
-    if ($count == 5) { ?>
+<!--
+    <?php /*
+    if ($count == 5) { */?>
         <div class="desktop-hide col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile"
              style="padding-left:15px; padding-right:15px; margin-bottom:0;">
             <div id="sidebar-subscribe-box">
                 <div class="sidebar-subscribe-box-wrapper">
-                    <h2 style="margin-top: 10px; font-size: 19px;"><?php echo $_SESSION['mobSubBoxTitle']; ?></h2>
-                    <p style="display: block !important;margin-bottom: 0;text-align: center;line-height: 1.5em;"><?php echo $_SESSION['mobSubBoxDesc']; ?></p>
+                    <h2 style="margin-top: 10px; font-size: 19px;"><?php /*echo $_SESSION['mobSubBoxTitle']; */?></h2>
+                    <p style="display: block !important;margin-bottom: 0;text-align: center;line-height: 1.5em;"><?php /*echo $_SESSION['mobSubBoxDesc']; */?></p>
                     <div class="sidebar-subscribe-box-form">
                         <form id="mobileSubscribe" name="mobileSubscribe" action="subscribe.php" class="sidebar-subscribe-box-form" method="post">
                             <input class="sidebar-subscribe-box-email-field" id="email-mobile" name="email" autocomplete="off" placeholder="Enter your email address"/>
-                            <input class="sidebar-subscribe-box-email-button" title="" type="submit" value="<?php echo $_SESSION['mobSubBoxBtnText']; ?>"/>
+                            <input class="sidebar-subscribe-box-email-button" title="" type="submit" value="<?php /*echo $_SESSION['mobSubBoxBtnText']; */?>"/>
                         </form>
                         <div style="margin-top: 5px;" id="output-subscribe-mobile"></div>
                     </div>
                 </div>
             </div>
         </div>
-    <?php }
+    <?php /*} */?>
+<?php
 } ?>
+-->
 <nav id="page-nav"><a href="data_index.php?page=2"></a></nav>
 <script async src="js/jquery.infinitescroll.min.js"></script>
 <script>
