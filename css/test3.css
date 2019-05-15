@@ -1712,7 +1712,8 @@ form.sidebar-subscribe-box-form {
 
 @media (max-width: 650px) {
     .col-description, .col-description-cat {
-        min-height: 0
+        min-height: 0;
+        margin-top: 22px;
     }
 
     .animation-off-mobile {

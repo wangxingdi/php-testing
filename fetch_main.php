@@ -104,7 +104,10 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
             <h2><?php echo $product_name; ?></h2>
         </a>
         <div class="col-holder">
-            <a class="col-link" href="offer_link.php?id=<?php echo $product_id; ?>" target="_blank">
+            <!--
+            <a class="col-link" href="offer_link.php?id=<?php /*echo $product_id; */?>" target="_blank">
+            -->
+            <a class="col-link" href="<?php echo $product_permalink; ?>/" target="_blank">
                 <img class="img-responsive" src=<?php echo $img_path; ?> alt="<?php echo $product_name; ?>">
             </a>
             <div class="col-share">
@@ -159,7 +162,10 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
                 </span>
             </div>
             <div class="col-right">
-                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $product_id; ?>" target="_blank"><?php echo $settings_row['buy_button']; ?></a>
+                <!--
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php /*echo $product_id; */?>" target="_blank"><?php /*echo $settings_row['buy_button']; */?></a>
+                -->
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $product_permalink; ?>/" target="_blank"><?php echo $settings_row['buy_button']; ?></a>
             </div>
         </div>
     </div>

@@ -31,8 +31,8 @@ if (!empty($Ad4)) {
                                 class="fas fa-gift i-mod fa-rotate-90"></i><?php echo $txt_gifts_under; ?></h3></a></span>
         </ul>
     </div>
-
-    <?php
+<!-- remove mailgun
+    <?php /*
     if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) {
         ?>
         <div style="width:33%; margin-right: 15px;" class="mailbox mailbox-remove">
@@ -44,8 +44,9 @@ if (!empty($Ad4)) {
             </form>
         </div>
         <?php
-    }
+    }*/
     ?>
+-->
     <div id="display-posts-main">
         <div class="loader" style="text-align:center;"><img src="images/loader_3.svg"/></div>
     </div>
