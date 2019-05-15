@@ -11,7 +11,7 @@
 <ol class="breadcrumb">
   <li><i class="fa fa-home"></i></li>
   <li class="active">Add New Post</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">

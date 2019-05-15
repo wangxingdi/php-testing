@@ -6,7 +6,7 @@
         <ol class="breadcrumb">
             <li>管理员控制台</li>
             <li class="active">仪表盘</li>
-            <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+            <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
         </ol>
         <div class="page-header">
             <h3 style="display: inline-block;">仪表盘</h3> <span><a class="btn-add" href="new_product.php">新增商品</a></span>

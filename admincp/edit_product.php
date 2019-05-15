@@ -13,7 +13,7 @@
   <li>Product Listings</li>
   <li>Products</li>
   <li class="active">Edit Products</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">

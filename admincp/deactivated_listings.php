@@ -11,7 +11,7 @@
             <li><i class="fa fa-home"></i></li>
             <li>Product Listings</li>
             <li class="active">Deactivated Products</li>
-            <span class="theme-label">Amazon Dominator v<?php echo $Settings['version']; ?></span>
+            <span class="theme-label">MarketPress v<?php echo $Settings['version']; ?></span>
         </ol>
 
         <div class="page-header">
