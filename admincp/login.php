@@ -12,7 +12,7 @@ include("../db.php");
         <meta charset="utf-8">
         <title>管理员控制台</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+        <link href="../assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="https://cdn.staticfile.org/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" type="text/css">

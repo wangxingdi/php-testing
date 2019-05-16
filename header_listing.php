@@ -118,7 +118,7 @@ if ($strActive > 4) {
     <meta property="og:title" content="<?php echo $pageTitle; ?> | <?php echo $settings['name']; ?>"/>
     <meta property="og:description" content="<?php echo strip_tags($MetaDescription); ?>"/>
     <!--End Twitter Meta Tags-->
-    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="css/main.php" rel="stylesheet" type="text/css">
     <link href="css/test1.css" rel="stylesheet" type="text/css">
     <link href="css/test2.css" rel="stylesheet" type="text/css">
@@ -150,7 +150,7 @@ if ($strActive > 4) {
                                                                                  ng-change="search(term)"
                                                                                  ng-model="term"></fieldset></form></span><a
                     class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>"
-                    target="_self"><img src="images/logo.png" alt="<?php echo $settings['name']; ?>"></a>
+                    target="_self"><img src="https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=bf24ca75d92a60595245e91c180418a3/8718367adab44aedc0589858bd1c8701a18bfb7c.jpg" alt="<?php echo $settings['name']; ?>"></a>
             <!-- LOGIN/REGISTRATION START -->
             <!-- MOBILE LOGIN START -->
             <div>

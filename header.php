@@ -125,19 +125,19 @@
             <meta property="og:url" content="<?php echo $protocol . $options_row['siteurl']; ?>"/>
             <meta property="og:title" content="<?php echo $options_row['name']; ?>"/>
             <meta property="og:description" content="<?php echo $options_row['descrp']; ?>"/>
-            <meta property="og:image" content="<?php echo $protocol . $options_row['siteurl']; ?>/images/logo.png"/>
+            <!--<meta property="og:image" content="<?php /*echo $protocol . $options_row['siteurl']; */?>/images/logo.png"/>-->
             <!--End Facebook Meta Tags-->
             <!--Twitter Meta Tags-->
             <meta name="twitter:card" content="summary_large_image"/>
-            <meta property="og:image" content="<?php echo $protocol . $options_row['siteurl']; ?>/images/logo.png"/>
+            <!--<meta property="og:image" content="<?php /*echo $protocol . $options_row['siteurl']; */?>/images/logo.png"/>-->
             <meta property="og:url" content="<?php echo $protocol . $options_row['siteurl']; ?>"/>
             <meta property="og:title" content="<?php echo $options_row['name']; ?>"/>
             <meta property="og:description" content="<?php echo $options_row['descrp']; ?>"/>
             <!--End Twitter Meta Tags-->
-            <link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-            <link href="css/test1.css" rel="stylesheet" type="text/css">
-            <link href="css/test2.css" rel="stylesheet" type="text/css">
-            <link href="css/test3.css" rel="stylesheet" type="text/css">
+            <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <link href="css/test1.css" rel="stylesheet" type="text/css" />
+            <link href="css/test2.css" rel="stylesheet" type="text/css" />
+            <link href="css/test3.css" rel="stylesheet" type="text/css" />
             <link href="css/main.php" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.1/css/all.min.css"/>
         </head>
@@ -158,7 +158,7 @@
                             </form>
                         </span>
                         <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $options_row['siteurl']; ?>" target="_self">
-                            <img src="images/logo.png" alt="<?php echo $options_row['name']; ?>"/>
+                            <img src="https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=bf24ca75d92a60595245e91c180418a3/8718367adab44aedc0589858bd1c8701a18bfb7c.jpg" alt="<?php echo $options_row['name']; ?>"/>
                         </a>
                         <!-- MOBILE LOGIN START -->
                         <div>
