@@ -22,7 +22,7 @@
         padding-top: 90px
     }
 }
-/* sub category */
+/* filter category */
 .col-link img.img-responsive, .list-nav ul {
     border: 1px solid #ccc
 }
@@ -80,17 +80,14 @@
     background-color: #FFF;
     border: 0
 }
-
 .list-nav-mod ul li a {
     color: #166ba2;
     padding: 9px 13px
 }
-
 .list-nav-mod ul li a:hover {
     background-color: #FFF;
     color: #166ba2
 }
-
 .list-nav-mod ul li a.active {
     background-color: #166ba2;
     border-radius: 3px;
@@ -115,6 +112,16 @@
 @media (max-width: 649px) {
     .list-nav-gifts {
         width: 100%
+    }
+}
+/*product card*/
+.col-description {
+    min-height: 100px;
+}
+@media (max-width: 650px) {
+    .col-description{
+        min-height: 0;
+        margin-top: 25px;
     }
 }
 
@@ -1603,10 +1610,7 @@ form.sidebar-subscribe-box-form {
     border-radius: 0;
 }
 
-.col-description {
-    min-height: 100px;
-    /*margin-top: 24px*/
-}
+
 
 .col-description-cat {
     min-height: 65px
@@ -1711,9 +1715,9 @@ form.sidebar-subscribe-box-form {
 }
 
 @media (max-width: 650px) {
-    .col-description, .col-description-cat {
+    .col-description-cat {
         min-height: 0;
-        margin-top: 22px;
+        margin-top: 25px;
     }
 
     .animation-off-mobile {
