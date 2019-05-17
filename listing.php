@@ -213,7 +213,7 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                 <a href="<?php echo $RelLink; ?>/"><h2 class="title-bottom"><?php echo $tlong; ?></h2></a>
                 <div class="col-holder">
                     <a class="col-link" href="<?php echo $RelLink; ?>/">
-                        <img class="img-responsive" src="uploads/resizer/316x250/r/<?php echo $RelRow['product_image']; ?>" alt="<?php echo $tlong; ?>">
+                        <img class="img-responsive" src="images/resizer/316x250/r/<?php echo $RelRow['product_image']; ?>" alt="<?php echo $tlong; ?>">
                     </a>
                     <div class="col-share">
                         <?php if (!isset($_SESSION['username'])) { ?>

@@ -10,7 +10,7 @@ if ($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE produ
     printf("<div class='alert alert-danger alert-pull'>产品删除失败：查询不到被删除的产品</div>");
 }
 if ($products_num == 1) {
-    unlink("../uploads/$product_image");
+    unlink("../images/$product_image");
 }
 $products_del = $mysqli->query("DELETE FROM mp_products WHERE id='$product_id'");
 $products_del->close();

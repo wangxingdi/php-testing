@@ -9,7 +9,7 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")
     printf("<div class='alert alert-danger alert-pull'>settings表似乎有问题，请检查一下。</div>");
 }
 */
-$upload_directory = '../uploads/';
+$upload_directory = '../images/';
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
         die('<div class="alert alert-danger" role="alert">请先选择一个分类。</div>');

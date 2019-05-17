@@ -52,7 +52,7 @@ include("../db.php");
     <div id="wrap">
         <div class="container-fluid">
             <header class="main-header">
-                <a class="logo" href="index.php"><img class="img-responsive" src="images/admin-banner.png" alt="Admin Penal"></a>
+                <a class="logo" href="index.php"><img class="img-responsive" src="../assets/admin-banner.png" alt="管理员控制台"></a>
             </header>
             <div class="container">
                 <section class="col-md-5 col-centered">

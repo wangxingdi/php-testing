@@ -147,7 +147,7 @@ return false;
 
 <div class="col-holder">
 <a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
-<img class="img-responsive" src="uploads/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
 </a>
 <div class="col-share">
 <?php if(!isset($_SESSION['username'])){?>
@@ -223,7 +223,7 @@ if($count_save==1)
         hideNav : '#page-nav',
         loading: {
                         finishedMsg: 'No more posts to load.',
-                        img: 'images/ajaxloader.gif'
+                        img: 'assets/ajaxloader.gif'
     }
     }, function(newElements, data, url){
         

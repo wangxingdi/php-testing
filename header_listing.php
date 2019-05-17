@@ -108,12 +108,12 @@ if ($strActive > 4) {
     <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $PageLink; ?>/"/>
     <meta property="og:title" content="<?php echo $pageTitle; ?> | <?php echo $settings['name']; ?>"/>
     <meta property="og:description" content="<?php echo strip_tags($MetaDescription); ?>"/>
-    <meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/uploads/<?php echo $image; ?>"/>
+    <meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/images/<?php echo $image; ?>"/>
     <!--End Facebook Meta Tags-->
     <!--Twitter Meta Tags-->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta property="og:image"
-          content="<?php echo $protocol . $settings['siteurl']; ?>/uploads/<?php echo $image; ?>?'.uniqid().'"/>
+          content="<?php echo $protocol . $settings['siteurl']; ?>/images/<?php echo $image; ?>?'.uniqid().'"/>
     <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $PageLink; ?>/"/>
     <meta property="og:title" content="<?php echo $pageTitle; ?> | <?php echo $settings['name']; ?>"/>
     <meta property="og:description" content="<?php echo strip_tags($MetaDescription); ?>"/>

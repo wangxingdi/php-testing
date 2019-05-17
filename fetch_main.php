@@ -89,7 +89,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     $product_views = $products_row['product_views'];
     $year = date('Y');
     $month = date('m');
-    $upload_directory = 'uploads/';
+    $upload_directory = 'images/';
     $img_path = $products_row['product_external_link'];
     if(empty($img_path)){
         $img_path = $upload_directory . $products_row['product_image'];
@@ -183,7 +183,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
         prefill: !0,
         scrollThreshold: 100,
         hideNav: "#page-nav",
-        loading: {finishedMsg: "No more posts to load.", img: "images/ajaxloader.gif"}
+        loading: {finishedMsg: "No more posts to load.", img: "assets/ajaxloader.gif"}
     }, function (a, t, i) {
         $(".col-link-data").hover(function () {
             $(this).parent().find(".col-share-data").stop().animate({width: "90px"}, 300)

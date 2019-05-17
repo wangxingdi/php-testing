@@ -209,7 +209,7 @@
                     <tr class="btnDelete" data-id="<?php echo $products_row['product_id']; ?>">
                         <td><a data-toggle="modal" href="preview.php?id=<?php echo $products_row['product_id']; ?>"
                                data-target="#ProductModal"><img
-                                        src="timthumb.php?src=http://<?php echo $SiteLink; ?>/uploads/<?php echo $products_row['product_image']; ?>&amp;h=50&amp;w=50&amp;q=100"
+                                        src="timthumb.php?src=http://<?php echo $SiteLink; ?>/images/<?php echo $products_row['product_image']; ?>&amp;h=50&amp;w=50&amp;q=100"
                                         alt="<?php echo $product_name; ?>" class="img-responsive"></a></td>
                         <td><a data-toggle="modal" href="preview.php?id=<?php echo $products_row['product_id']; ?>"
                                data-target="#ProductModal"><?php echo ucfirst($product_name); ?></a></td>

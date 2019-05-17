@@ -10,7 +10,7 @@ if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE produc
 	 printf("<div class='alert alert-danger alert-pull'>产品查询失败(update_product.php)</div>");
 }
 
-$UploadDirectory	= '../uploads/'; //Upload Directory, ends with slash & make sure folder exist
+$UploadDirectory	= '../images/'; //Upload Directory, ends with slash & make sure folder exist
 
 
 if (!@file_exists($UploadDirectory)) {
@@ -138,7 +138,7 @@ if($_POST)
    if(move_uploaded_file($_FILES['mFile']["tmp_name"], $UploadDirectory . $NewFileName ))
    {
 	   
-	unlink("../uploads/".$ImageFile);
+	unlink("../images/".$ImageFile);
 	
 	$mysqli->query("UPDATE listings SET title='$FileTitle', aff_url='$AffURL', discription='$Description', price='$Price', image='$NewFileName', catid='$Category', meta_description='$MetaDescription', pname='$pname', cname='$cname2' WHERE id='$id'");
 

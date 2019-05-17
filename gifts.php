@@ -14,7 +14,7 @@ if(!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPubl
 <?php
 }
 ?> 
-<div id="display-posts-gifts"><div class="loader" style="text-align:center;"><img src="images/loader_3.svg" /></div></div>
+<div id="display-posts-gifts"><div class="loader" style="text-align:center;"><img src="assets/loader_3.svg" /></div></div>
 </div><!-- /.container -->
 <?php include("footer.php"); ?>
 <script type="text/javascript">var sort_default_gift="<?php echo $sort; ?>";"newest"!=sort_default_gift&&"popular"!=sort_default_gift&&(window.location="404.php"),sort_default_gift=sort_default_gift.charCodeAt(0),$.ajax({url:"fetch_gifts.php",method:"post",data:{sort:sort_default_gift},success:function(t){$("#display-posts-gifts").html(t)}});</script>

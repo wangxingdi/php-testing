@@ -24,7 +24,7 @@ if($Pop = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER 
 ?> 
 <div class="side-bar-posts wow fadeInUp">
 <a href="<?php echo $PLink;?>/">
-<img src="uploads/resizer/336x180/r/<?php echo $PopRow['image'];?>" alt="<?php echo $PopRow['title'];?>" class="img-responsive side-img">
+<img src="images/resizer/336x180/r/<?php echo $PopRow['image'];?>" alt="<?php echo $PopRow['title'];?>" class="img-responsive side-img">
 </a>
 <a href="<?php echo $PLink;?>/"><h3 class="side-bar-text"><?php echo $tlong;?></h3></a>
 </div><!--side-bar-posts-->

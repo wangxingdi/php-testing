@@ -13,7 +13,7 @@ if($squ = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
      printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again</div>");;
 }
 
-$UploadDirectory    = '../uploads/';
+$UploadDirectory    = '../images/';
 
 if (!@file_exists($UploadDirectory)) {
     //destination folder does not exist

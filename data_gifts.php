@@ -61,7 +61,7 @@ $start = ($page - 1) * 27;
     $view_count = $row['product_views'];
 ?>
 <div class="col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile" style="padding-left:15px; padding-right:15px;">
-<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank"><img class="img-responsive" src="uploads/resizer/301x250/r/<?php echo $row['product_image'];?>" alt="<?php echo $LongTitle;?>"></a><div class="col-share col-share-data">
+<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank"><img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['product_image'];?>" alt="<?php echo $LongTitle;?>"></a><div class="col-share col-share-data">
 <?php if(!isset($_SESSION['username'])){?><a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
 <?php }else{
 $user_sql=$mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$listing_id' AND user_id='$user_id'");

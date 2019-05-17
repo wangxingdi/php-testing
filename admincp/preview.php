@@ -85,7 +85,7 @@ $CatSelected->close();
 
 <!--Data-->
 
-<img src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploads/<?php echo $row['image'];?>&amp;h=550&amp;w=650&amp;q=100" data-src="http://<?php echo $SiteLink;?>/uploads/<?php echo $row['image'];?>" alt="<?php echo $FeatTitle;?>" class="img-responsive slide-img">
+<img src="timthumb.php?src=http://<?php echo $SiteLink;?>/images/<?php echo $row['image'];?>&amp;h=550&amp;w=650&amp;q=100" data-src="http://<?php echo $SiteLink;?>/images/<?php echo $row['image'];?>" alt="<?php echo $FeatTitle;?>" class="img-responsive slide-img">
 
 <p class="col-description"><?php echo $DsicLong;?></p>
 

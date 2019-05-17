@@ -1262,14 +1262,14 @@ p {
 }
 
 #sidebar-subscribe-box {
-    background: url(../images/colored-strip.png);
+    background: url(../assets/colored-strip.png);
     border: 1px solid #aaa;
     border-radius: 3px;
     padding: 3px 0
 }
 
 .sidebar-subscribe-box-wrapper {
-    background: url(../images/bg-pattern.png) #f7f7f7;
+    background: url(../assets/bg-pattern.png) #f7f7f7;
     color: #111;
     font-size: 14px;
     line-height: 20px;
@@ -1294,7 +1294,7 @@ form.sidebar-subscribe-box-form {
 .sidebar-subscribe-box-email-field {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    background: url(../images/sprites.png) 0 -27px no-repeat #fff;
+    background: url(../assets/sprites.png) 0 -27px no-repeat #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     color: #444;
@@ -1633,7 +1633,7 @@ form.sidebar-subscribe-box-form {
 }
 
 .loading {
-    background: url(../images/loading_spinner.gif) center no-repeat
+    background: url(../assets/loading_spinner.gif) center no-repeat
 }
 
 @media (max-width: 590px) {

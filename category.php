@@ -106,7 +106,7 @@ if (!isset($sort)) {
             </div>
         </div>
         <div id="display-posts">
-            <div id="loader" style="display:none;text-align:center;"><img src="images/loader_3.svg"/></div>
+            <div id="loader" style="display:none;text-align:center;"><img src="assets/loader_3.svg"/></div>
         </div>
     </div>
 </div>

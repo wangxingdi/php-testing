@@ -32,7 +32,7 @@ $user = $mysqli->escape_string($_GET['user']);
                 <a class="remove-product fa fa-remove" data-id="<?php echo $row['product_id']; ?>"
                    data-name="remove-save"></a>
                 <a href="<?php echo $PageLink; ?>/">
-                    <img class="img-responsive" src="uploads/resizer/500x500/r/<?php echo $row['product_image']; ?>"
+                    <img class="img-responsive" src="images/resizer/500x500/r/<?php echo $row['product_image']; ?>"
                          alt="<?php echo $LongTitle; ?>">
                 </a>
                 <a href="<?php echo $PageLink; ?>/"><h2 class="title-bottom"><?php echo $tlong; ?></h2></a>
