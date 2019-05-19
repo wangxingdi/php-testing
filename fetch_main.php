@@ -87,6 +87,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     $product_name = $products_row['product_name'];
     $product_permalink = $products_row['product_permalink'];
     $product_views = $products_row['product_views'];
+    $product_price = $products_row['product_price'];
     $year = date('Y');
     $month = date('m');
     $upload_directory = 'images/';
@@ -133,7 +134,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
         <div class="col-bottom">
             <div class="col-left">
                 <span class="info-price">
-                    <h3><?php echo $price_symbol; ?><?php echo $products_row['product_price']; ?></h3>
+                    <h3><?php echo $price_symbol; ?><?php echo $product_price; ?></h3>
                 </span>
                 <?php
                     if (!isset($_SESSION['username'])) { ?>

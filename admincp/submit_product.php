@@ -20,7 +20,7 @@ if ($_POST) {
     if (!isset($_POST['product_meta_description']) || strlen($_POST['product_meta_description']) < 1) {
         die('<div class="alert alert-danger" role="alert">请输入Meta信息描述。</div>');
     }
-    if (!isset($_POST['product_affiliate_url']) || strlen($_POST['product_affiliate_url']) < 1) {
+    /*if (!isset($_POST['product_affiliate_url']) || strlen($_POST['product_affiliate_url']) < 1) {
         die('<div class="alert alert-danger" role="alert">请输入产品推广链接。</div>');
     }
     if (!isset($_POST['product_affiliate_url']) || strlen($_POST['product_affiliate_url']) > 1) {
@@ -30,17 +30,17 @@ if ($_POST) {
         } else {
             die('<div class="alert alert-danger" role="alert">请输入完整的产品推广链接。</div>');
         }
-    }
+    }*/
     if (!isset($_POST['product_description']) || strlen($_POST['product_description']) < 1) {
         die('<div class="alert alert-danger" role="alert">请输入产品描述。</div>');
     }
-    if (!isset($_FILES['product_image']) && (!isset($_POST['product_external_link']) || strlen($_POST['product_external_link']) < 1)) {
-        die('<div class="alert alert-danger" role="alert">需要上传图片或者输入外部图片链接</div>');
-//        die('<div class="alert alert-danger" role="alert">请选择一张图片(推荐300px*250px)。</div>');
+    if (!isset($_FILES['product_image'])) {
+//        die('<div class="alert alert-danger" role="alert">需要上传图片或者输入外部图片链接</div>');
+        die('<div class="alert alert-danger" role="alert">请选择一张图片(推荐300px*250px)。</div>');
     }
-    if (!isset($_POST['product_price']) || strlen($_POST['product_price']) < 1) {
+    /*if (!isset($_POST['product_price']) || strlen($_POST['product_price']) < 1) {
         die('<div class="alert alert-danger" role="alert">请输入产品价格。</div>');
-    }
+    }*/
     if ($_FILES['product_image']['error']) {
         die(upload_errors($_FILES['product_image']['error']));
     }
