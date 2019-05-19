@@ -340,6 +340,13 @@
                         this.href === a && $(this).addClass("selected")
                     });
                 });
+                var _hmt = _hmt || [];
+                (function() {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?509c646257ed98523a09fb935c772953";
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(hm, s);
+                })();
             </script>
             <?php
                 if ($options_row['addthisFilter'] == '3') {
