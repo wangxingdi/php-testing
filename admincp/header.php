@@ -52,7 +52,7 @@ if($SiteSettings = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 <script src="js/jquery.menu.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.6/jquery.timeago.min.js"></script>
-<script src="js/jscolor.js" type="text/javascript"></script>
+<!--<script src="js/jscolor.js" type="text/javascript"></script>-->
 
 <script>
 $(function(){
