@@ -19,3 +19,17 @@
 3. 图片四周的阴影效果需要去除; - Done(main.php)
 4. 描述文字长度重新调整; - Done(fetch_main.php)
 5. 将all cat修改为more cat; Done(表setting以及全部查询分类的sql语句)
+
+
+## 说明
+1. 静态文件版本
+https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js
+https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js
+https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js
+https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js
+https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js
+https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js
+https://cdn.staticfile.org/jquery-timeago/1.6.6/jquery.timeago.min.js
+https://cdn.jsdelivr.net/npm/jquery-shake@1.0.0/jquery.ui.shake.min.js
+https://cdn.staticfile.org/jqueryui/1.12.1/jquery-ui.min.js
+https://cdn.staticfile.org/wow/1.1.2/wow.min.js
