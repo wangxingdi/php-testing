@@ -23,22 +23,23 @@ else
 <div class="container container-pull" id="display-posts-main">
 <?php
 $page = $mysqli->escape_string($_GET['page']);
-$start = ($page - 1) * 15;
+$start = ($page - 1) * 6;
+$end = ($page) * 6;
   if ($sort=="n"){
     $sortpage = "newest";
-  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT $start, 15");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT $start, $end");
   }else if ($sort=="p"){
     $sortpage = "popular";
-  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY views DESC LIMIT $start, 15");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY views DESC LIMIT $start, $end");
   }else if ($sort=="l"){
     $sortpage = "low";
-  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT $start, 15");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT $start, $end");
   }else if ($sort=="h"){
     $sortpage = "high";
-  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT $start, 15");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT $start, $end");
   }else{
     $sortpage = "none";
-  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT $start, 15");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT $start, $end");
   }
   $NumResults = mysqli_num_rows($result);
   if($NumResults<1){ 

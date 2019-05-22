@@ -61,19 +61,19 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'
 <?php
 if ($sort == "n") {
     $sortpage = "newest";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 6");
 } else if ($sort == "p") {
     $sortpage = "popular";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_views DESC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_views DESC LIMIT 0, 6");
 } else if ($sort == "l") {
     $sortpage = "low";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 6");
 } else if ($sort == "h") {
     $sortpage = "high";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 6");
 } else {
     $sortpage = "none";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 9");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 6");
 }
 $products_num = mysqli_num_rows($products_result_set);
 if ($products_num < 1) {
@@ -176,6 +176,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
         itemSelector: ".col-box",
         checkLastPage: !0,
         prefill: !0,
+        extraScrollPx: 50,
         scrollThreshold: 100,
         hideNav: "#page-nav",
         loading: {finishedMsg: "No more posts to load.", img: "assets/ajaxloader.gif"}
