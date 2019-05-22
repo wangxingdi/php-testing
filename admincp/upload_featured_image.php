@@ -14,7 +14,7 @@ if($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 }
 
 
-$UploadDirectory	= '../uploaded_images/';
+$UploadDirectory	= '../images/';
  
 
 if (!@file_exists($UploadDirectory)) {
@@ -73,7 +73,7 @@ if($_POST)
 <script>
 $('#UploadImage').delay(1000).resetForm(1000);
 $('#inputAd4').css('background-color', '#dff0d8');
-$('#inputAd4').val('<a href="<?php echo $FeatImgLink; ?>" target="_blank"><img src="uploaded_images/<?php echo $NewFileName; ?>" /></a>');
+$('#inputAd4').val('<a href="<?php echo $FeatImgLink; ?>" target="_blank"><img src="images/<?php echo $NewFileName; ?>" /></a>');
 $('#output').html('<div class="alert alert-info" role="alert">Featured image has been updated.</div>');
 </script>
 

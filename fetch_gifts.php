@@ -60,7 +60,7 @@ if ($sort=="n"){
     $view_count = $row['views'];
 ?>
 <div <?php if($count>3){ echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";}else{echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";} ?> style="padding-left:15px; padding-right:15px;">
-<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank"><img class="img-responsive" src="uploaded_images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>"></a>
+<a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a><div class="col-holder"><a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank"><img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>"></a>
 <div class="col-share">
 <?php if(!isset($_SESSION['username'])){?>
 <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>

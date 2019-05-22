@@ -126,11 +126,11 @@ if($AdsSql = $mysqli->query("SELECT * FROM siteads WHERE id='1'")){
 <meta property="og:url"             content="<?php echo $protocol . $settings['siteurl']; ?>" /> 
 <meta property="og:title"           content="<?php echo $settings['name'];?>" />
 <meta property="og:description"   content="<?php echo $settings['descrp'];?>" /> 
-<meta property="og:image"           content="<?php echo $protocol . $settings['siteurl']; ?>/images/logo.png" /> 
+<meta property="og:image"           content="<?php echo $protocol . $settings['siteurl']; ?>/assets/logo.png" />
 <!--End Facebook Meta Tags-->
 <!--Twitter Meta Tags-->
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/images/logo.png" />
+<meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/assets/logo.png" />
 <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>" />
 <meta property="og:title" content="<?php echo $settings['name'];?>" />
 <meta property="og:description" content="<?php echo $settings['descrp'];?>" />

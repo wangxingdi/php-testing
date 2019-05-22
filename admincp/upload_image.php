@@ -14,7 +14,7 @@ if($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
 }
 
 
-$UploadDirectory	= '../uploaded_images/';
+$UploadDirectory	= '../images/';
  
 
 if (!@file_exists($UploadDirectory)) {
@@ -78,7 +78,7 @@ $('#UploadImage').delay(1000).resetForm(1000);
 
 <label for='url'>Image URL</label>
 
-<input style="width:60%; display: inline-block;" type='text' name='url' id='imageUrl' class='form-control' value='http://<?php echo $settings['siteurl'];?>/uploaded_images/<?php echo $NewFileName;?>' placeholder='Upload image to get the URL here'> <span><button class="btn btn-primary" onclick='copy()'>Copy URL</button></span><span id="copy-output" style="margin-left: 5px;display: none;">URL Copied!</span>
+<input style="width:60%; display: inline-block;" type='text' name='url' id='imageUrl' class='form-control' value='http://<?php echo $settings['siteurl'];?>/images/<?php echo $NewFileName;?>' placeholder='Upload image to get the URL here'> <span><button class="btn btn-primary" onclick='copy()'>Copy URL</button></span><span id="copy-output" style="margin-left: 5px;display: none;">URL Copied!</span>
 
 </div>
 

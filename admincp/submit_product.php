@@ -7,8 +7,8 @@ if ($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
 } else {
     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
 }
-$UploadDirectory = '../uploaded_images/';
-if (!@file_exists($UploadDirectory)) {
+$upload_directory = '../images/';
+if (!@file_exists($upload_directory)) {
     //destination folder does not exist
     die("Make sure Upload directory exist!");
 }
@@ -54,22 +54,25 @@ if ($_POST) {
         die(upload_errors($_FILES['mFile']['error']));
     }
     //uploaded file name
-    $FileName = strtolower($_FILES['mFile']['name']);
+    $image_name = strtolower($_FILES['mFile']['name']);
     //file extension
-    $ImageExt = substr($FileName, strrpos($FileName, '.'));
+//    $ImageExt = substr($FileName, strrpos($FileName, '.'));
     //file type
-    $FileType = $_FILES['mFile']['type'];
+    $file_type = $_FILES['mFile']['type'];
     //file size
-    $FileSize = $_FILES['mFile']["size"];
+//    $FileSize = $_FILES['mFile']["size"];
     //Random number to make each filename unique.
-    $RandNumber = rand(0, 9999999999);
+//    $RandNumber = rand(0, 9999999999);
+    $year = date('Y');
+    $month = date('m');
     $Date = date("F j, Y");
     // file title
     $FileTitle = $mysqli->escape_string($_POST['mName']);
-    $pname = preg_replace("![^a-z0-9]+!i", "-", $FileTitle);
-    $pname = urlencode($pname);
-    $pname = strtolower($pname);
-    $pname = strip_tags($pname);
+    $image_path = $year.'/'.$month."/".$image_name;
+//    $pname = preg_replace("![^a-z0-9]+!i", "-", $FileTitle);
+//    $pname = urlencode($pname);
+    $pname = strtolower($FileTitle);
+//    $pname = strip_tags($pname);
     if (isset($_POST['category-sub']) && strlen($_POST['category-sub']) > 0 && $_POST['category-sub'] > 0) {
         // sub category
         $Category = $mysqli->escape_string($_POST['category-sub']);
@@ -92,7 +95,7 @@ if ($_POST) {
     // price
     $MetaDescription = $mysqli->escape_string($_POST['meta_desc']);
     $external = $mysqli->escape_string($_POST['external']);
-    switch (strtolower($FileType)) {
+    switch (strtolower($file_type)) {
         //allowed file types
         case 'image/png':
         case 'image/gif':
@@ -102,19 +105,19 @@ if ($_POST) {
             //output error
             die('<div class="alert alert-danger" role="alert">Unsupported Image File. Please upload JPEG, PNG or GIF files</div>');
     }
-    function clean($string){
+    /*function clean($string){
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
-    }
+    }*/
 
     //Image File Title will be used as new File name
-    $NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
-    $NewFileName = clean($NewFileName);
-    $NewFileName = $NewFileName . '_' . $RandNumber . $ImageExt;
+//    $NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
+//    $NewFileName = clean($NewFileName);
+//    $NewFileName = $NewFileName . '_' . $RandNumber . $ImageExt;
     //Rename and save uploded image file to destination folder.
-    if (move_uploaded_file($_FILES['mFile']["tmp_name"], $UploadDirectory . $NewFileName)) {
+    if (move_uploaded_file($_FILES['mFile']["tmp_name"], $upload_directory . $image_path)) {
         // Insert info into database table.. do w.e!
-        if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$NewFileName','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
+        if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$image_path','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
             echo "Error : " . $mysqli->error;
         }
         ?>

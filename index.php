@@ -44,7 +44,7 @@ if(!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPubl
 <?php
 }
 ?>
-<div id="display-posts-main"><div class="loader" style="text-align:center;"><img src="images/loader_3.svg" /></div></div>
+<div id="display-posts-main"><div class="loader" style="text-align:center;"><img src="assets/loader_3.svg" /></div></div>
 </div><!-- /.container -->
 <?php include("footer.php"); ?> 
 <script type="text/javascript">var sort_default="<?php echo $sort; ?>";sort_default=sort_default.charCodeAt(0),$.ajax({url:"fetch_main.php",method:"post",data:{sort:sort_default},success:function(t){$("#display-posts-main").html(t)}});</script>

@@ -28,7 +28,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 ?>
 
-    <article class="blog-item ng-scope" ng-repeat="post in blogPosts"><div class="image"><a href="blog/<?php echo $PostLink; ?>/"><img alt="<?php echo $tlong; ?>" src="uploaded_images/resizer/300x178/r/<?php echo $image;?>"></a></div><h3><a href="blog/<?php echo $PostLink; ?>/" class="ng-binding"><?php echo $tlong; ?></a></h3></article><!-- end ngRepeat: post in blogPosts -->
+    <article class="blog-item ng-scope" ng-repeat="post in blogPosts"><div class="image"><a href="blog/<?php echo $PostLink; ?>/"><img alt="<?php echo $tlong; ?>" src="images/resizer/300x178/r/<?php echo $image;?>"></a></div><h3><a href="blog/<?php echo $PostLink; ?>/" class="ng-binding"><?php echo $tlong; ?></a></h3></article><!-- end ngRepeat: post in blogPosts -->
 
 <?php } ?>
 

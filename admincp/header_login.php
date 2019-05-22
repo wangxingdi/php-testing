@@ -17,7 +17,7 @@ include("../db.php");
 <title>Admin Control Panel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="../images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -52,6 +52,6 @@ $(function(){
 
 <header class="main-header">
 
-<a class="logo" href="index.php"><img class="img-responsive" src="images/logo.png" alt="Admin Penal"></a>
+<a class="logo" href="index.php"><img class="img-responsive" src="assets/logo.png" alt="Admin Penal"></a>
 
 </header>

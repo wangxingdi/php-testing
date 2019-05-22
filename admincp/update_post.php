@@ -20,7 +20,7 @@ if($results = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
 	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again</div>");;
 }
 
-$UploadDirectory	= '../uploaded_images/'; //Upload Directory, ends with slash & make sure folder exist
+$UploadDirectory	= '../images/'; //Upload Directory, ends with slash & make sure folder exist
 
 
 if (!@file_exists($UploadDirectory)) {
@@ -99,7 +99,7 @@ if($_POST)
    if(move_uploaded_file($_FILES['mFile']["tmp_name"], $UploadDirectory . $NewFileName ))
    {
 	   
-	unlink("../uploaded_images/".$ImageFile);   
+	unlink("../images/".$ImageFile);
 	
 	$mysqli->query("UPDATE posts SET title='$FileTitle', description='$Description', meta_description='$MetaDescription', image='$NewFileName', link='$Link' WHERE id='$id'");
 

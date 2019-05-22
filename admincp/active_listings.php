@@ -327,7 +327,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 ?>        
 
             <tr class="btnDelete" data-id="<?php echo $Row['id'];?>">
-        <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><img src="timthumb.php?src=http://<?php echo $SiteLink;?>/uploaded_images/<?php echo $Row['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $LongTitle;?>" class="img-responsive"></a></td>
+        <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><img src="timthumb.php?src=http://<?php echo $SiteLink;?>/images/<?php echo $Row['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $LongTitle;?>" class="img-responsive"></a></td>
                 
                 <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><?php echo ucfirst($SortTitle);?></a></td>
 

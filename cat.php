@@ -102,7 +102,7 @@ if(!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPubl
     </select>
   </div>
 </div>
-<div id="display-posts"><div id="loader" style="display:none;text-align:center;"><img src="images/loader_3.svg" /></div></div>
+<div id="display-posts"><div id="loader" style="display:none;text-align:center;"><img src="assets/loader_3.svg" /></div></div>
 </div><!--cat-main on cat.php-->
 </div><!-- /.container on cat.php -->
 <?php include("footer.php"); ?> 

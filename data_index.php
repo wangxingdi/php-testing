@@ -67,7 +67,7 @@ $start = ($page - 1) * 15;
 <a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a>
 <div class="col-holder">
 <a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
-<img class="img-responsive" src="uploaded_images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
 </a>
 <div class="col-share col-share-data">
 <?php if(!isset($_SESSION['username'])){?>

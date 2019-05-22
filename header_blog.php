@@ -57,16 +57,16 @@ if($UserSql = $mysqli->query("SELECT * FROM users WHERE username='$Uname'")){
 <meta property="og:url"             content="<?php echo $protocol . $settings['siteurl']; ?>/blog/" /> 
 <meta property="og:title"           content="<?php echo $pageTitle;?> | <?php echo $settings['name']; ?>" />
 <meta property="og:description"   content="<?php echo strip_tags($settings['descrp']); ?>" /> 
-<meta property="og:image"           content="<?php echo $protocol . $settings['siteurl'];?>/images/logo.png" /> 
+<meta property="og:image"           content="<?php echo $protocol . $settings['siteurl'];?>/assets/logo.png" />
 <!--End Facebook Meta Tags-->
 <!--Twitter Meta Tags-->
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="og:image" content="<?php echo $protocol . $settings['siteurl'];?>/images/logo.png" />
+<meta property="og:image" content="<?php echo $protocol . $settings['siteurl'];?>/assets/logo.png" />
 <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/blog/" />
 <meta property="og:title" content="<?php echo $pageTitle;?> | <?php echo $settings['name']; ?>" />
 <meta property="og:description" content="<?php echo strip_tags($settings['descrp']); ?>" />
 <!--End Twitter Meta Tags-->
-<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://rawcdn.githack.com/img0/tijwiw/870f118a17c9e60c5739dc046fc5405b70913045/config/logo/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="templates/default/css/main.php" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -97,7 +97,7 @@ if($UserSql = $mysqli->query("SELECT * FROM users WHERE username='$Uname'")){
 <i class="fa fa-search"></i><input class="elasticsearch" name="term" type="text" autocomplete="off" placeholder="Search..." ng-change="search(term)" ng-model="term"></fieldset>
 </form>
 </span>
-<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="images/logo.png" alt="<?php echo $settings['name']; ?>"></a>
+<a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><img src="assets/logo.png" alt="<?php echo $settings['name']; ?>"></a>
 <!-- MOBILE LOGIN START -->
     <div>
       <ul class="navbar-nav navbar-right user-icon">
