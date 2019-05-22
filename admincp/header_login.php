@@ -32,9 +32,9 @@ include("../db.php");
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!--<script type="text/javascript" src="js/login.js"></script>-->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.pjax.js" type="text/javascript"></script>
-<script src="js/jquery.ui.shake.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-shake@1.0.0/jquery.ui.shake.min.js"></script>
 
 <script>
 $(function(){

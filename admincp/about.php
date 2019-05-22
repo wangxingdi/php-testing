@@ -19,7 +19,7 @@
   <h3>About Page <small>Update about page here</small></h3>
 </div>
 
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 <link href="//oss.maxcdn.com/summernote/0.5.1/summernote.css" rel="stylesheet">
 <script src="//oss.maxcdn.com/summernote/0.5.1/summernote.min.js"></script>
 

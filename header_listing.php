@@ -238,10 +238,10 @@ if($MobCatSql = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat = 0 OR
 ?>
 <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize" href="blog/">Blog</a><a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/">Contact Us</a></div></li><li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>Search</span></i></a></li></ul></div></header>
 <style type="text/css">.wow{visibility: visible !important;}</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script>new WOW().init();</script>
-<script async src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>var yourNavigation=$(".mobile-nav");stickyDiv="stickymobnav",yourHeader=50,$(window).scroll(function(){$(this).scrollTop()>yourHeader?yourNavigation.addClass(stickyDiv):yourNavigation.removeClass(stickyDiv)}),$(".dropdown-content").height()>400&&($(".dropdown-content").css("max-height","400px"),$(".dropdown-content").css("overflow-y","scroll"));</script>
 <?php if(!isset($settings['addthisFilter']) || $settings['addthisFilter'] == '2'){echo $settings['addthis'];}?>
 <script type="text/javascript">function popup(n){var o=(screen.width-700)/2,t="width=700, height=400";return t+=", top="+(screen.height-400)/2+", left="+o,t+=", directories=no",t+=", location=no",t+=", menubar=no",t+=", resizable=no",t+=", scrollbars=no",t+=", status=no",t+=", toolbar=no",newwin=window.open(n,"windowname5",t),window.focus&&newwin.focus(),!1}$(document).ready(function(){$(".col-link").hover(function(){$(this).parent().find(".col-share").stop().animate({width:"90px"},300)},function(){$(this).parent().find(".col-share").stop().animate({width:"-0"},300)}),$(".col-share").hover(function(){$(this).stop().animate({width:"90px"},300)},function(){$(this).stop().animate({width:"-0"},300)})});</script>
