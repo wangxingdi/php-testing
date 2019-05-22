@@ -12,6 +12,7 @@ if($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1"))
   $ActiveSymbol = substr($symbol,0,4).'...';
   }else{
   $ActiveSymbol = $symbol;}
+  $buy_button = $ActiveRow2['buy_button'];
   $txt_save = $ActiveRow2['txt_save'];
   $txt_remove = $ActiveRow2['txt_remove'];
 }

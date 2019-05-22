@@ -176,7 +176,6 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
         itemSelector: ".col-box",
         checkLastPage: !0,
         prefill: !0,
-        extraScrollPx: 50,
         scrollThreshold: 100,
         hideNav: "#page-nav",
         loading: {finishedMsg: "No more posts to load.", img: "assets/ajaxloader.gif"}
