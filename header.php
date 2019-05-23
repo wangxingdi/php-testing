@@ -16,6 +16,10 @@
         $txt_popular_index = $options_row['txt_popular_index'];
         $txt_high = $options_row['txt_high'];
         $txt_low = $options_row['txt_low'];
+        $buy_button = $options_row['buy_button'];
+        $txt_save = $options_row['txt_save'];
+        $txt_remove = $options_row['txt_remove'];
+        $price_symbol = $options_row['price_symbol'];
         $options_result_set->close();
     } else {
         printf("<div class='alert alert-danger alert-pull'>查询配置表失败(header.php)</div>");
