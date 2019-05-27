@@ -51,27 +51,3 @@ $(document).ready(function () {
         });
     });
 });
-$(document).on("submit", "#formSubscribe", function (t) {
-    $("#email").val();
-    t.preventDefault(), $("#output-subscribe").html('<div style="font-weight:bold; padding: 4px 10px;" class="alert alert-info">Submitting...</div>').show(), $.ajax({
-        type: "POST",
-        url: "subscribe.php",
-        dataType: "html",
-        data: $(this).serialize(),
-        success: function (t) {
-            $("#output-subscribe").html(t).show(), $("#formSubscribe").trigger("reset"), $(".successTxt").fadeOut(1e4);
-        }
-    });
-});
-$(document).on("submit", "#mobileSubscribe", function (e) {
-    $("#email-mobile").val();
-    e.preventDefault(), $("#output-subscribe-mobile").html('<div style="font-weight:bold; padding: 4px 10px;" class="alert alert-info">Submitting...</div>').show(), $.ajax({
-        type: "POST",
-        url: "subscribe.php",
-        dataType: "html",
-        data: $(this).serialize(),
-        success: function (e) {
-            $("#output-subscribe-mobile").html(e).show(), $("#mobileSubscribe").trigger("reset"), $(".successTxt").fadeOut(1e4);
-        }
-    })
-});

@@ -31,22 +31,6 @@ if (!empty($Ad4)) {
                                 class="fas fa-gift i-mod fa-rotate-90"></i><?php echo $txt_gifts_under; ?></h3></a></span>
         </ul>
     </div>
-<!-- remove mailgun
-    <?php /*
-    if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) {
-        ?>
-        <div style="width:33%; margin-right: 15px;" class="mailbox mailbox-remove">
-            <form id="formSubscribe" name="formSubscribe" method="post" action="subscribe.php">
-                <input type="text" class="sidebar-subscribe-box-email-field" name="email" id="email"
-                       placeholder="Enter your email..">
-                <input type="submit" value="SUBSCRIBE" id="mailSubmit" class="sidebar-subscribe-box-email-button"/>
-                <div id="output-subscribe"></div>
-            </form>
-        </div>
-        <?php
-    }*/
-    ?>
--->
     <div id="display-posts-main">
         <div class="loader" style="text-align:center;"><img src="assets/loader_3.svg"/></div>
     </div>

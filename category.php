@@ -36,7 +36,8 @@ if (!isset($sort)) {
                                             <a class="<?php if ($sub_Cat_Url == $cname) {
                                                 echo 'active ';
                                             } ?>auto-localize" href="category/<?php echo $sub_Cat_Url; ?>/">
-                                                <i style="font-size: 11px;" class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
+                                                <i style="font-size: 11px;"
+                                                   class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -60,13 +61,6 @@ if (!isset($sort)) {
         <?php
         if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) { ?>
             <span class="mailbox cat-page-remove" style="margin-top: 10px;">
-                <form id="formSubscribe" name="formSubscribe" method="post" action="subscribe.php">
-                    <div>
-                        <input type="text" class="sidebar-subscribe-box-email-field" name="email" id="email" placeholder="Enter your email..">
-                        <input type="submit" value="SUBSCRIBE" id="mailSubmit" class="sidebar-subscribe-box-email-button"/>
-                        <div id="output-subscribe"></div>
-                    </div>
-                </form>
             </span>
             <?php
         }
@@ -94,7 +88,8 @@ if (!isset($sort)) {
                 <div id="price_range"></div>
             </div>
             <div class="col-md-2 max small-screen-remove">
-                <input type="text" name="max_price" id="max_price" class="form-control" value="<?php echo $max_price; ?>" disabled>
+                <input type="text" name="max_price" id="max_price" class="form-control"
+                       value="<?php echo $max_price; ?>" disabled>
             </div>
             <div class="col-md-2 sort">
                 <select id="cat_sort" name="cat_sort" class="form-control sort_value">
