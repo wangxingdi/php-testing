@@ -3,8 +3,8 @@ ErrorDocument 404 /404.php
 ErrorDocument 500 /404.php
 RewriteCond %{HTTP_HOST} ^qilegeguai.com [NC]
 RewriteRule ^(.*)$ https://www.qilegeguai.com/$1 [L,R=301]
-# RewriteCond %{SERVER_PORT} !^443$
-# RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*[^/]$ /$0/ [L,R]
 RewriteCond %{THE_REQUEST} /search(?:\.php)?\?term=([^\s&]+) [NC]

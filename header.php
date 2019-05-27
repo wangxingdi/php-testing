@@ -94,14 +94,6 @@
     }
     //Tot Site Views
     $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
-    //Other settings
-    /*$symbol = stripslashes($options_row['price_symbol']);
-    $strActive = strlen($symbol);
-    if ($strActive > 4) {
-        $ActiveSymbol = substr($symbol, 0, 4) . '...';
-    } else {
-        $ActiveSymbol = $symbol;
-    }*/
     $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
     $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
     $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);
@@ -221,9 +213,9 @@
                             <?php
                                 }
                             ?>
-                        </ul>  <!-- LOGIN/REGISTRATION CODE END--->
-                    </div> <!-- HEADER SECTION END -->
-                    <nav class="nav" id="menu" ng-hide="hide_header"> <!-- MAIN MENU START -->
+                        </ul>
+                    </div>
+                    <nav class="nav" id="menu" ng-hide="hide_header">
                         <button class="navtoggle" type="button" aria-hidden="true"><i class="fa fa-bars"></i></button>
                         <ul>
                             <li><a class="auto-localize" href="<?php echo $protocol . $options_row['siteurl']; ?>" target="_self">
@@ -276,8 +268,8 @@
                                     <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-envelope"></i>联系我们</a>
                                 </div>
                             </li>
-                        </ul> <!-- MAIN MENU END -->
-                    </nav> <!-- END OF HEADER NAVIGATION ON DESKTOP-->
+                        </ul>
+                    </nav>
                 </div>
                 <div id="mobile-nav">
                     <ul id="mobile-stick-top">
