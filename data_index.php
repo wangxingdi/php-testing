@@ -35,12 +35,17 @@ $start = ($page - 1) * 3;
       $product_name = $row['product_name'];
       $product_permalink = $row['product_permalink'];;
       $product_views = $row['product_views'];
+      $img_path = $row['product_external_link'];
+      $upload_directory = 'images/';
+      if(empty($img_path)){
+          $img_path = $upload_directory . $row['product_image'];
+      }
 ?>
 <div class="col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile"  style="padding-left:15px; padding-right:15px;">
 <a href="<?php echo $product_permalink;?>/"><h2><?php echo $product_name;?></h2></a>
 <div class="col-holder">
 <a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank">
-<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['product_image'];?>" alt="<?php echo $product_name;?>">
+    <img class="img-responsive" src=<?php echo $img_path; ?> alt="<?php echo $product_name; ?>">
 </a>
 <div class="col-share col-share-data">
 <?php if(!isset($_SESSION['username'])){?>
