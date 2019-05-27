@@ -19,6 +19,7 @@
 3. 图片四周的阴影效果需要去除; - Done(main.php)
 4. 描述文字长度重新调整; - Done(fetch_main.php)
 5. 将all cat修改为more cat; Done(表setting以及全部查询分类的sql语句)
+6. 删除订阅功能
 
 
 ## 说明
