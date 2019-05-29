@@ -101,7 +101,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?> style="padding-left:15px; padding-right:15px;">
-        <a href="<?php echo $product_permalink; ?>/" target="_blank">
+        <a href="<?php echo $product_permalink; ?>.html" target="_blank">
             <h2><?php echo $product_name; ?></h2>
         </a>
         <div class="col-holder">
