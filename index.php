@@ -32,7 +32,7 @@ if (!empty($Ad4)) {
         </ul>
     </div>
     <div id="display-posts-main">
-        <div class="loader" style="text-align:center;"><img src="assets/loader_3.svg"/></div>
+        <div class="loader" style="text-align:center;"><img src="assets/loader.svg"/></div>
     </div>
 </div>
 <?php include("footer.php"); ?>

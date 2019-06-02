@@ -15,7 +15,7 @@ $sort = $mysqli->escape_string($_GET['sort']);
         </ul>
     </div>
     <div id="display-posts-gifts">
-        <div class="loader" style="text-align:center;"><img src="assets/loader_3.svg"/></div>
+        <div class="loader" style="text-align:center;"><img src="assets/loader.svg"/></div>
     </div>
 </div>
 <?php include("footer.php"); ?>

@@ -60,7 +60,7 @@ error_reporting(E_ALL ^ E_NOTICE);
                         itemSelector: ".blog-item",
                         loading: {
                             finishedMsg: "已经到底了.",
-                            img: "assets/loader.gif"
+                            img: "assets/ajaxloader.gif"
                         }
                     },
                     function (t, a, i) {
