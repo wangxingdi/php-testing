@@ -24,31 +24,25 @@
     } else {
         printf("<div class='alert alert-danger alert-pull'>查询配置表失败(header.php)</div>");
     }
-    if (empty($options_row['siteurl'])) {
-        $websiteurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $websiteurl = parse_url($websiteurl);
-        $websiteurl = $websiteurl['host'];
-        $updateUrl = $mysqli->query("UPDATE mp_options SET siteurl = '$websiteurl' WHERE id=1");
-    }
     $pageName = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if ($pageName == $protocol . $options_row['siteurl'] . '/wish_list/') {
-        $pageTitle = 'Wish List | ';
+        $pageTitle = '愿望清单 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/profile/') {
-        $pageTitle = 'My Profile | ';
+        $pageTitle = '我的资料 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/login/') {
-        $pageTitle = 'Login | ';
+        $pageTitle = '登录 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/register/') {
-        $pageTitle = 'Sign Up | ';
+        $pageTitle = '注册 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/recover/') {
-        $pageTitle = 'Recover Your Account | ';
+        $pageTitle = '重置账户 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/about_us/') {
-        $pageTitle = 'About Us | ';
+        $pageTitle = '关于我们 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/contact_us/') {
-        $pageTitle = 'Contact Us | ';
+        $pageTitle = '联系我们 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/privacy_policy/') {
-        $pageTitle = 'Privacy Policy | ';
+        $pageTitle = '隐私政策 | ';
     } else if ($pageName == $protocol . $options_row['siteurl'] . '/tos/') {
-        $pageTitle = 'Terms of Use | ';
+        $pageTitle = '使用条款 | ';
     } else {
         $pageTitle = '';
     }
@@ -226,22 +220,22 @@
                                 </a>
                             </li>
                             <?php
-                                if ($FeatCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
-                                    while ($FeatCatRow = mysqli_fetch_array($FeatCatSql)) {
-                                        $cid = $FeatCatRow['id'];
-                                        $FeatCatName = $FeatCatRow['cname'];
-                                        $FeatCatUrl = $FeatCatRow['cname2'];
-                                        $FeatCatIcon = $FeatCatRow['icon'];
-                                        $CategoryDesc = $FeatCatRow['description'];
+                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
+                                    while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                                        $category_id = $categories_row['id'];
+                                        $FeatCatName = $categories_row['cname'];
+//                                        $FeatCatUrl = $categories_row['cname2'];
+                                        $FeatCatIcon = $categories_row['icon'];
+                                        $CategoryDesc = $categories_row['description'];
                             ?>
-                            <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?>/">
+                            <li><a class="auto-localize" href="category/<?php echo $category_id; ?>/">
                                     <span class="icon"><?php echo $FeatCatIcon; ?></span>
                                     <span><?php echo $FeatCatName; ?></span>
                                 </a>
                             </li>
                             <?php
                                 }
-                                $FeatCatSql->close();
+                                $categories_result_set->close();
                                 } else {
                                     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                 }

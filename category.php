@@ -20,7 +20,7 @@ if (!isset($sort)) {
                     $is_a_branch = $cat_list_row['branch'];
                     $is_sub_cat = $cat_list_row['is_sub_cat'];
                     if ($is_sub_cat != 1) { ?>
-                        <li><a class="<?php if ($Cat_Url == $cname) {
+                        <li><a class="<?php if ($cat_id == $category_id) {
                                 echo 'active ';
                             } ?>auto-localize" href="category/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>

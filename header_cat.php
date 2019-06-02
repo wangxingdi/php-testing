@@ -35,10 +35,10 @@ if($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")){
 }else{
   printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 }
-if(isset($_GET['cname']))
+if(isset($_GET['category_id']))
 {
-   $cname = $mysqli->escape_string($_GET['cname']);
-   if($GetCategory = $mysqli->query("SELECT * FROM mp_categories WHERE cname2='$cname' LIMIT 1"))
+   $category_id = $mysqli->escape_string($_GET['category_id']);
+   if($GetCategory = $mysqli->query("SELECT * FROM mp_categories WHERE id='$category_id' LIMIT 1"))
    {
       if(mysqli_num_rows($GetCategory)<1)
       {
