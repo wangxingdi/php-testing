@@ -61,7 +61,6 @@
             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of posts. Please check it.</div>");
         }
     }
-    //Get User Info
     if (isset($_SESSION['username'])) {
         $Uname = $_SESSION['username'];
         if ($UserSql = $mysqli->query("SELECT * FROM mp_users WHERE user_name='$Uname'")) {
@@ -75,7 +74,6 @@
             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of users. Please check it.</div>");
         }
     }
-    //Ads
     if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
         $AdsRow = mysqli_fetch_array($AdsSql);
         $Ad1 = stripslashes($AdsRow['ads_ad1']);
@@ -86,11 +84,10 @@
     } else {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of siteads. Please check it.</div>");
     }
-    //Tot Site Views
-    $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
-    $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
-    $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
-    $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);
+//    $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
+//    $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
+//    $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
+//    $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);
 ?>
     <!doctype html>
     <html>
@@ -223,14 +220,15 @@
                                 if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_featured = 1 ORDER BY show_order ASC")) {
                                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                                         $category_id = $categories_row['category_id'];
-                                        $FeatCatName = $categories_row['category_name'];
-                                        $FeatCatIcon = $categories_row['category_icon'];
+                                        $category_slug = $categories_row['category_slug'];
+                                        $category_name = $categories_row['category_name'];
+                                        $category_icon = $categories_row['category_icon'];
                                         $CategoryDesc = $categories_row['category_description'];
                             ?>
                             <li>
-                                <a class="auto-localize" href="category/<?php echo $category_id; ?>/">
-                                    <span class="icon"><?php echo $FeatCatIcon; ?></span>
-                                    <span><?php echo $FeatCatName; ?></span>
+                                <a class="auto-localize" href="category/<?php echo $category_slug; ?>/">
+                                    <span class="icon"><?php echo $category_icon; ?></span>
+                                    <span><?php echo $category_name; ?></span>
                                 </a>
                             </li>
                             <?php
@@ -243,15 +241,15 @@
                             <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
                                 <div class="dropdown-content">
                                     <?php
-                                        if ($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null AND is_featured = 0 ORDER BY show_order ASC")) {
-                                            while ($CatRow = mysqli_fetch_array($CatSql)) {
-                                                $CatName = $CatRow['category_name'];
-                                                $CatUrl = $CatRow['category_slug'];
+                                        if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null AND is_featured = 0 ORDER BY show_order ASC")) {
+                                            while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                                                $category_name = $categories_row['category_name'];
+                                                $category_slug = $categories_row['category_slug'];
                                     ?>
-                                    <a class="auto-localize" href="category/<?php echo $CatUrl; ?>/"><?php echo $CatName; ?></a>
+                                    <a class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                     <?php
                                         }
-                                        $CatSql->close();
+                                            $categories_result_set->close();
                                         } else {
                                             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                         }
@@ -290,15 +288,15 @@
                             </a>
                             <div class="dropdown-content" id="mobile-dropdown">
                                 <?php
-                                    if ($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
-                                        while ($MobCatRow = mysqli_fetch_array($MobCatSql)) {
-                                            $MobCatName = $MobCatRow['category_name'];
-                                            $MobCatUrl = $MobCatRow['category_slug'];
+                                    if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
+                                        while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                                            $category_name = $categories_row['category_name'];
+                                            $category_slug = $categories_row['category_slug'];
                                 ?>
-                                <a id="mobile-menu" class="auto-localize" href="category/<?php echo $MobCatUrl; ?>/"><?php echo $MobCatName; ?></a>
+                                <a id="mobile-menu" class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                 <?php
                                         }
-                                        $MobCatSql->close();
+                                        $categories_result_set->close();
                                     } else {
                                         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                                     }
