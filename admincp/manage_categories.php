@@ -1,6 +1,6 @@
 <?php include("header.php");
 
-if($feat_menu_count_sql = $mysqli->query("SELECT id FROM mp_categories WHERE featured = 1"))
+if($feat_menu_count_sql = $mysqli->query("SELECT category_id FROM mp_categories WHERE featured = 1"))
 {
   $feat_count  = mysqli_num_rows($feat_menu_count_sql);
 }
@@ -75,7 +75,7 @@ if($_POST)
 
     if($feat_count<5)
     {
-      if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 1 WHERE id = '$catId'"))
+      if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 1 WHERE category_id = '$catId'"))
       {
       printf("<div class='alert alert-success alert-pull'>Featured menu added.</div>");
       }
@@ -93,7 +93,7 @@ if($_POST)
   if(isset($_POST['rf_cat_' . $catId]))
   {
 
-    if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 0 WHERE id = '$catId'"))
+    if($CatSql = $mysqli->query("UPDATE mp_categories SET featured = 0 WHERE category_id = '$catId'"))
     {
       printf("<div class='alert alert-success alert-pull'>Featured menu removed.</div>");
     }
@@ -251,7 +251,7 @@ error_reporting(E_ALL ^ E_NOTICE);
            <script>
           
               $(document).ready(function(){
-              $("#mf_cat_<?php echo $Row['id'];?>").hide();
+              $("#mf_cat_<?php echo $Row['category_id'];?>").hide();
       });
 
            </script>
@@ -262,7 +262,7 @@ error_reporting(E_ALL ^ E_NOTICE);
          <script>
           
               $(document).ready(function(){
-              $("#rf_cat_<?php echo $Row['id'];?>").hide();
+              $("#rf_cat_<?php echo $Row['category_id'];?>").hide();
       });
               
            </script>
@@ -270,7 +270,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
       if($Row['is_sub_cat'] == 1)
       {
-        $parent_sql = $mysqli->query("SELECT cname FROM mp_categories WHERE id = '$parent_id' ");
+        $parent_sql = $mysqli->query("SELECT cname FROM mp_categories WHERE category_id = '$parent_id' ");
         $parent_row = mysqli_fetch_array($parent_sql);
         $parent = $parent_row['cname'];
         $parent_sql->close();
@@ -282,7 +282,7 @@ error_reporting(E_ALL ^ E_NOTICE);
   
 ?>        
 
-            <tr class="btnDelete" data-id="<?php echo $Row['id'];?>">
+            <tr class="btnDelete" data-id="<?php echo $Row['category_id'];?>">
 
                 <td><?php echo $Row['cname'];?></td>
         
@@ -293,12 +293,12 @@ error_reporting(E_ALL ^ E_NOTICE);
                 <td style="width:35%;">
                 <!--Testing Modal-->
 
-                <a href="edit_category.php?id=<?php echo $Row['id'];?>" class="btn btn-success btnEdit">Edit</a>
+                <a href="edit_category.php?id=<?php echo $Row['category_id'];?>" class="btn btn-success btnEdit">Edit</a>
          
-               <form style="display: inline-block;" method="POST" action="manage_categories.php?id=<?php echo $Row['id'];?>">
+               <form style="display: inline-block;" method="POST" action="manage_categories.php?id=<?php echo $Row['category_id'];?>">
 
-                <input id="mf_cat_<?php echo $Row['id'];?>" name="mf_cat_<?php echo $Row['id'];?>" type="submit" class="btn btn-primary btnEdit" value="Make Featured">
-                <input id="rf_cat_<?php echo $Row['id'];?>" name="rf_cat_<?php echo $Row['id'];?>" type="submit" class="btn btn-warning btnDelete" value="Remove Featured">
+                <input id="mf_cat_<?php echo $Row['category_id'];?>" name="mf_cat_<?php echo $Row['category_id'];?>" type="submit" class="btn btn-primary btnEdit" value="Make Featured">
+                <input id="rf_cat_<?php echo $Row['category_id'];?>" name="rf_cat_<?php echo $Row['category_id'];?>" type="submit" class="btn btn-warning btnDelete" value="Remove Featured">
 
                </form>
 

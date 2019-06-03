@@ -77,7 +77,7 @@ if($cat_sql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat=0"))
 {
   while($cat_row = mysqli_fetch_array($cat_sql))
   {
-    $cat_id = $cat_row['id'];
+    $cat_id = $cat_row['category_id'];
     $cat_name = $cat_row['cname'];
 
   ?>

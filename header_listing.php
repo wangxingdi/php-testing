@@ -45,7 +45,7 @@ if (isset($_GET['pname'])) {
             $products_row = mysqli_fetch_array($products_result_set);
             $product_id = $products_row['product_id'];
             $category_id = $products_row['category_id'];
-            $categories_result_set = $mysqli->query("SELECT cname FROM mp_categories WHERE id='$category_id' LIMIT 1");
+            $categories_result_set = $mysqli->query("SELECT category_name FROM mp_categories WHERE category_id='$category_id' LIMIT 1");
             $categories_row = mysqli_fetch_array($categories_result_set);
             $product_name = $products_row['product_name'];
             $product_image = $products_row['product_image'];
@@ -218,101 +218,110 @@ if ($strActive > 4) {
                                 class="icon"><i class="fa fa-home"></i></span><span><?php echo $txt_home; ?></span></a>
                 </li>
                 <?php
-                if ($FeatCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
-                    while ($FeatCatRow = mysqli_fetch_array($FeatCatSql)) {
-                        $FeatCatName = $FeatCatRow['cname'];
-                        $FeatCatUrl = $FeatCatRow['cname2'];
-                        $FeatCatIcon = $FeatCatRow['icon'];
+                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_featured = 1 ORDER BY show_order ASC")) {
+                    while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                        $category_name = $categories_row['category_name'];
+                        $category_slug = $categories_row['category_slug'];
+                        $category_icon = $categories_row['category_icon'];
                         ?>
-                        <li><a class="auto-localize" href="category/<?php echo $FeatCatUrl; ?>/"><span
-                                        class="icon"><?php echo $FeatCatIcon; ?></span><span><?php echo $FeatCatName; ?></span></a>
+                        <li>
+                            <a class="auto-localize" href="category/<?php echo $category_slug; ?>/">
+                                <span class="icon"><?php echo $category_icon; ?></span>
+                                <span><?php echo $category_name; ?></span>
+                            </a>
                         </li>
                         <?php
                     }
-                    $FeatCatSql->close();
+                    $categories_result_set->close();
                 } else {
                     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
                 }
                 ?>
-                <li class="dropdown"><a><span class="icon"><i
-                                    class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
+                <li class="dropdown">
+                    <a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
                     <div class="dropdown-content">
                         <?php
-                        if ($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")) {
-                            while ($CatRow = mysqli_fetch_array($CatSql)) {
-                                $CatName = $CatRow['cname'];
-                                $CatUrl = $CatRow['cname2'];
+                        if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null AND is_featured = 0 ORDER BY show_order ASC")) {
+                            while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                                $category_name = $categories_row['category_name'];
+                                $category_slug = $categories_row['category_slug'];
                                 ?>
-                                <a class="auto-localize"
-                                   href="category/<?php echo $CatUrl; ?>/"><?php echo $CatName; ?></a>
+                                <a class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                 <?php
                             }
-                            $CatSql->close();
+                            $categories_result_set->close();
                         } else {
                             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
                         }
                         ?>
-                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="blog/"><i
-                                    style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-book-reader"></i>Blog</a>
-                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/"><i
-                                    style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-envelope"></i>Contact
-                            Us</a>
+                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="blog/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-book-reader"></i>Blog</a>
+                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-envelope"></i>Contact Us</a>
                     </div>
                 </li>
-            </ul> <!-- MAIN MENU END -->
-        </nav> <!-- END OF HEADER NAVIGATION ON DESKTOP-->
+            </ul>
+        </nav>
     </div>
+    <!-- MAIN MENU END -->
+    <!-- END OF HEADER NAVIGATION ON DESKTOP-->
     <div id="mobile-nav">
         <ul id="mobile-stick-top">
-            <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><i
-                            class="fa fa-home fa-white"><span><?php echo $txt_home; ?></span></i></a></li>
+            <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
+                    <i class="fa fa-home fa-white"><span><?php echo $txt_home; ?></span></i></a></li>
             <li><a href="popular/"><i class="fa fa-fire fa-white"><span><?php echo $txt_popular; ?></span></i></a>
                 <div class="mobile-search-box" id="mob-search">
-                    <form role="search" name="srch-term" method="get" action="search.php"><input type="text"
-                                                                                                 name="term"><input
-                                type="submit"></form>
+                    <form role="search" name="srch-term" method="get" action="search.php">
+                        <input type="text" name="term">
+                        <input type="submit">
+                    </form>
                 </div>
             </li>
-            <li class="dropdown dropdown-mobile"><a href="javascript:void(0);" id="open-dropdown-mobile"
-                                                    onclick="openMenu()"><i
-                            class="fa fa-bars fa-white"><span><?php echo $txt_gift_guides; ?></span></i></a>
+            <li class="dropdown dropdown-mobile">
+                <a href="javascript:void(0);" id="open-dropdown-mobile" onclick="openMenu()">
+                    <i class="fa fa-bars fa-white"><span><?php echo $txt_gift_guides; ?></span></i>
+                </a>
                 <div class="dropdown-content" id="mobile-dropdown">
                     <?php
-                    if ($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")) {
-                        while ($MobCatRow = mysqli_fetch_array($MobCatSql)) {
-                            $MobCatName = $MobCatRow['cname'];
-                            $MobCatUrl = $MobCatRow['cname2'];
+                    if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
+                        while ($categories_row = mysqli_fetch_array($categories_result_set)) {
+                            $category_name = $categories_row['category_name'];
+                            $category_slug = $categories_row['category_slug'];
                             ?>
-                            <a id="mobile-menu" class="auto-localize"
-                               href="category/<?php echo $MobCatUrl; ?>/"><?php echo $MobCatName; ?></a>
+                            <a id="mobile-menu" class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                             <?php
                         }
-                        $MobCatSql->close();
+                        $categories_result_set->close();
                     } else {
                         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
                     }
                     ?>
-                    <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize"
-                       href="blog/">Blog</a><a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize"
-                                               href="contact_us/">Contact Us</a></div>
+                    <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize" href="blog/">Blog</a>
+                    <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/">Contact Us</a>
+                </div>
             </li>
-            <li><a id="open-mobile-search" onclick="openSearch()"><i
-                            class="fa fa-search fa-white"><span>Search</span></i></a></li>
+            <li><a id="open-mobile-search" onclick="openSearch()">
+                    <i class="fa fa-search fa-white"><span>Search</span></i>
+                </a>
+            </li>
         </ul>
     </div>
 </header>
-<style type="text/css">.wow {
+<style type="text/css">
+    .wow {
         visibility: visible !important;
-    }</style>
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/wow/1.1.2/wow.min.js"></script>
 <script>new WOW().init();</script>
 <script async src="https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
-<script>var yourNavigation = $(".mobile-nav");
+<script>
+    var yourNavigation = $(".mobile-nav");
     stickyDiv = "stickymobnav", yourHeader = 50, $(window).scroll(function () {
         $(this).scrollTop() > yourHeader ? yourNavigation.addClass(stickyDiv) : yourNavigation.removeClass(stickyDiv)
-    }), $(".dropdown-content").height() > 400 && ($(".dropdown-content").css("max-height", "400px"), $(".dropdown-content").css("overflow-y", "scroll"));</script>
-<?php if (!isset($settings['addthisFilter']) || $settings['addthisFilter'] == '2') {
+    }), $(".dropdown-content").height() > 400 && ($(".dropdown-content").css("max-height", "400px"), $(".dropdown-content").css("overflow-y", "scroll"));
+</script>
+<?php
+if (!isset($settings['addthisFilter']) || $settings['addthisFilter'] == '2') {
     echo $settings['addthis'];
 } ?>
 <script type="text/javascript">

@@ -42,8 +42,8 @@ if($_POST)
     $is_sub_cat = 1;
   }
   
-  $mysqli->query("UPDATE mp_categories SET cname='$CategoryTitle', description='$CategoryDescription', parent_id='$ParentCategory', is_sub_cat='$is_sub_cat', icon='$CategoryIcon', cname2='$cname2' WHERE id='$id'");
-  $mysqli->query("UPDATE mp_categories SET branch = 1 WHERE id = '$ParentCategory'");
+  $mysqli->query("UPDATE mp_categories SET cname='$CategoryTitle', description='$CategoryDescription', parent_id='$ParentCategory', is_sub_cat='$is_sub_cat', icon='$CategoryIcon', cname2='$cname2' WHERE category_id='$id'");
+  $mysqli->query("UPDATE mp_categories SET branch = 1 WHERE category_id = '$ParentCategory'");
   
   
     die('<div class="alert alert-success" role="alert">Category updated successfully.</div>');

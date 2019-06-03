@@ -62,14 +62,14 @@ function afterSuccess()
     
 <?php
 
-$id = $mysqli->escape_string($_GET['id']); 
+$id = $mysqli->escape_string($_GET['category_id']);
 
-if($Categories = $mysqli->query("SELECT * FROM mp_categories WHERE id='$id'")){
+if($Categories = $mysqli->query("SELECT * FROM mp_categories WHERE category_id='$id'")){
 
     $CategoryRow = mysqli_fetch_array($Categories);
     
     $ParentId = $CategoryRow['parent_id'];
-    $ParentCategory = $mysqli->query("SELECT cname FROM mp_categories WHERE id='$ParentId'");
+    $ParentCategory = $mysqli->query("SELECT cname FROM mp_categories WHERE category_id='$ParentId'");
     $ParentCategoryName = mysqli_fetch_array($ParentCategory);
   
     $Categories->close();
@@ -115,7 +115,7 @@ if($cat_sql = $mysqli->query("SELECT * FROM mp_categories"))
 {
   while($cat_row = mysqli_fetch_array($cat_sql))
   {
-    $cat_id = $cat_row['id'];
+    $cat_id = $cat_row['category_id'];
     $cat_name = $cat_row['cname'];
 
   ?>

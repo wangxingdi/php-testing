@@ -12,7 +12,7 @@ if($_POST)
 	{
 		while ($sqlRow = mysqli_fetch_array($sql))
 		{?>   
-  			<option value="<?php echo $sqlRow['id'];?>"><?php echo $sqlRow['cname'];?></option>
+  			<option value="<?php echo $sqlRow['category_id'];?>"><?php echo $sqlRow['cname'];?></option>
 <?php   }
 	$sql->close();
  	}

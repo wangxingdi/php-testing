@@ -57,7 +57,7 @@ if ($_POST) {
         // category
         $Category = $mysqli->escape_string($_POST['category']);
     }
-    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE id='$Category' ")) {
+    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE category_id='$Category' ")) {
         $cname2_row = mysqli_fetch_array($sql_cname2);
         $cname2 = $cname2_row['cname2'];
     } else {

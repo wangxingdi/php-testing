@@ -15,12 +15,12 @@ if (!isset($sort)) {
                 while ($cat_list_row = mysqli_fetch_array($cat_list_sql)) {
                     $cat_name = $cat_list_row['cname'];
                     $Cat_Url = $cat_list_row['cname2'];
-                    $cat_id = $cat_list_row['id'];
+                    $cat_id = $cat_list_row['category_id'];
                     $cat_parent_id = $cat_list_row['parent_id'];
                     $is_a_branch = $cat_list_row['branch'];
                     $is_sub_cat = $cat_list_row['is_sub_cat'];
                     if ($is_sub_cat != 1) { ?>
-                        <li><a class="<?php if ($cat_id == $category_id) {
+                        <li><a class="<?php if ($cat_id == $from_category_id) {
                                 echo 'active ';
                             } ?>auto-localize" href="category/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>
@@ -29,7 +29,7 @@ if (!isset($sort)) {
                                 while ($sub_cat_list_row = mysqli_fetch_array($sub_cat_list)) {
                                     $sub_cat_name = $sub_cat_list_row['cname'];
                                     $sub_Cat_Url = $sub_cat_list_row['cname2'];
-                                    $sub_cat_id = $sub_cat_list_row['id'];
+                                    $sub_cat_id = $sub_cat_list_row['category_id'];
                                     ?>
                                     <ul class="submenu">
                                         <li style="list-style: none;">

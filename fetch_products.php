@@ -67,14 +67,14 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
 $cats = array();
 $cats[] = $catid; //Adds the current cat to the array
 //Check if it is a parent category (branch)
-$sql_parent = $mysqli->query("SELECT branch FROM mp_categories WHERE id='$catid'");
+$sql_parent = $mysqli->query("SELECT branch FROM mp_categories WHERE category_id='$catid'");
 $row = mysqli_fetch_array($sql_parent);
 $is_branch = $row['branch'];
 if ($is_branch == 1) {
     //Add sub categories to the array
     $sql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = '$catid'");
     while ($rows = mysqli_fetch_array($sql)) {
-        array_push($cats, $rows['id']); //Push category id to array
+        array_push($cats, $rows['category_id']); //Push category id to array
     }
 }
 $cat_str = implode(',', $cats); //For SQL query

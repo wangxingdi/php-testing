@@ -222,7 +222,7 @@
                             <?php
                                 if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
                                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
-                                        $category_id = $categories_row['id'];
+                                        $category_id = $categories_row['category_id'];
                                         $FeatCatName = $categories_row['cname'];
 //                                        $FeatCatUrl = $categories_row['cname2'];
                                         $FeatCatIcon = $categories_row['icon'];

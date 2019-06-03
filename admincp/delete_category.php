@@ -11,6 +11,6 @@ if ($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE categ
     printf("<div class='alert alert-danger alert-pull'>删除分类失败(delete_category.php)</div>");
 }
 $mysqli->query("DELETE FROM mp_products WHERE category_id='$category_id'");
-$mysqli->query("DELETE FROM mp_categories WHERE id='$category_id'");
+$mysqli->query("DELETE FROM mp_categories WHERE category_id='$category_id'");
 echo '<div class="alert alert-success" role="alert">Category successfully deleted</div>';
 ?>
