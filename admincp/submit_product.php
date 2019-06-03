@@ -1,14 +1,5 @@
 <?php
 include('../db.php');
-/*
-if ($settings_result_set = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
-    $settings = mysqli_fetch_array($settings_result_set);
-    $Active = $settings['active'];
-    $settings_result_set->close();
-} else {
-    printf("<div class='alert alert-danger alert-pull'>settings表似乎有问题，请检查一下。</div>");
-}
-*/
 $upload_directory = '../images/';
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
@@ -48,21 +39,19 @@ if ($_POST) {
     $month = date('m');
     $date = date("F j, Y");
     $image_name = strtolower($_FILES['product_image']['name']);
-    $image_path = $year.'/'.$month."/".$image_name;
+    $image_path = $year . '/' . $month . "/" . $image_name;
     $file_type = $_FILES['product_image']['type'];
     if (isset($_POST['category-sub']) && strlen($_POST['category-sub']) > 0 && $_POST['category-sub'] > 0) {
-        // sub category
         $Category = $mysqli->escape_string($_POST['category-sub']);
     } else {
-        // category
         $Category = $mysqli->escape_string($_POST['category']);
     }
-    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE category_id='$Category' ")) {
-        $cname2_row = mysqli_fetch_array($sql_cname2);
-        $cname2 = $cname2_row['cname2'];
-    } else {
-        die('<div class="alert alert-danger" role="alert">获取分类代码失败，请检查您的分类配置。</div>');
-    }
+//    if ($categories_result_set = $mysqli->query("SELECT category_slug FROM mp_categories WHERE category_id='$Category' ")) {
+//        $categories_row = mysqli_fetch_array($categories_result_set);
+//        $category_slug = $categories_row['category_slug'];
+//    } else {
+//        die('<div class="alert alert-danger" role="alert">获取分类代码失败，请检查您的分类配置。</div>');
+//    }
 
     $product_name = $mysqli->escape_string($_POST['product_name']);
     $product_affiliate_url = $mysqli->escape_string($_POST['product_affiliate_url']);
@@ -96,7 +85,8 @@ if ($_POST) {
         die('<div class="alert alert-danger" role="alert">图片上传遇到问题，请仔细检查。</div>');
     }
 }
-function upload_errors($err_code){
+function upload_errors($err_code)
+{
     switch ($err_code) {
         case UPLOAD_ERR_INI_SIZE:
             return '<div class="alert alert-danger" role="alert">Image file size is too big. Please try a smaller image</div>';
@@ -116,5 +106,4 @@ function upload_errors($err_code){
             return '<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>';
     }
 }
-
 ?>

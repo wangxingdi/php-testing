@@ -13,22 +13,22 @@ if (!isset($sort)) {
             <?php
             if ($cat_list_sql = $mysqli->query("SELECT * FROM mp_categories")) {
                 while ($cat_list_row = mysqli_fetch_array($cat_list_sql)) {
-                    $cat_name = $cat_list_row['cname'];
-                    $Cat_Url = $cat_list_row['cname2'];
+                    $cat_name = $cat_list_row['category_name'];
+                    $Cat_Url = $cat_list_row['category_slug'];
                     $cat_id = $cat_list_row['category_id'];
                     $cat_parent_id = $cat_list_row['parent_id'];
-                    $is_a_branch = $cat_list_row['branch'];
-                    $is_sub_cat = $cat_list_row['is_sub_cat'];
-                    if ($is_sub_cat != 1) { ?>
+//                    $is_a_branch = $cat_list_row['branch'];
+//                    $is_sub_cat = $cat_list_row['is_sub_cat'];
+                    if ($cat_parent_id != NULL) { ?>
                         <li><a class="<?php if ($cat_id == $from_category_id) {
                                 echo 'active ';
                             } ?>auto-localize" href="category/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>
-                        <?php if ($is_a_branch == 1) {
+                        <?php if ($cat_parent_id != NULL) {
                             if ($sub_cat_list = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = $cat_id")) {
                                 while ($sub_cat_list_row = mysqli_fetch_array($sub_cat_list)) {
-                                    $sub_cat_name = $sub_cat_list_row['cname'];
-                                    $sub_Cat_Url = $sub_cat_list_row['cname2'];
+                                    $sub_cat_name = $sub_cat_list_row['category_name'];
+                                    $sub_Cat_Url = $sub_cat_list_row['category_slug'];
                                     $sub_cat_id = $sub_cat_list_row['category_id'];
                                     ?>
                                     <ul class="submenu">

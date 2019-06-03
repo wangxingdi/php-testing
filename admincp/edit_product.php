@@ -92,10 +92,10 @@ if($CatSelected = $mysqli->query("SELECT * FROM mp_categories WHERE category_id=
 
 $CatSelectedRow = mysqli_fetch_array($CatSelected);
 
-$SelectedCat = $CatSelectedRow['id'];
+$SelectedCat = $CatSelectedRow['category_id'];
     
 ?>   
-  <option value="<?php echo $CatSelectedRow['category_id'];?>"><?php echo $CatSelectedRow['cname'];?></option>
+  <option value="<?php echo $CatSelectedRow['category_id'];?>"><?php echo $CatSelectedRow['category_name'];?></option>
 <?php     
   
 $CatSelected->close();
@@ -107,11 +107,9 @@ $CatSelected->close();
 
 <?php
 if($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE category_id != '$SelectedCat' ORDER BY show_order ASC")){
-
     while ($CatRow = mysqli_fetch_array($CatSql)){
-    
 ?>   
-  <option value="<?php echo $CatRow['category_id'];?>"><?php echo $CatRow['cname'];?></option>
+  <option value="<?php echo $CatRow['category_id'];?>"><?php echo $CatRow['category_name'];?></option>
 <?php     
   }
 $CatSql->close();

@@ -220,15 +220,15 @@
                                 </a>
                             </li>
                             <?php
-                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE featured = 1 ORDER BY show_order ASC")) {
+                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_featured = 1 ORDER BY show_order ASC")) {
                                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                                         $category_id = $categories_row['category_id'];
-                                        $FeatCatName = $categories_row['cname'];
-//                                        $FeatCatUrl = $categories_row['cname2'];
-                                        $FeatCatIcon = $categories_row['icon'];
-                                        $CategoryDesc = $categories_row['description'];
+                                        $FeatCatName = $categories_row['category_name'];
+                                        $FeatCatIcon = $categories_row['category_icon'];
+                                        $CategoryDesc = $categories_row['category_description'];
                             ?>
-                            <li><a class="auto-localize" href="category/<?php echo $category_id; ?>/">
+                            <li>
+                                <a class="auto-localize" href="category/<?php echo $category_id; ?>/">
                                     <span class="icon"><?php echo $FeatCatIcon; ?></span>
                                     <span><?php echo $FeatCatName; ?></span>
                                 </a>
@@ -243,10 +243,10 @@
                             <li class="dropdown"><a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
                                 <div class="dropdown-content">
                                     <?php
-                                        if ($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 AND featured = 0 ORDER BY show_order ASC")) {
+                                        if ($CatSql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null AND is_featured = 0 ORDER BY show_order ASC")) {
                                             while ($CatRow = mysqli_fetch_array($CatSql)) {
-                                                $CatName = $CatRow['cname'];
-                                                $CatUrl = $CatRow['cname2'];
+                                                $CatName = $CatRow['category_name'];
+                                                $CatUrl = $CatRow['category_slug'];
                                     ?>
                                     <a class="auto-localize" href="category/<?php echo $CatUrl; ?>/"><?php echo $CatName; ?></a>
                                     <?php
@@ -290,10 +290,10 @@
                             </a>
                             <div class="dropdown-content" id="mobile-dropdown">
                                 <?php
-                                    if ($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat = 0 ORDER BY show_order ASC")) {
+                                    if ($MobCatSql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
                                         while ($MobCatRow = mysqli_fetch_array($MobCatSql)) {
-                                            $MobCatName = $MobCatRow['cname'];
-                                            $MobCatUrl = $MobCatRow['cname2'];
+                                            $MobCatName = $MobCatRow['category_name'];
+                                            $MobCatUrl = $MobCatRow['category_slug'];
                                 ?>
                                 <a id="mobile-menu" class="auto-localize" href="category/<?php echo $MobCatUrl; ?>/"><?php echo $MobCatName; ?></a>
                                 <?php

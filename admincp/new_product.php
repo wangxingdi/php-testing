@@ -1,36 +1,36 @@
 <?php include("header.php"); ?>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
-<script>
-    $(function () {
-        $(":file").filestyle({
-            iconName: "glyphicon-picture",
-            buttonText: "请选择"
-        });
-    });
-    $(document).ready(function () {
-        $('#form-add-product').on('submit', function (e) {
-            e.preventDefault();
-            $('#submit').attr('disabled', '');
-            $("#output").html('<div class="alert alert-info" role="alert">请稍等…</span></div>');
-            $(this).ajaxSubmit({
-                target: '#output',
-                success: afterSuccess
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
+    <script>
+        $(function () {
+            $(":file").filestyle({
+                iconName: "glyphicon-picture",
+                buttonText: "请选择"
             });
         });
-    });
-    function afterSuccess() {
-        $('#submit').removeAttr('disabled');
-    }
-    function countChar(val) {
-        var len = val.value.length;
-        if (len >= 125) {
-            val.value = val.value.substring(0, 125);
-        } else {
-            $('#charNum').text(125 - len);
+        $(document).ready(function () {
+            $('#form-add-product').on('submit', function (e) {
+                e.preventDefault();
+                $('#submit').attr('disabled', '');
+                $("#output").html('<div class="alert alert-info" role="alert">请稍等…</span></div>');
+                $(this).ajaxSubmit({
+                    target: '#output',
+                    success: afterSuccess
+                });
+            });
+        });
+        function afterSuccess() {
+            $('#submit').removeAttr('disabled');
         }
-    }
-</script>
+        function countChar(val) {
+            var len = val.value.length;
+            if (len >= 125) {
+                val.value = val.value.substring(0, 125);
+            } else {
+                $('#charNum').text(125 - len);
+            }
+        }
+    </script>
     <section class="col-md-2">
         <?php include("left_menu.php"); ?>
     </section>
@@ -38,7 +38,7 @@
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i></li>
             <li class="active">新增商品</li>
-            <span class="theme-label">MarketPress v<?php echo $Settings['version']; ?></span>
+            <span class="theme-label">MarketPress v<?php echo $version; ?></span>
         </ol>
         <div class="page-header">
             <h3>商品信息录入
@@ -55,11 +55,11 @@
                             <select name="category" class="form-control" id="category">
                                 <option value="0">请选择</option>
                                 <?php
-                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_sub_cat=0 ORDER BY show_order ASC")) {
+                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
                                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
-                                ?>
-                                    <option value="<?php echo $categories_row['category_id']; ?>"><?php echo $categories_row['cname']; ?></option>
-                                <?php
+                                        ?>
+                                        <option value="<?php echo $categories_row['category_id']; ?>"><?php echo $categories_row['category_name']; ?></option>
+                                        <?php
                                     }
                                     $categories_result_set->close();
                                 } else {
@@ -116,10 +116,10 @@
                             <label for="product_meta_description">Meta描述</label>
                             <textarea name="product_meta_description" id="product_meta_description" cols=40 rows=3 class="form-control" placeholder="录入SEO优化meta描述"></textarea>
                         </div>
-                    </div>
-                    <div class="panel-footer clearfix">
-                        <button type="submit" id="submitButton" class="btn btn-default btn-success btn-lg pull-right">新增商品</button>
-                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                    <button type="submit" id="submitButton" class="btn btn-default btn-success btn-lg pull-right">新增商品</button>
+                </div>
                 </form>
             </div>
         </section>
