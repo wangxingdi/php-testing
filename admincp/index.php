@@ -37,7 +37,7 @@
                                     printf("<div class='alert alert-danger alert-pull'>查询文章表出现异常</div>");
                                 }
                             ?>
-                            <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php echo $Settings['site_hits'];?> 网站访问量</span></li>
+                            <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php /*echo $Settings['site_hits'];*/?> 网站访问量</span></li>
                             <?php
                                 if($products_view_result_set = $mysqli->query("SELECT SUM(product_views) AS VIEWS FROM mp_products")){
                                     $products_view_num = mysqli_fetch_array($products_view_result_set);

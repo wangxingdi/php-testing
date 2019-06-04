@@ -20,7 +20,7 @@ if (!isset($sort)) {
 //                    $is_a_branch = $cat_list_row['branch'];
 //                    $is_sub_cat = $cat_list_row['is_sub_cat'];
                     if ($cat_parent_id != NULL) { ?>
-                        <li><a class="<?php if ($cat_id == $from_category_id) {
+                        <li><a class="<?php if ($Cat_Url == $from_category_slug) {
                                 echo 'active ';
                             } ?>auto-localize" href="gifts/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>
@@ -33,11 +33,10 @@ if (!isset($sort)) {
                                     ?>
                                     <ul class="submenu">
                                         <li style="list-style: none;">
-                                            <a class="<?php if ($sub_Cat_Url == $cname) {
+                                            <a class="<?php if ($sub_Cat_Url == $from_category_slug) {
                                                 echo 'active ';
                                             } ?>auto-localize" href="gifts/<?php echo $sub_Cat_Url; ?>/">
-                                                <i style="font-size: 11px;"
-                                                   class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
+                                                <i style="font-size: 11px;" class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -57,18 +56,18 @@ if (!isset($sort)) {
         </ul>
     </div>
     <div class="cat-main">
-        <h1 id="title" class="cat-main-title ng-binding"><?php echo $CategoryName; ?></h1>
+        <h1 id="title" class="cat-main-title ng-binding"><?php echo $current_category_name; ?></h1>
         <?php
-        if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) { ?>
+/*        if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) { */?><!--
             <span class="mailbox cat-page-remove" style="margin-top: 10px;">
             </span>
-            <?php
-        }
-        ?>
-        <p class="small-screen-remove gifts-description ng-binding"><?php echo $CategoryDesc; ?></p>
+            --><?php
+/*        }
+        */?>
+        <p class="small-screen-remove gifts-description ng-binding"><?php echo $category_description; ?></p>
         <div id="row" class="row">
             <?php
-            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$cid' ")) {
+            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$category_id' ")) {
                 $max_price_sql_row = mysqli_fetch_array($max_price_sql);
                 $max_price = $max_price_sql_row['max_price'];
                 if (!isset($max_price)) {
@@ -79,7 +78,7 @@ if (!isset($sort)) {
             }
             ?>
             <div class="col-md-2 min small-screen-remove">
-                <input type="hidden" id="cid" name="cid" value="<?php echo $cid; ?>"/>
+                <input type="hidden" id="cid" name="cid" value="<?php echo $category_id; ?>"/>
                 <input type="hidden" id="sort" name="sort" value="<?php echo ord($sort); ?>"/>
                 <input type="text" name="minimum_range" id="minimum_range" class="form-control"
                        value="<?php echo $minimum_range; ?>" disabled>
@@ -143,7 +142,7 @@ if (!isset($sort)) {
 </script>
 <script type="text/javascript">var sort = "<?php echo $sort; ?>";
     sort = sort.charCodeAt(0);
-    var cat_url = "<?php echo $CategoryUrl; ?>", pageurl = "";
+    var cat_url = "<?php echo $current_category_slug; ?>", pageurl = "";
     $("#cat_sort").change(function (r) {
         $("#cat_sort").attr("disabled", ""), $("#cat_sort").removeAttr("disabled"), r.preventDefault();
         var a = $("#minimum_range").val(), t = $("#max_price").val(), e = $("#cid").val();

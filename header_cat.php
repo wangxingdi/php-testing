@@ -35,58 +35,49 @@ if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
 } else {
     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 }
-if (isset($_GET['category_id'])) {
-    $from_category_id = $mysqli->escape_string($_GET['category_id']);
-    if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE category_id='$from_category_id' LIMIT 1")) {
-        if (mysqli_num_rows($categories_result_set) < 1) {
+if (isset($_GET['$category_slug'])) {
+    $from_category_slug = $mysqli->escape_string($_GET['$category_slug']);
+    if ($current_category_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE category_slug='$from_category_slug' LIMIT 1")) {
+        if (mysqli_num_rows($current_category_result_set) < 1) {
             http_response_code(404);
             include('404.php');
             die();
         } else {
-            $categories_row = mysqli_fetch_array($categories_result_set);
-            $category_id = $categories_row['category_id'];
-            $category_name = $categories_row['category_name'];
-            $category_slug = $categories_row['category_slug'];
-            $category_description = $categories_row['category_description'];
+            $current_category_row = mysqli_fetch_array($current_category_result_set);
+            $category_id = $current_category_row['category_id'];
+            $current_category_name = $current_category_row['category_name'];
+            $current_category_slug = $current_category_row['category_slug'];
+            $category_description = $current_category_row['category_description'];
         }
-        $categories_result_set->close();
+        $current_category_result_set->close();
     } else {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
     }
 }
-$mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
-$symbol = stripslashes($settings['price_symbol']);
-$strActive = strlen($symbol);
-if ($strActive > 4) {
-    $ActiveSymbol = substr($symbol, 0, 4) . '...';
-} else {
-    $ActiveSymbol = $symbol;
-}
+$price_symbol = stripslashes($settings['price_symbol']);
 ?>
     <!doctype html>
     <html ng-app>
     <head>
         <base href="<?php echo $protocol . $settings['siteurl']; ?>/">
         <meta charset="utf-8">
-        <title><?php echo $category_name; ?> | <?php echo $settings['name']; ?></title>
-        <meta name="description" content="<?php echo strip_tags($categories_row['category_description']); ?>"/>
+        <title><?php echo $current_category_name; ?> | <?php echo $settings['name']; ?></title>
+        <meta name="description" content="<?php echo strip_tags($category_description); ?>"/>
         <meta name="keywords" content="<?php echo $settings['keywords']; ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--Facebook Meta Tags-->
         <meta property="fb:app_id" content="<?php echo $settings['fbapp']; ?>"/>
-        <meta property="og:url"
-              content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $category_slug; ?>/"/>
-        <meta property="og:title" content="<?php echo $category_name; ?> | <?php echo $settings['name']; ?>"/>
-        <meta property="og:description" content="<?php echo strip_tags($categories_row['category_description']); ?>"/>
+        <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $current_category_slug; ?>/"/>
+        <meta property="og:title" content="<?php echo $current_category_name; ?> | <?php echo $settings['name']; ?>"/>
+        <meta property="og:description" content="<?php echo strip_tags($category_description); ?>"/>
         <!--<meta property="og:image"           content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
         <!--End Facebook Meta Tags-->
         <!--Twitter Meta Tags-->
         <meta name="twitter:card" content="summary_large_image"/>
         <!--<meta property="og:image" content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
-        <meta property="og:url"
-              content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $category_slug; ?>/"/>
-        <meta property="og:title" content="<?php echo $category_name; ?> | <?php echo $settings['name']; ?>"/>
-        <meta property="og:description" content="<?php echo strip_tags($categories_row['category_description']); ?>"/>
+        <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $current_category_slug; ?>/"/>
+        <meta property="og:title" content="<?php echo $current_category_name; ?> | <?php echo $settings['name']; ?>"/>
+        <meta property="og:description" content="<?php echo strip_tags($category_description); ?>"/>
         <!--End Twitter Meta Tags-->
         <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="css/main.php" rel="stylesheet" type="text/css">

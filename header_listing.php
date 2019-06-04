@@ -85,7 +85,7 @@ if (isset($_GET['link'])) {
     }
 }
 //Tot Site Views
-$mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
+//$mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
 $symbol = stripslashes($settings['price_symbol']);
 $strActive = strlen($symbol);
 if ($strActive > 4) {
