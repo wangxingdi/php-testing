@@ -11,32 +11,30 @@ if (!isset($sort)) {
     <div class="gifts-sidebar ng-scope">
         <ul class="menu" id="menu-categories"><h3>全部分类</h3>
             <?php
-            if ($cat_list_sql = $mysqli->query("SELECT * FROM mp_categories")) {
-                while ($cat_list_row = mysqli_fetch_array($cat_list_sql)) {
-                    $cat_name = $cat_list_row['category_name'];
-                    $Cat_Url = $cat_list_row['category_slug'];
-                    $cat_id = $cat_list_row['category_id'];
-                    $cat_parent_id = $cat_list_row['parent_id'];
-//                    $is_a_branch = $cat_list_row['branch'];
-//                    $is_sub_cat = $cat_list_row['is_sub_cat'];
-                    if ($cat_parent_id != NULL) { ?>
-                        <li><a class="<?php if ($Cat_Url == $from_category_slug) {
+            if ($all_categories_result_set = $mysqli->query("SELECT * FROM mp_categories")) {
+                while ($all_categories__row = mysqli_fetch_array($all_categories_result_set)) {
+                    $category_name = $all_categories__row['category_name'];
+                    $category_slug = $all_categories__row['category_slug'];
+                    $category_id = $all_categories__row['category_id'];
+                    $parent_id = $all_categories__row['parent_id'];
+                    if ($parent_id == NULL) { ?>
+                        <li><a class="<?php if ($category_slug == $from_category_slug) {
                                 echo 'active ';
-                            } ?>auto-localize" href="gifts/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
+                            } ?>auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                         </li>
-                        <?php if ($cat_parent_id != NULL) {
-                            if ($sub_cat_list = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = $cat_id")) {
-                                while ($sub_cat_list_row = mysqli_fetch_array($sub_cat_list)) {
-                                    $sub_cat_name = $sub_cat_list_row['category_name'];
-                                    $sub_Cat_Url = $sub_cat_list_row['category_slug'];
-                                    $sub_cat_id = $sub_cat_list_row['category_id'];
+                        <?php if ($parent_id == NULL) {
+                            if ($sub_categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = $category_id")) {
+                                while ($sub_categories_row = mysqli_fetch_array($sub_categories_result_set)) {
+                                    $sub_category_name = $sub_categories_row['category_name'];
+                                    $sub_category_slug = $sub_categories_row['category_slug'];
+//                                    $sub_category_id = $sub_categories_row['category_id'];
                                     ?>
                                     <ul class="submenu">
                                         <li style="list-style: none;">
-                                            <a class="<?php if ($sub_Cat_Url == $from_category_slug) {
+                                            <a class="<?php if ($sub_category_slug == $from_category_slug) {
                                                 echo 'active ';
-                                            } ?>auto-localize" href="gifts/<?php echo $sub_Cat_Url; ?>/">
-                                                <i style="font-size: 11px;" class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
+                                            } ?>auto-localize" href="gifts/<?php echo $sub_category_slug; ?>/">
+                                                <i style="font-size: 11px;" class="fas fa-arrow-right"></i> <?php echo $sub_category_name; ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -44,11 +42,11 @@ if (!isset($sort)) {
                             } else {
                                 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
                             }
-                            $sub_cat_list->close();
+                            $sub_categories_result_set->close();
                         }
                     }
                 }
-                $cat_list_sql->close();
+                $all_categories_result_set->close();
             } else {
                 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of categories. Please check it.</div>");
             }
@@ -57,17 +55,10 @@ if (!isset($sort)) {
     </div>
     <div class="cat-main">
         <h1 id="title" class="cat-main-title ng-binding"><?php echo $current_category_name; ?></h1>
-        <?php
-/*        if (!empty($SettingsRow['MailgunPrivateKey']) || !empty($SettingsRow['MailgunPublicKey']) || !empty($SettingsRow['MailgunDomain']) || !empty($SettingsRow['MailgunList']) || !empty($SettingsRow['MailgunSecret'])) { */?><!--
-            <span class="mailbox cat-page-remove" style="margin-top: 10px;">
-            </span>
-            --><?php
-/*        }
-        */?>
         <p class="small-screen-remove gifts-description ng-binding"><?php echo $category_description; ?></p>
         <div id="row" class="row">
             <?php
-            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$category_id' ")) {
+            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(product_price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$category_id' ")) {
                 $max_price_sql_row = mysqli_fetch_array($max_price_sql);
                 $max_price = $max_price_sql_row['max_price'];
                 if (!isset($max_price)) {

@@ -159,8 +159,8 @@ $price_symbol = stripslashes($settings['price_symbol']);
                         <span class="icon"><i class="fa fa-home"></i></span><span><?php echo $txt_home; ?></span>
                     </a>
                 </li>
+                <!--主分类菜单-->
                 <?php
-                /*分类菜单*/
                 if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null and is_featured = 1 ORDER BY show_order ASC")) {
                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                         $category_name = $categories_row['category_name'];
@@ -204,6 +204,7 @@ $price_symbol = stripslashes($settings['price_symbol']);
             </ul>
         </nav>
     </div>
+    <!-- 移动端 -->
     <div id="mobile-nav">
         <ul id="mobile-stick-top">
             <li>
