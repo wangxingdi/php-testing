@@ -58,7 +58,7 @@ if (!isset($sort)) {
         <p class="small-screen-remove gifts-description ng-binding"><?php echo $category_description; ?></p>
         <div id="row" class="row">
             <?php
-            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(product_price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$category_id' ")) {
+            if ($max_price_sql = $mysqli->query("SELECT MAX(CAST(product_price AS UNSIGNED)) AS max_price FROM mp_products WHERE category_id = '$current_category_id' ")) {
                 $max_price_sql_row = mysqli_fetch_array($max_price_sql);
                 $max_price = $max_price_sql_row['max_price'];
                 if (!isset($max_price)) {
@@ -69,17 +69,15 @@ if (!isset($sort)) {
             }
             ?>
             <div class="col-md-2 min small-screen-remove">
-                <input type="hidden" id="cid" name="cid" value="<?php echo $category_id; ?>"/>
+                <input type="hidden" id="cid" name="cid" value="<?php echo $current_category_id; ?>"/>
                 <input type="hidden" id="sort" name="sort" value="<?php echo ord($sort); ?>"/>
-                <input type="text" name="minimum_range" id="minimum_range" class="form-control"
-                       value="<?php echo $minimum_range; ?>" disabled>
+                <input type="text" name="minimum_range" id="minimum_range" class="form-control" value="<?php echo $minimum_range; ?>" disabled>
             </div>
             <div class="col-md-6 price-slider small-screen-remove" style="padding-top:12px">
                 <div id="price_range"></div>
             </div>
             <div class="col-md-2 max small-screen-remove">
-                <input type="text" name="max_price" id="max_price" class="form-control"
-                       value="<?php echo $max_price; ?>" disabled>
+                <input type="text" name="max_price" id="max_price" class="form-control" value="<?php echo $max_price; ?>" disabled>
             </div>
             <div class="col-md-2 sort">
                 <select id="cat_sort" name="cat_sort" class="form-control sort_value">
@@ -114,10 +112,10 @@ if (!isset($sort)) {
             change: function (event, ui, cid, sort_value) {
                 $("#minimum_range").val(ui.values[0]);
                 $("#max_price").val(ui.values[1]);
-                load_product(ui.values[0], ui.values[1], <?php echo $category_id; ?>, sort_value);
+                load_product(ui.values[0], ui.values[1], <?php echo $current_category_id; ?>, sort_value);
             }
         });
-        load_product(<?php echo $minimum_range; ?>, <?php echo $max_price; ?>, <?php echo $category_id; ?>, sort_value);
+        load_product(<?php echo $minimum_range; ?>, <?php echo $max_price; ?>, <?php echo $current_category_id; ?>, sort_value);
 
         function load_product(minimum_range, max_price, cid, sort) {
             $.ajax({

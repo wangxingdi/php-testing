@@ -14,13 +14,7 @@ $user_id = $_SESSION['user_id'];
 if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
     $settingsRow = mysqli_fetch_array($siteurl_sql);
     $siteurl = $settingsRow['siteurl'];
-    $symbol = stripslashes($settingsRow['price_symbol']);
-    $strActive = strlen($symbol);
-    if ($strActive > 4) {
-        $ActiveSymbol = substr($symbol, 0, 4) . '...';
-    } else {
-        $ActiveSymbol = $symbol;
-    }
+    $price_symbol = stripslashes($settingsRow['price_symbol']);
     $txt_save = $settingsRow['txt_save'];
     $txt_remove = $settingsRow['txt_remove'];
     $siteurl_sql->close();
@@ -97,9 +91,7 @@ if ($sort == "n") {
 }
 $NumResults = mysqli_num_rows($result);
 if ($NumResults < 1) { ?>
-    <div id="no-lisings" class="no-lisings topmargin alert alert-info">We're still searching for the best products for
-        you. Please check back later!
-    </div>
+    <div id="no-lisings" class="no-lisings topmargin alert alert-info">We're still searching for the best products for you. Please check back later!</div>
     <?php
 }
 while ($row = mysqli_fetch_array($result)) {
@@ -126,14 +118,11 @@ while ($row = mysqli_fetch_array($result)) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
-    } ?>> <!-- col-box-->
+    } ?>>
         <a href="<?php echo $PageLink; ?>/"><h2><?php echo $tlong; ?></h2></a>
         <div class="col-holder">
             <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
-                <?php /*<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>"> */
-                ?>
-                <img class="img-responsive"
-                     src=<?php echo $row['product_external_link']; ?> alt="<?php echo $LongTitle; ?>">
+                <img class="img-responsive" src=<?php echo $row['product_external_link']; ?> alt="<?php echo $LongTitle; ?>">
             </a>
             <div class="col-share">
                 <?php if (!isset($_SESSION['username'])) { ?>
@@ -144,90 +133,53 @@ while ($row = mysqli_fetch_array($result)) {
                     $count_save = mysqli_num_rows($user_sql);
                     $user_sql->close();
                     if ($count_save == 1) { ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list"
-                           id="<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>"
-                           data-name="save"><?php echo $txt_remove; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list remove-list" id="<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save"><?php echo $txt_remove; ?></a>
                         <?php
                     } else { ?>
-                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="<?php echo $listing_id; ?>"
-                           data-id="<?php echo $listing_id; ?>" data-name="save"><?php echo $txt_save; ?></a>
+                        <a class="btn btn-default btn-lg btn-danger btn-font save-list" id="<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save"><?php echo $txt_save; ?></a>
                         <?php
                     }
                 } ?>
-                <a class="btn-share btn-fb fab fa-facebook-f" href="javascript:void(0);"
-                   onclick="popup('https://www.facebook.com/share.php?u=<?php echo $protocol . $settingsRow['siteurl']; ?>/<?php echo $PageLink; ?>/&amp;title=<?php echo urlencode(ucfirst($LongTitle)); ?>')"></a>
-                <a class="btn-share btn-twitter fab fa-twitter" href="javascript:void(0);"
-                   onclick="popup('https://twitter.com/home?status=<?php echo urlencode(ucfirst($LongTitle)); ?>+<?php echo $protocol . $settingsRow['siteurl']; ?>/<?php echo $PageLink; ?>/')"></a>
-                <a class="btn-share btn-pin fab fa-pinterest" href="javascript:void(0);"
-                   onclick="popup('//pinterest.com/pin/create%2Fbutton/?url=<?php echo $protocol . $settingsRow['siteurl']; ?>/<?php echo $PageLink; ?>/')"></a>
             </div>
-        </div><!-- /.col-holder-->
+        </div>
         <div class="col-description-cat"><p><?php echo $dlong; ?></p></div>
         <?php
         if ($sql = $mysqli->query("SELECT price_symbol FROM mp_options WHERE id=1")) {
             $ActiveRow2 = mysqli_fetch_array($sql);
-            $symbol = stripslashes($ActiveRow2['price_symbol']);
-//            $mobSubBoxTitle = stripslashes($ActiveRow2['mobSubBoxTitle']);
-//            $mobSubBoxBtnText = stripslashes($ActiveRow2['mobSubBoxBtnText']);
-//            $mobSubBoxDesc = stripslashes($ActiveRow2['mobSubBoxDesc']);
-            $strActive = strlen($symbol);
-            if ($strActive > 4) {
-                $ActiveSymbol = substr($symbol, 0, 4) . '...';
-            } else {
-                $ActiveSymbol = $symbol;
-            }
+            $price_symbol = stripslashes($ActiveRow2['price_symbol']);
         } else {
             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");;
         }
         ?>
         <div class="col-bottom col-bottom-mod">
             <div class="col-left">
-                <span class="info-price"><h3><?php echo $ActiveSymbol; ?><?php echo $row['product_price']; ?></h3></span>
+                <span class="info-price"><h3><?php echo $price_symbol; ?><?php echo $row['product_price']; ?></h3></span>
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <span class="info-saves"><a class="saves" onclick="openLogin()"><span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves']; ?> saves</a></span>
                 <?php } else {
                     if ($count_save == 1) { ?>
-                        <span class="info-saves"><a class="saves remove-save" id="save-<?php echo $listing_id; ?>"
-                                                    data-id="<?php echo $listing_id; ?>" data-name="save"
-                                                    title="You have saved this. Click to remove."><span
-                                        class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves']; ?> saves</a></span>
+                        <span class="info-saves">
+                            <a class="saves remove-save" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="You have saved this. Click to remove.">
+                                <span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves']; ?> saves</a></span>
                         <?php
                     } else { ?>
-                        <span class="info-saves"><a class="saves" id="save-<?php echo $listing_id; ?>"
-                                                    data-id="<?php echo $listing_id; ?>" data-name="save"
-                                                    title="Click to save this item."><span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves']; ?> saves</a></span>
+                        <span class="info-saves">
+                            <a class="saves" id="save-<?php echo $listing_id; ?>" data-id="<?php echo $listing_id; ?>" data-name="save" title="Click to save this item.">
+                                <span class="fas fa-heart"></span> &nbsp;<?php echo $row['product_saves']; ?> saves</a></span>
                         <?php
                     }
                 } ?>
-                <span class="info-saves"> &nbsp;<i
-                            class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
+                <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
             </div>
             <div class="col-right">
-                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout"
-                   href="offer_link.php?id=<?php echo $row['product_id']; ?>"
-                   target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
             </div>
         </div>
     </div>
     <?php
-    if ($count == 5) { ?>
-        <div class="desktop-hide col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobilea"
-             style="padding-left:15px; padding-right:15px; margin-bottom:0;">
-            <div id="sidebar-subscribe-box">
-                <div class="sidebar-subscribe-box-wrapper">
-                    <h2 style="margin-top: 10px; font-size: 19px;"><?php /*echo $_SESSION['mobSubBoxTitle']; */?></h2>
-                    <p style="display: block !important;margin-bottom: 0;text-align: center;line-height: 1.5em;"><?php echo $_SESSION['mobSubBoxDesc']; ?></p>
-                    <div class="sidebar-subscribe-box-form">
-                        <div style="margin-top: 5px;" id="output-subscribe-mobile"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php }
 } ?>
 <nav id="page-nav"><a href="data_cat.php?page=2"></a></nav>
-<script async type="text/javascript"
-        src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+<script async type="text/javascript" src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
 <script>$("#display-posts").infinitescroll({
         navSelector: "#page-nav",
         nextSelector: "#page-nav a",
@@ -274,7 +226,9 @@ while ($row = mysqli_fetch_array($result)) {
             })
         })
     });</script>
-<script type="text/javascript">function openLogin() {
+<script type="text/javascript">
+    function openLogin() {
         window.location = "login/";
-    }</script>
+    }
+</script>
 <script async src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>

@@ -45,7 +45,7 @@ if (isset($_GET['category_slug'])) {
             die();
         } else {
             $current_category_row = mysqli_fetch_array($current_category_result_set);
-            $category_id = $current_category_row['category_id'];
+            $current_category_id = $current_category_row['category_id'];
             $current_category_name = $current_category_row['category_name'];
             $current_category_slug = $current_category_row['category_slug'];
             $category_description = $current_category_row['category_description'];
