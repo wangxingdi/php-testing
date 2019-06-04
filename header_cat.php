@@ -35,8 +35,9 @@ if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
 } else {
     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 }
-if (isset($_GET['$category_slug'])) {
-    $from_category_slug = $mysqli->escape_string($_GET['$category_slug']);
+if (isset($_GET['category_slug'])) {
+    /* 当前分类 */
+    $from_category_slug = $mysqli->escape_string($_GET['category_slug']);
     if ($current_category_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE category_slug='$from_category_slug' LIMIT 1")) {
         if (mysqli_num_rows($current_category_result_set) < 1) {
             http_response_code(404);
@@ -159,7 +160,8 @@ $price_symbol = stripslashes($settings['price_symbol']);
                     </a>
                 </li>
                 <?php
-                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_featured = 1 ORDER BY show_order ASC")) {
+                /*分类菜单*/
+                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null and is_featured = 1 ORDER BY show_order ASC")) {
                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                         $category_name = $categories_row['category_name'];
                         $category_slug = $categories_row['category_slug'];
@@ -182,7 +184,7 @@ $price_symbol = stripslashes($settings['price_symbol']);
                     <a><span class="icon"><i class="fa fa-bars"></i></span><span><?php echo $txt_all_cat; ?></span></a>
                     <div class="dropdown-content">
                         <?php
-                        if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null AND is_featured = 0 ORDER BY show_order ASC")) {
+                        if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null and is_featured = 0 ORDER BY show_order ASC")) {
                             while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                                 $category_name = $categories_row['category_name'];
                                 $category_slug = $categories_row['category_slug'];

@@ -123,10 +123,10 @@ if (!isset($sort)) {
             change: function (event, ui, cid, sort_value) {
                 $("#minimum_range").val(ui.values[0]);
                 $("#max_price").val(ui.values[1]);
-                load_product(ui.values[0], ui.values[1], <?php echo $cid; ?>, sort_value);
+                load_product(ui.values[0], ui.values[1], <?php echo $category_id; ?>, sort_value);
             }
         });
-        load_product(<?php echo $minimum_range; ?>, <?php echo $max_price; ?>, <?php echo $cid; ?>, sort_value);
+        load_product(<?php echo $minimum_range; ?>, <?php echo $max_price; ?>, <?php echo $category_id; ?>, sort_value);
 
         function load_product(minimum_range, max_price, cid, sort) {
             $.ajax({
