@@ -1023,7 +1023,7 @@
                                             <label for="inputSubBoxTitle">Newsletter Box Title on  Mobile</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-font"></span></span>
-                                                <input type="text" id="inputSubBoxTitle" name="inputSubBoxTitle" class="form-control" placeholder="" value="<?php echo $SettingsRow['mobSubBoxTitle']?>">
+                                                <input type="text" id="inputSubBoxTitle" name="inputSubBoxTitle" class="form-control" placeholder="" value="<?php /*echo $SettingsRow['mobSubBoxTitle'] */?>">
                                             </div>
                                         </div>
                                     </li>

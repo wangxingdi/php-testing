@@ -84,10 +84,6 @@
     } else {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of siteads. Please check it.</div>");
     }
-//    $mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
-//    $_SESSION['mobSubBoxTitle'] = stripslashes($options_row['mobSubBoxTitle']);
-//    $_SESSION['mobSubBoxBtnText'] = stripslashes($options_row['mobSubBoxBtnText']);
-//    $_SESSION['mobSubBoxDesc'] = stripslashes($options_row['mobSubBoxDesc']);
 ?>
     <!doctype html>
     <html>
@@ -126,7 +122,7 @@
             <link href="css/test2.css" rel="stylesheet" type="text/css" />
             <link href="css/test3.css" rel="stylesheet" type="text/css" />
             <link href="css/main.php" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.1/css/all.min.css"/>
+            <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.2/css/all.min.css"/>
         </head>
         <body>
             <div id="fb-root"></div>
@@ -226,7 +222,7 @@
                                         $CategoryDesc = $categories_row['category_description'];
                             ?>
                             <li>
-                                <a class="auto-localize" href="category/<?php echo $category_slug; ?>/">
+                                <a class="auto-localize" href="gifts/<?php echo $category_slug; ?>/">
                                     <span class="icon"><?php echo $category_icon; ?></span>
                                     <span><?php echo $category_name; ?></span>
                                 </a>
@@ -246,7 +242,7 @@
                                                 $category_name = $categories_row['category_name'];
                                                 $category_slug = $categories_row['category_slug'];
                                     ?>
-                                    <a class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                                    <a class="auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                     <?php
                                         }
                                             $categories_result_set->close();
@@ -293,7 +289,7 @@
                                             $category_name = $categories_row['category_name'];
                                             $category_slug = $categories_row['category_slug'];
                                 ?>
-                                <a id="mobile-menu" class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                                <a id="mobile-menu" class="auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                 <?php
                                         }
                                         $categories_result_set->close();

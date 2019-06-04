@@ -175,7 +175,7 @@ if ($strActive > 4) {
                         $category_icon = $categories_row['category_icon'];
                         ?>
                         <li>
-                            <a class="auto-localize" href="category/<?php echo $category_slug; ?>/">
+                            <a class="auto-localize" href="gifts/<?php echo $category_slug; ?>/">
                                 <span class="icon"><?php echo $category_icon; ?></span>
                                 <span><?php echo $category_name; ?></span>
                             </a>
@@ -196,7 +196,7 @@ if ($strActive > 4) {
                                 $category_name = $categories_row['category_name'];
                                 $category_slug = $categories_row['category_slug'];
                                 ?>
-                                <a class="auto-localize" href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                                <a class="auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                 <?php
                             }
                             $categories_result_set->close();
@@ -239,7 +239,7 @@ if ($strActive > 4) {
                             $category_slug = $categories_row['category_slug'];
                             ?>
                             <a id="mobile-menu" class="auto-localize"
-                               href="category/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                               href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                             <?php
                         }
                         $categories_result_set->close();

@@ -22,7 +22,7 @@ if (!isset($sort)) {
                     if ($cat_parent_id != NULL) { ?>
                         <li><a class="<?php if ($cat_id == $from_category_id) {
                                 echo 'active ';
-                            } ?>auto-localize" href="category/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
+                            } ?>auto-localize" href="gifts/<?php echo $Cat_Url; ?>/"><?php echo $cat_name; ?></a>
                         </li>
                         <?php if ($cat_parent_id != NULL) {
                             if ($sub_cat_list = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = $cat_id")) {
@@ -35,7 +35,7 @@ if (!isset($sort)) {
                                         <li style="list-style: none;">
                                             <a class="<?php if ($sub_Cat_Url == $cname) {
                                                 echo 'active ';
-                                            } ?>auto-localize" href="category/<?php echo $sub_Cat_Url; ?>/">
+                                            } ?>auto-localize" href="gifts/<?php echo $sub_Cat_Url; ?>/">
                                                 <i style="font-size: 11px;"
                                                    class="fas fa-arrow-right"></i> <?php echo $sub_cat_name; ?>
                                             </a>
@@ -149,19 +149,19 @@ if (!isset($sort)) {
         var a = $("#minimum_range").val(), t = $("#max_price").val(), e = $("#cid").val();
         switch ($("#cat_sort").val()) {
             case"newest":
-                sort = 110, pageurl = "category/" + cat_url + "/";
+                sort = 110, pageurl = "gifts/" + cat_url + "/";
                 break;
             case"popular":
-                sort = 112, pageurl = "category/" + cat_url + "/popular/";
+                sort = 112, pageurl = "gifts/" + cat_url + "/popular/";
                 break;
             case"high":
-                sort = 104, pageurl = "category/" + cat_url + "/high/";
+                sort = 104, pageurl = "gifts/" + cat_url + "/high/";
                 break;
             case"low":
-                sort = 108, pageurl = "category/" + cat_url + "/low/";
+                sort = 108, pageurl = "gifts/" + cat_url + "/low/";
                 break;
             default:
-                sort = 110, pageurl = "category/" + cat_url + "/"
+                sort = 110, pageurl = "gifts/" + cat_url + "/"
         }
         $.ajax({
             url: "fetch_products.php",

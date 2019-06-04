@@ -166,7 +166,7 @@ while ($row = mysqli_fetch_array($result)) {
              style="padding-left:15px; padding-right:15px; margin-bottom:0;">
             <div id="sidebar-subscribe-box">
                 <div class="sidebar-subscribe-box-wrapper">
-                    <h2 style="margin-top: 10px; font-size: 19px;"><?php echo $_SESSION['mobSubBoxTitle']; ?></h2>
+                    <h2 style="margin-top: 10px; font-size: 19px;"><?php /*echo $_SESSION['mobSubBoxTitle']; */?></h2>
                     <p style="display: block !important;margin-bottom: 0;text-align: center;line-height: 1.5em;"><?php echo $_SESSION['mobSubBoxDesc']; ?></p>
                     <div class="sidebar-subscribe-box-form">
                         <div style="margin-top: 5px;" id="output-subscribe-mobile"></div>

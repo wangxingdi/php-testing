@@ -164,12 +164,12 @@ while ($row = mysqli_fetch_array($result)) {
         </div><!-- /.col-holder-->
         <div class="col-description-cat"><p><?php echo $dlong; ?></p></div>
         <?php
-        if ($sql = $mysqli->query("SELECT price_symbol, mobSubBoxTitle, mobSubBoxBtnText, mobSubBoxDesc FROM mp_options WHERE id=1")) {
+        if ($sql = $mysqli->query("SELECT price_symbol FROM mp_options WHERE id=1")) {
             $ActiveRow2 = mysqli_fetch_array($sql);
             $symbol = stripslashes($ActiveRow2['price_symbol']);
-            $mobSubBoxTitle = stripslashes($ActiveRow2['mobSubBoxTitle']);
-            $mobSubBoxBtnText = stripslashes($ActiveRow2['mobSubBoxBtnText']);
-            $mobSubBoxDesc = stripslashes($ActiveRow2['mobSubBoxDesc']);
+//            $mobSubBoxTitle = stripslashes($ActiveRow2['mobSubBoxTitle']);
+//            $mobSubBoxBtnText = stripslashes($ActiveRow2['mobSubBoxBtnText']);
+//            $mobSubBoxDesc = stripslashes($ActiveRow2['mobSubBoxDesc']);
             $strActive = strlen($symbol);
             if ($strActive > 4) {
                 $ActiveSymbol = substr($symbol, 0, 4) . '...';
@@ -215,7 +215,7 @@ while ($row = mysqli_fetch_array($result)) {
              style="padding-left:15px; padding-right:15px; margin-bottom:0;">
             <div id="sidebar-subscribe-box">
                 <div class="sidebar-subscribe-box-wrapper">
-                    <h2 style="margin-top: 10px; font-size: 19px;"><?php echo $_SESSION['mobSubBoxTitle']; ?></h2>
+                    <h2 style="margin-top: 10px; font-size: 19px;"><?php /*echo $_SESSION['mobSubBoxTitle']; */?></h2>
                     <p style="display: block !important;margin-bottom: 0;text-align: center;line-height: 1.5em;"><?php echo $_SESSION['mobSubBoxDesc']; ?></p>
                     <div class="sidebar-subscribe-box-form">
                         <div style="margin-top: 5px;" id="output-subscribe-mobile"></div>
