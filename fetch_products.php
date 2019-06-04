@@ -96,7 +96,7 @@ while ($row = mysqli_fetch_array($result)) {
     $listing_id = $row['product_id'];
     $product_description = $row['product_description'];
     $product_name = $row['product_name'];
-    $PageLink = $row['product_permalink'];
+    $product_permalink = $row['product_permalink'];
     $view_count = $row['product_views'];
     ?>
     <div <?php if ($count > 3) {
@@ -104,7 +104,9 @@ while ($row = mysqli_fetch_array($result)) {
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?>>
-        <a href="<?php echo $PageLink; ?>/"><h2><?php echo $product_name; ?></h2></a>
+        <a href="<?php echo $product_permalink; ?>.html" target="_blank">
+            <h2><?php echo $product_name; ?></h2>
+        </a>
         <div class="col-holder">
             <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
                 <img class="img-responsive" src=<?php echo $row['product_external_link']; ?> alt="<?php echo $product_name; ?>">
