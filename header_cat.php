@@ -115,18 +115,18 @@ $price_symbol = stripslashes($settings['price_symbol']);
                             <span><i class="fa fa-user mobile-user-button" style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>Log In</a></li>
-                            <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>Register</a></li>
+                            <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>登录</a></li>
+                            <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>注册</a></li>
                             <?php } else { ?>
                                 <li class="dropdown logged">
                                     <a style="color:green;" onclick="changeColor()" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         <span><i class="fa fa-user mobile-user-button" style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="wish_list/"><span class="fa fa-heart"></span>&nbsp; Wish List</a></li>
-                                        <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; My Profile</a></li>
+                                        <li><a href="wish_list/"><span class="fa fa-heart"></span>&nbsp; 愿望清单</a></li>
+                                        <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; 我的资料</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="logout/"><span class="fa fa-unlock-alt"></span>&nbsp; Logout</a></li>
+                                        <li><a href="logout/"><span class="fa fa-unlock-alt"></span>&nbsp; 注销</a></li>
                                     </ul>
                                 </li>
                             <?php } ?>
@@ -137,15 +137,15 @@ $price_symbol = stripslashes($settings['price_symbol']);
 
             <ul id="navbarRight" class="navbar-nav navbar-right">
                 <?php if (!isset($_SESSION['username'])) { ?>
-                    <li><a href="login/">Log In</a> | <a href="register/">Register</a></li>
+                    <li><a href="login/">登录</a> | <a href="register/">注册</a></li>
                 <?php } else { ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="wish_list/"><span class="fa fa-heart remove-mobile"></span>&nbsp; Wish List</a></li>
-                            <li><a href="profile/"><span class="fa fa-user remove-mobile"></span>&nbsp; My Profile</a></li>
+                            <li><a href="wish_list/"><span class="fa fa-heart remove-mobile"></span>&nbsp; 愿望清单</a></li>
+                            <li><a href="profile/"><span class="fa fa-user remove-mobile"></span>&nbsp; 我的资料</a></li>
                             <li class="divider"></li>
-                            <li><a href="logout/"><span class="fa fa-unlock-alt remove-mobile"></span>&nbsp; Logout</a></li>
+                            <li><a href="logout/"><span class="fa fa-unlock-alt remove-mobile"></span>&nbsp; 注销</a></li>
                         </ul>
                     </li>
                 <?php } ?>
@@ -197,8 +197,8 @@ $price_symbol = stripslashes($settings['price_symbol']);
                             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
                         }
                         ?>
-                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="blog/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-book-reader"></i>Blog</a>
-                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-envelope"></i>Contact Us</a>
+                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="blog/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-book-reader"></i>博客</a>
+                        <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/"><i style="padding: 0 7px 0 0;font-size: 18px;" class="fas fa-envelope"></i>联系我们</a>
                     </div>
                 </li>
             </ul>
@@ -241,11 +241,11 @@ $price_symbol = stripslashes($settings['price_symbol']);
                         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
                     }
                     ?>
-                    <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize" href="blog/">Blog</a>
-                    <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/">Contact Us</a>
+                    <a style="border-top: 1px solid rgba(0,0,0,0.2);margin: 8px 0px;" class="auto-localize" href="blog/">博客</a>
+                    <a style="border-top: 1px solid rgba(0,0,0,0.2);" class="auto-localize" href="contact_us/">联系我们</a>
                 </div>
             </li>
-            <li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>Search</span></i></a></li>
+            <li><a id="open-mobile-search" onclick="openSearch()"><i class="fa fa-search fa-white"><span>搜索</span></i></a></li>
         </ul>
     </div>
 </header>

@@ -57,21 +57,18 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
         })
     });</script>
 <?php
-//Create an array of parent & sub cats
 $cats = array();
-$cats[] = $catid; //Adds the current cat to the array
-//Check if it is a parent category (branch)
+$cats[] = $catid;
 $sql_parent = $mysqli->query("SELECT parent_id FROM mp_categories WHERE category_id='$catid'");
 $row = mysqli_fetch_array($sql_parent);
 $is_branch = $row['parent_id'];
 if ($is_branch != NULL) {
-    //Add sub categories to the array
     $sql = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id = '$catid'");
     while ($rows = mysqli_fetch_array($sql)) {
-        array_push($cats, $rows['category_id']); //Push category id to array
+        array_push($cats, $rows['category_id']);
     }
 }
-$cat_str = implode(',', $cats); //For SQL query
+$cat_str = implode(',', $cats);
 $_SESSION['cat_str'] = $cat_str;
 if ($sort == "n") {
     $sortpage = "newest";
@@ -97,20 +94,8 @@ if ($NumResults < 1) { ?>
 while ($row = mysqli_fetch_array($result)) {
     $count++;
     $listing_id = $row['product_id'];
-    $long = $row['product_description'];
-    $strd = strlen($long);
-    if ($strd > 110) {
-        $dlong = substr($long, 0, 107) . '...';
-    } else {
-        $dlong = $long;
-    }
-    $LongTitle = $row['product_name'];
-    $strt = strlen($LongTitle);
-    if ($strt > 30) {
-        $tlong = substr($LongTitle, 0, 27) . '...';
-    } else {
-        $tlong = $LongTitle;
-    }
+    $product_description = $row['product_description'];
+    $product_name = $row['product_name'];
     $PageLink = $row['product_permalink'];
     $view_count = $row['product_views'];
     ?>
@@ -119,10 +104,10 @@ while ($row = mysqli_fetch_array($result)) {
     } else {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?>>
-        <a href="<?php echo $PageLink; ?>/"><h2><?php echo $tlong; ?></h2></a>
+        <a href="<?php echo $PageLink; ?>/"><h2><?php echo $product_name; ?></h2></a>
         <div class="col-holder">
             <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
-                <img class="img-responsive" src=<?php echo $row['product_external_link']; ?> alt="<?php echo $LongTitle; ?>">
+                <img class="img-responsive" src=<?php echo $row['product_external_link']; ?> alt="<?php echo $product_name; ?>">
             </a>
             <div class="col-share">
                 <?php if (!isset($_SESSION['username'])) { ?>
@@ -142,7 +127,7 @@ while ($row = mysqli_fetch_array($result)) {
                 } ?>
             </div>
         </div>
-        <div class="col-description-cat"><p><?php echo $dlong; ?></p></div>
+        <div class="col-description-cat"><p><?php echo $product_description; ?></p></div>
         <?php
         if ($sql = $mysqli->query("SELECT price_symbol FROM mp_options WHERE id=1")) {
             $ActiveRow2 = mysqli_fetch_array($sql);

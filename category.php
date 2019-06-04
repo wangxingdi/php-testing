@@ -27,7 +27,6 @@ if (!isset($sort)) {
                                 while ($sub_categories_row = mysqli_fetch_array($sub_categories_result_set)) {
                                     $sub_category_name = $sub_categories_row['category_name'];
                                     $sub_category_slug = $sub_categories_row['category_slug'];
-//                                    $sub_category_id = $sub_categories_row['category_id'];
                                     ?>
                                     <ul class="submenu">
                                         <li style="list-style: none;">
