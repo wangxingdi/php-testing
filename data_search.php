@@ -52,7 +52,7 @@ if($NumResults<1){
 <a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a>
 <div class="col-holder">
 <a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank">
-<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['product_image'];?>" alt="<?php echo $LongTitle;?>">
+    <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
 </a>
 <div class="col-share col-share-data">
 <?php if(!isset($_SESSION['username'])){?>

@@ -101,10 +101,10 @@ while ($row = mysqli_fetch_array($result)) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box'";
     } ?> style="padding-left:15px; padding-right:15px;">
         <a href="<?php echo $PageLink; ?>/"><h2><?php echo $tlong; ?></h2></a>
-        <div class="col-holder"><a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>"
-                                   target="_blank"><img class="img-responsive"
-                                                        src="images/resizer/301x250/r/<?php echo $row['product_image']; ?>"
-                                                        alt="<?php echo $LongTitle; ?>"></a>
+        <div class="col-holder">
+            <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
+                <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
+            </a>
             <div class="col-share">
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <a class="btn btn-default btn-lg btn-danger btn-font"

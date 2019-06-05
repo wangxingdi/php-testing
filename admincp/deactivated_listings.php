@@ -224,7 +224,7 @@
                     <tr class="btnDelete" data-id="<?php echo $Row['product_id']; ?>">
                         <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['product_id']; ?>"
                                data-target="#ProductModal"><img
-                                        src="timthumb.php?src=http://<?php echo $SiteLink; ?>/images/<?php echo $Row['product_image']; ?>&amp;h=50&amp;w=50&amp;q=100"
+                                        src="../cache/timthumb.php?src=http://<?php echo $SiteLink; ?>/images/<?php echo $Row['product_image']; ?>&amp;h=50&amp;w=50&amp;q=60"
                                         alt="<?php echo $LongTitle; ?>" class="img-responsive"></a></td>
 
                         <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['product_id']; ?>"

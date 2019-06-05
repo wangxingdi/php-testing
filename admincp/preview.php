@@ -58,7 +58,7 @@ if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE c
     <h4 class="modal-title"><?php echo $ProductTitle; ?></h4>
 </div>
 <div class="modal-body">
-    <img src="timthumb.php?src=http://<?php echo $SiteLink; ?>/images/<?php echo $row['image']; ?>&amp;h=550&amp;w=650&amp;q=100"
+    <img src="../cache/timthumb.php?src=http://<?php echo $SiteLink; ?>/images/<?php echo $row['image']; ?>&amp;h=550&amp;w=650&amp;q=100"
          data-src="http://<?php echo $SiteLink; ?>/images/<?php echo $row['image']; ?>" alt="<?php echo $FeatTitle; ?>"
          class="img-responsive slide-img">
     <p class="col-description"><?php echo $DsicLong; ?></p>

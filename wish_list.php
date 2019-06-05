@@ -82,7 +82,7 @@ return false;
 <a class="remove-product fa fa-remove" data-id="<?php echo $row['id'];?>" data-name="remove-save"></a>
 
 <a href="<?php echo $PageLink;?>/">
-<img class="img-responsive" src="images/resizer/500x500/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+    <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=500&amp;w=500&amp;q=100" alt="<?php echo $LongTitle;?>">
 </a>
 
 <a href="<?php echo $PageLink;?>/"><h2 class="title-bottom"><?php echo $tlong;?></h2></a>

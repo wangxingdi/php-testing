@@ -147,7 +147,7 @@ return false;
 
 <div class="col-holder">
 <a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
-<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+    <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
 </a>
 <div class="col-share">
 <?php if(!isset($_SESSION['username'])){?>
