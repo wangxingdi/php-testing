@@ -114,7 +114,7 @@
                             </tr>
                     <?php
                         }
-                    $posts_result_set->close();
+                    $products_result_set->close();
                     ?>
                         </tbody>
                     </table>

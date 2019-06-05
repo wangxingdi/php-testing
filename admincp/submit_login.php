@@ -7,14 +7,14 @@ if (!isset($_SESSION['adminuser'])) {
         $username = $mysqli->escape_string($_POST['inputUsername']);
         $password = $mysqli->escape_string($_POST['inputPassword']);
         $gpassword = md5($password);
-        if ($UserCheck = $mysqli->query("SELECT * FROM mp_admin WHERE admin_username='$username' and admin_password='$gpassword'")) {
-            $VdUser = mysqli_fetch_array($UserCheck);
-            $Count = mysqli_num_rows($UserCheck);
-            $UserCheck->close();
+        if ($admin_result_set = $mysqli->query("SELECT * FROM mp_users WHERE is_admin = 1 and user_name = '$username' and user_password = '$gpassword'")) {
+//            $VdUser = mysqli_fetch_array($admin_result_set);
+            $admin_rows_num = mysqli_num_rows($admin_result_set);
+            $admin_result_set->close();
         } else {
             printf("<div class='alert alert-danger alert-pull'>There seems to be an issue of admin. Please check it</div>");
         }
-        if ($Count == 1) {
+        if ($admin_rows_num == 1) {
             $_SESSION["adminuser"] = $username;
             ?>
             <script type="text/javascript">
