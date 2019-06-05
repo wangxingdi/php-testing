@@ -5,8 +5,7 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
 }
 ?>
     <section class="col-md-2">
-        <?php include("left_menu.php");
-        ?>
+        <?php include("left_menu.php"); ?>
     </section>
     <section class="col-md-10">
         <ol class="breadcrumb">
@@ -69,48 +68,38 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
                 }
             }
             error_reporting(E_ALL ^ E_NOTICE);
-            // How many adjacent pages should be shown on each side?
             $adjacents = 5;
-            $query = $mysqli->query("SELECT COUNT(*) as num FROM mp_categories ORDER BY cname ASC");
-            //$query = $mysqli->query("SELECT COUNT(*) as num FROM photos WHERE  photos.active=1 ORDER BY photos.id DESC");
+            $query = $mysqli->query("SELECT COUNT(*) as num FROM mp_categories");
             $total_pages = mysqli_fetch_array($query);
             $total_pages = $total_pages['num'];
             $targetpage = "manage_categories.php";
-            $limit = 15;                //how many items to show per page
+            $limit = 15;
             $page = $_GET['page'];
             if ($page)
-                $start = ($page - 1) * $limit;      //first item to display on this page
+                $start = ($page - 1) * $limit;
             else
-                $start = 0;               //if no page var is given, set start to 0
-            /* Get data. */
+                $start = 0;
             $result = $mysqli->query("SELECT * FROM mp_categories ORDER BY show_order ASC LIMIT $start, $limit");
-            //$result = $mysqli->query($sql);
-            /* Setup page vars for display. */
-            if ($page == 0) $page = 1;          //if no page var is given, default to 1.
-            $prev = $page - 1;              //previous page is page - 1
-            $next = $page + 1;              //next page is page + 1
-            $lastpage = ceil($total_pages / $limit);    //lastpage is = total pages / items per page, rounded up.
-            $lpm1 = $lastpage - 1;            //last page minus 1
+            if ($page == 0) $page = 1;
+            $prev = $page - 1;
+            $next = $page + 1;
+            $lastpage = ceil($total_pages / $limit);
+            $lpm1 = $lastpage - 1;
             $pagination = "";
             if ($lastpage > 1) {
                 $pagination .= "<ul class=\"pagination pagination-lg\">";
-                //previous button
                 if ($page > 1)
                     $pagination .= "<li><a href=\"$targetpage?page=$prev\">&laquo;</a></li>";
                 else
                     $pagination .= "<li class=\"disabled\"><a href=\"#\">&laquo;</a></li>";
-                //pages
-                if ($lastpage < 7 + ($adjacents * 2)) //not enough pages to bother breaking it up
-                {
+                if ($lastpage < 7 + ($adjacents * 2)) {
                     for ($counter = 1; $counter <= $lastpage; $counter++) {
                         if ($counter == $page)
                             $pagination .= "<li class=\"active\"><a href=\"#\">$counter</a></li>";
                         else
                             $pagination .= "<li><a href=\"$targetpage?page=$counter\">$counter</a></li>";
                     }
-                } elseif ($lastpage > 5 + ($adjacents * 2))  //enough pages to hide some
-                {
-                    //close to beginning; only hide later pages
+                } elseif ($lastpage > 5 + ($adjacents * 2)) {
                     if ($page < 1 + ($adjacents * 2)) {
                         for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
                             if ($counter == $page)
@@ -121,8 +110,7 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
                         $pagination .= "...";
                         $pagination .= "<li><a href=\"$targetpage?page=$lpm1\">$lpm1</a></li>";
                         $pagination .= "<li><a href=\"$targetpage?page=$lastpage\">$lastpage</a></li>";
-                    } //in middle; hide some front and some back
-                    elseif ($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
+                    } elseif ($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
                         $pagination .= "<li><a href=\"$targetpage?page=1\">1</a></li>";
                         $pagination .= "<li><a href=\"$targetpage?page=2\">2</a></li>";
                         $pagination .= "...";
@@ -135,8 +123,7 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
                         $pagination .= "...";
                         $pagination .= "<li><a href=\"$targetpage?page=$lpm1\">$lpm1</a></li>";
                         $pagination .= "<li><a href=\"$targetpage?page=$lastpage\">$lastpage</a></li>";
-                    }
-                    else {
+                    } else {
                         $pagination .= "<li><a href=\"$targetpage?page=1\">1</a></li>";
                         $pagination .= "<li><a href=\"$targetpage?page=2\">2</a></li>";
                         $pagination .= "...";
@@ -201,17 +188,23 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
                 }
                 ?>
                     <tr class="btnDelete" data-id="<?php echo $Row['category_id']; ?>">
-                        <td><?php echo $Row['cname']; ?></td>
-                        <td><?php echo $Row['description']; ?></td>
+                        <td><?php echo $Row['category_name']; ?></td>
+                        <td><?php echo $Row['category_description']; ?></td>
                         <td<?php
                         if ($parent == "none") {
                             echo " style='color:grey;font-style:italic;'";
                         } ?>><?php echo $parent; ?></td>
                         <td style="width:35%;">
-                            <a href="edit_category.php?id=<?php echo $Row['category_id']; ?>" class="btn btn-success btnEdit">Edit</a>
-                            <form style="display: inline-block;" method="POST" action="manage_categories.php?id=<?php echo $Row['category_id']; ?>">
-                                <input id="mf_cat_<?php echo $Row['category_id']; ?>" name="mf_cat_<?php echo $Row['category_id']; ?>" type="submit" class="btn btn-primary btnEdit" value="Make Featured">
-                                <input id="rf_cat_<?php echo $Row['category_id']; ?>" name="rf_cat_<?php echo $Row['category_id']; ?>" type="submit" class="btn btn-warning btnDelete" value="Remove Featured">
+                            <a href="edit_category.php?category_id=<?php echo $Row['category_id']; ?>"
+                               class="btn btn-success btnEdit">Edit</a>
+                            <form style="display: inline-block;" method="POST"
+                                  action="manage_categories.php?id=<?php echo $Row['category_id']; ?>">
+                                <input id="mf_cat_<?php echo $Row['category_id']; ?>"
+                                       name="mf_cat_<?php echo $Row['category_id']; ?>" type="submit"
+                                       class="btn btn-primary btnEdit" value="Make Featured">
+                                <input id="rf_cat_<?php echo $Row['category_id']; ?>"
+                                       name="rf_cat_<?php echo $Row['category_id']; ?>" type="submit"
+                                       class="btn btn-warning btnDelete" value="Remove Featured">
                             </form>
                             <button class="btn btn-danger btnDelete">Delete</button>
                         </td>
@@ -230,7 +223,8 @@ if ($featured_categories_result_set = $mysqli->query("SELECT category_id FROM mp
                         <div class="modal-body">
                             <p>Are you sure you want to DELETE this Category?</p>
                             <p class="text-danger">
-                                <small>Please not that all the products belong to this category will also be deleted.</small>
+                                <small>Please not that all the products belong to this category will also be deleted.
+                                </small>
                             </p>
                             <p class="text-warning">
                                 <small>This action cannot be undone.</small>
