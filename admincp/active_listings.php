@@ -254,7 +254,7 @@ if (isset($_GET['term'])) {
                         <td>
                             <button class="btn btn-danger btnDelete">Delete</button>
                             <button class="btn btn-warning btnDeactivate">Deactivate</button>
-                            <a class="btn btn-success btnEdit" href="edit_product.php?product_id_id=<?php echo $Row['product_id']; ?>">Edit</a>
+                            <a class="btn btn-success btnEdit" href="edit_product.php?product_id=<?php echo $Row['product_id']; ?>">Edit</a>
                             <?php if ($Feat == 1) { ?>
                                 <button class="hide btn btn-default btnUnFeat">unFeat</button>
                             <?php } else if ($Feat == 0) { ?>
