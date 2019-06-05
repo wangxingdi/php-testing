@@ -10,8 +10,6 @@
 15. 提取公共方法;
 16. 缓存;
 17. 产品详情页面图片来源和加载速度;
-18. 营销hits字段去除,offer_link.php删除;
-19. views字段待考虑;
 
 ##已完成
 1. gif不能播放问题需要解决; - Done(fetch_main.php)
@@ -25,6 +23,8 @@
 8. 整合users和admin两张表;
 9. site_hits无用字段删除;
 18. 分类bug和分类表字段问题解决;
+19. 营销product_hits字段删除,offer_link.php删除;
+20. product_views字段删除;
 
 
 
