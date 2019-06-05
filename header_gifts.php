@@ -36,17 +36,7 @@ if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
 } else {
     printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 }
-//$mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
 $price_symbol = stripslashes($settings['price_symbol']);
-//$strActive = strlen($symbol);
-//if ($strActive > 4) {
-//    $ActiveSymbol = substr($symbol, 0, 4) . '...';
-//} else {
-//    $ActiveSymbol = $symbol;
-//}
-//  $_SESSION['mobSubBoxTitle'] = stripslashes($settings['mobSubBoxTitle']);
-//  $_SESSION['mobSubBoxBtnText'] = stripslashes($settings['mobSubBoxBtnText']);
-//  $_SESSION['mobSubBoxDesc'] = stripslashes($settings['mobSubBoxDesc']);
 ?>
     <!doctype html>
     <html>

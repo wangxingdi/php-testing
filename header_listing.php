@@ -84,8 +84,6 @@ if (isset($_GET['link'])) {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
     }
 }
-//Tot Site Views
-//$mysqli->query("UPDATE mp_options SET site_hits=site_hits+1 WHERE id='1'");
 $symbol = stripslashes($settings['price_symbol']);
 $strActive = strlen($symbol);
 if ($strActive > 4) {
