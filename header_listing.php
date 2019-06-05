@@ -19,13 +19,12 @@ if (isset($_SESSION['username'])) {
         $UsName = strtolower($users_row['user_name']);
         $_SESSION['user_id'] = $users_row['user_id'];
         $Uid = $_SESSION['user_id'];
-//        $UserEmail = $users_row['user_email'];
         $users_result_set->close();
     } else {
         printf("<div class='alert alert-danger alert-pull'>用户表查询失败(header_listing.php)</div>");
     }
 }
-if ($ads_result_set = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
+if ($ads_result_set = $mysqli->query("SELECT * FROM mp_ads WHERE ads_id='1'")) {
     $ads_row = mysqli_fetch_array($ads_result_set);
     $Ad1 = stripslashes($ads_row['ads_ad1']);
     $Ad2 = stripslashes($ads_row['ads_ad2']);
@@ -52,9 +51,7 @@ if (isset($_GET['pname'])) {
             $product_description = $products_row['product_description'];
             $product_meta_description = $products_row['product_meta_description'];
             $product_permalink = $products_row['product_permalink'];
-//            $product_views = $products_row['product_views'];
-//            $mysqli->query("UPDATE mp_products SET product_views=product_views+1 WHERE product_permalink='$product_permalink'");
-            $saves_result_set = $mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$product_id' AND user_id='$Uid'");
+            $saves_result_set = $mysqli->query("SELECT * FROM mp_saves WHERE product_id='$product_id' AND user_id='$Uid'");
             $count_save_listing = mysqli_num_rows($saves_result_set);
             $saves_result_set->close();
         }
@@ -63,7 +60,6 @@ if (isset($_GET['pname'])) {
         printf("<div class='alert alert-danger alert-pull'>产品表查询异常(header_listing.php)</div>");;
     }
 }
-//for blog posts
 if (isset($_GET['link'])) {
     $post = $mysqli->escape_string($_GET['link']);
     if ($sql_post = $mysqli->query("SELECT * FROM mp_posts WHERE link='$post' LIMIT 1")) {
@@ -101,21 +97,17 @@ if ($strActive > 4) {
     <meta name="description" content="<?php echo strip_tags($MetaDescription); ?>"/>
     <meta name="keywords" content="<?php echo $settings['keywords']; ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Facebook Meta Tags-->
     <meta property="fb:app_id" content="<?php echo $settings['fbapp']; ?>"/>
     <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $PageLink; ?>/"/>
     <meta property="og:title" content="<?php echo $pageTitle; ?> | <?php echo $settings['name']; ?>"/>
     <meta property="og:description" content="<?php echo strip_tags($MetaDescription); ?>"/>
     <meta property="og:image" content="<?php echo $protocol . $settings['siteurl']; ?>/images/<?php echo $image; ?>"/>
-    <!--End Facebook Meta Tags-->
-    <!--Twitter Meta Tags-->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta property="og:image"
           content="<?php echo $protocol . $settings['siteurl']; ?>/images/<?php echo $image; ?>?'.uniqid().'"/>
     <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $PageLink; ?>/"/>
     <meta property="og:title" content="<?php echo $pageTitle; ?> | <?php echo $settings['name']; ?>"/>
     <meta property="og:description" content="<?php echo strip_tags($MetaDescription); ?>"/>
-    <!--End Twitter Meta Tags-->
     <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="css/main.php" rel="stylesheet" type="text/css">
     <link href="css/test1.css" rel="stylesheet" type="text/css">
@@ -126,57 +118,44 @@ if ($strActive > 4) {
 </head>
 <body>
 <div id="fb-root"></div>
-<!--
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
--->
 <div id="cv-top-overlay"></div>
 <header id="masthead">
     <div id="nav-container">
         <div class="nav-accent nav-accent-left" ng-hide="hide_header"></div>
         <div class="nav-accent nav-accent-right" ng-hide="hide_header"></div>
-        <div id="logo"><span id="search-bar"><form class="search-form" role="search" name="srch-term" method="get"
-                                                   action="search.php" ng-controller="SearchPartialCtrl"><fieldset
-                            class="searchbox"><i class="fa fa-search"></i><input class="elasticsearch" name="term"
-                                                                                 type="text" autocomplete="off"
-                                                                                 placeholder="Search..."
-                                                                                 ng-change="search(term)"
-                                                                                 ng-model="term"></fieldset></form></span><a
-                    class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>"
-                    target="_self"><img src="https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=bf24ca75d92a60595245e91c180418a3/8718367adab44aedc0589858bd1c8701a18bfb7c.jpg" alt="<?php echo $settings['name']; ?>"></a>
-            <!-- LOGIN/REGISTRATION START -->
-            <!-- MOBILE LOGIN START -->
+        <div id="logo">
+            <span id="search-bar">
+                <form class="search-form" role="search" name="srch-term" method="get" action="search.php" ng-controller="SearchPartialCtrl">
+                    <fieldset class="searchbox">
+                        <i class="fa fa-search"></i>
+                        <input class="elasticsearch" name="term" type="text" autocomplete="off" placeholder="Search..." ng-change="search(term)" ng-model="term">
+                    </fieldset>
+                </form>
+            </span>
+            <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
+                <img src="https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=bf24ca75d92a60595245e91c180418a3/8718367adab44aedc0589858bd1c8701a18bfb7c.jpg" alt="<?php echo $settings['name']; ?>">
+            </a>
             <div>
                 <ul class="navbar-nav navbar-right user-icon">
                     <li id="dropdown" class="dropdown">
                         <?php if (!isset($_SESSION['username'])){ ?>
-                        <a onclick="changeColor()" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false"><span><i class="fa fa-user mobile-user-button"
-                                                          style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span></a>
+                        <a onclick="changeColor()" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span><i class="fa fa-user mobile-user-button" style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>Log
-                                    In</a></li>
+                            <li><a href="login/"><i style="padding-right: 5px;" class="fas fa-sign-in-alt"></i>Log In</a></li>
                             <li><a href="register/"><i style="padding-right: 5px;" class="fas fa-user-plus"></i>Register</a>
                             </li>
                             <?php } else { ?>
-                                <li class="dropdown"><a style="color:green;" onclick="changeColor()" href="#"
-                                                        class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                        aria-expanded="false"><span><i
-                                                    class="fa fa-user mobile-user-button"
-                                                    style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span></a>
+                                <li class="dropdown">
+                                    <a style="color:green;" onclick="changeColor()" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <span><i class="fa fa-user mobile-user-button" style="font-size: 14px;padding: .5rem 1rem;border-radius: 5px;"></i></span>
+                                    </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="wish_list/"><span class="fa fa-heart"></span>&nbsp; Wish List</a>
-                                        </li>
-                                        <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; My Profile</a>
-                                        </li>
+                                        <li><a href="wish_list/"><span class="fa fa-heart"></span>&nbsp; Wish List</a></li>
+                                        <li><a href="profile/"><span class="fa fa-user"></span>&nbsp; My Profile</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="logout/"><span class="fa fa-unlock-alt"></span>&nbsp; Logout</a>
-                                        </li>
+                                        <li><a href="logout/"><span class="fa fa-unlock-alt"></span>&nbsp; Logout</a></li>
                                     </ul>
                                 </li>
                             <?php } ?>
@@ -184,36 +163,30 @@ if ($strActive > 4) {
                     </li>
                 </ul>
             </div>
-            <!-- MOBILE LOGIN END -->
-            <!-- DESKTOP LOGIN START -->
             <ul id="navbarRight" class="navbar-nav navbar-right">
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <li><a href="login/">Log In</a> | <a href="register/">Register</a></li>
                 <?php } else { ?>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My
-                            Account <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="wish_list/"><span class="fa fa-heart remove-mobile"></span>&nbsp; Wish List</a>
-                            </li>
-                            <li><a href="profile/"><span class="fa fa-user remove-mobile"></span>&nbsp; My Profile</a>
-                            </li>
+                            <li><a href="wish_list/"><span class="fa fa-heart remove-mobile"></span>&nbsp; Wish List</a></li>
+                            <li><a href="profile/"><span class="fa fa-user remove-mobile"></span>&nbsp; My Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="logout/"><span class="fa fa-unlock-alt remove-mobile"></span>&nbsp; Logout</a>
-                            </li>
+                            <li><a href="logout/"><span class="fa fa-unlock-alt remove-mobile"></span>&nbsp; Logout</a></li>
                         </ul>
                     </li>
                 <?php } ?>
             </ul>
-            <!-- DESKTOP LOGIN END--->
-        </div> <!-- HEADER SECTION END -->
-        <!-- LOGIN/REGISTRATION END -->
-        <nav class="nav" id="menu" ng-hide="hide_header"> <!-- MAIN MENU START -->
-            <button class="navtoggle" type="button" id="menutoggle" aria-hidden="true"><i class="fa fa-bars"></i>
-            </button>
+        </div>
+        <nav class="nav" id="menu" ng-hide="hide_header">
+            <button class="navtoggle" type="button" id="menutoggle" aria-hidden="true"><i class="fa fa-bars"></i></button>
             <ul>
-                <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self"><span
-                                class="icon"><i class="fa fa-home"></i></span><span><?php echo $txt_home; ?></span></a>
+                <li>
+                    <a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
+                        <span class="icon"><i class="fa fa-home"></i></span>
+                        <span><?php echo $txt_home; ?></span>
+                    </a>
                 </li>
                 <?php
                 if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE is_featured = 1 ORDER BY show_order ASC")) {
@@ -244,7 +217,8 @@ if ($strActive > 4) {
                                 $category_name = $categories_row['category_name'];
                                 $category_slug = $categories_row['category_slug'];
                                 ?>
-                                <a class="auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                                <a class="auto-localize"
+                                   href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                                 <?php
                             }
                             $categories_result_set->close();
@@ -259,13 +233,15 @@ if ($strActive > 4) {
             </ul>
         </nav>
     </div>
-    <!-- MAIN MENU END -->
-    <!-- END OF HEADER NAVIGATION ON DESKTOP-->
     <div id="mobile-nav">
         <ul id="mobile-stick-top">
-            <li><a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
-                    <i class="fa fa-home fa-white"><span><?php echo $txt_home; ?></span></i></a></li>
-            <li><a href="popular/"><i class="fa fa-fire fa-white"><span><?php echo $txt_popular; ?></span></i></a>
+            <li>
+                <a class="auto-localize" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
+                    <i class="fa fa-home fa-white"><span><?php echo $txt_home; ?></span></i>
+                </a>
+            </li>
+            <li>
+                <a href="popular/"><i class="fa fa-fire fa-white"><span><?php echo $txt_popular; ?></span></i></a>
                 <div class="mobile-search-box" id="mob-search">
                     <form role="search" name="srch-term" method="get" action="search.php">
                         <input type="text" name="term">
@@ -284,7 +260,8 @@ if ($strActive > 4) {
                             $category_name = $categories_row['category_name'];
                             $category_slug = $categories_row['category_slug'];
                             ?>
-                            <a id="mobile-menu" class="auto-localize" href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
+                            <a id="mobile-menu" class="auto-localize"
+                               href="gifts/<?php echo $category_slug; ?>/"><?php echo $category_name; ?></a>
                             <?php
                         }
                         $categories_result_set->close();
@@ -329,13 +306,13 @@ if (!isset($settings['addthisFilter']) || $settings['addthisFilter'] == '2') {
     }
     $(document).ready(function () {
         $(".col-link").hover(function () {
-            $(this).parent().find(".col-share").stop().animate({width: "90px"}, 300)
+            $(this).parent().find(".col-share").stop().animate({width: "90px"}, 300);
         }, function () {
-            $(this).parent().find(".col-share").stop().animate({width: "-0"}, 300)
+            $(this).parent().find(".col-share").stop().animate({width: "-0"}, 300);
         }), $(".col-share").hover(function () {
-            $(this).stop().animate({width: "90px"}, 300)
+            $(this).stop().animate({width: "90px"}, 300);
         }, function () {
-            $(this).stop().animate({width: "-0"}, 300)
-        })
+            $(this).stop().animate({width: "-0"}, 300);
+        });
     });
 </script>

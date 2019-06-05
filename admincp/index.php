@@ -6,7 +6,7 @@
         <ol class="breadcrumb">
             <li>管理员控制台</li>
             <li class="active">仪表盘</li>
-            <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
+            <span class="theme-label">MarketPress v<?php echo $version;?></span>
         </ol>
         <div class="page-header">
             <h3 style="display: inline-block;">仪表盘</h3> <span><a class="btn-add" href="new_product.php">新增商品</a></span>
@@ -37,26 +37,7 @@
                                     printf("<div class='alert alert-danger alert-pull'>查询文章表出现异常</div>");
                                 }
                             ?>
-                            <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php echo "NULL";?> 网站访问量</span></li>
-                            <?php /*
-                                if($products_view_result_set = $mysqli->query("SELECT SUM(product_views) AS VIEWS FROM mp_products")){
-                                    $products_view_num = mysqli_fetch_array($products_view_result_set);
-                            */?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-pie"></i> <?php echo "NULL";?> 产品访问量</span></li>
-                            <?php /*
-                                    $products_view_result_set->close();
-                                }else{
-                                    printf("<div class='alert alert-danger alert-pull'>查询产品访问量出现异常</div>");
-                                }
-                                if($products_click_result_set = $mysqli->query("SELECT SUM(product_hits) AS HITS FROM mp_products")){
-                                    $products_click_num = mysqli_fetch_array($products_click_result_set);
-                            */?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-dollar-sign"></i> <?php echo "NULL";?> 营销点击量</span></li>
-                            <?php /*
-                                    $products_click_result_set->close();
-                                }else{
-                                    printf("<div class='alert alert-danger alert-pull'>查询产品营销量出现异常</div>");
-                                } */
+                            <?php
                                 if($saves_result_set = $mysqli->query("SELECT save_id FROM mp_saves")){
                                     $saves_num = $saves_result_set->num_rows;
                             ?>
@@ -79,7 +60,7 @@
                 </div>
                 <div class="panel-body">
                     <?php
-                        $products_result_set= $mysqli->query("SELECT * FROM mp_products WHERE product_state='1' ORDER BY product_id DESC LIMIT 5");
+                        $products_result_set= $mysqli->query("SELECT * FROM mp_products WHERE product_state='1' ORDER BY product_load_date DESC LIMIT 5");
                         $products_num = $products_result_set->num_rows;
                         if ($products_num==0) {
                             echo '<div class="alert alert-danger">现在你还没有上架任何产品。</div>';
@@ -98,19 +79,19 @@
                     <?php
                         }
                         while($products_row = mysqli_fetch_assoc($products_result_set)){
-                            $id = $products_row['product_id'];
-                            $title = $products_row['product_name'];
-                            $external_link = $products_row['product_external_link'];
-                            $date = $products_row['product_load_date'];
+                            $product_id = $products_row['product_id'];
+                            $product_name = $products_row['product_name'];
+                            $product_external_link = $products_row['product_external_link'];
+                            $product_load_date = $products_row['product_load_date'];
                     ?>
                             <tr>
                                 <td>
-                                    <a href="edit_product.php?product_id=<?php echo $id;?>">
-                                        <img style="margin:0 auto;" src="../cache/timthumb.php?src=<?php echo $external_link;?>&amp;h=50&amp;w=50&amp;q=60" alt="<?php echo $title;?>" class="img-responsive" />
+                                    <a href="edit_product.php?product_id=<?php echo $product_id;?>">
+                                        <img style="margin:0 auto;" src="../cache/timthumb.php?src=<?php echo $product_external_link;?>&amp;h=50&amp;w=50&amp;q=60" alt="<?php echo $product_name;?>" class="img-responsive" />
                                     </a>
                                 </td>
-                                <td><a href="edit_product.php?id=<?php echo $id;?>"><?php echo $title;?></a></td>
-                                <td><?php echo $date;?></td>
+                                <td><a href="edit_product.php?product_id=<?php echo $product_id;?>"><?php echo $product_name;?></a></td>
+                                <td><?php echo $product_load_date;?></td>
                             </tr>
                     <?php
                         }

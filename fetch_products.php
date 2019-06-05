@@ -7,7 +7,7 @@ $max = $mysqli->escape_string($_POST["max_price"]);
 $_SESSION['max'] = $max;
 $catid = $mysqli->escape_string($_POST["cid"]);
 $_SESSION['catid'] = $catid;
-$sort = $mysqli->escape_string(chr($_POST["sort"]));;
+$sort = $mysqli->escape_string(chr($_POST["sort"]));
 $_SESSION['sort'] = $sort;
 $count = 0;
 $user_id = $_SESSION['user_id'];
@@ -19,7 +19,7 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
     $txt_remove = $settingsRow['txt_remove'];
     $siteurl_sql->close();
 } else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");;
+    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
 } ?>
 <script>$(document).ready(function () {
         $(".col-link").hover(function () {
@@ -38,10 +38,10 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
                 data: i,
                 cache: !1,
                 success: function (t) {
-                    n.html(t)
+                    n.html(t);
                 }
             })), !1
-        })
+        });
     }), $(function () {
         $(".save-list").click(function () {
             var t = $(this).data("id"), a = $(this).data("name"), i = "id=" + t, n = $(this);
@@ -51,11 +51,12 @@ if ($siteurl_sql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")) {
                 data: i,
                 cache: !1,
                 success: function (t) {
-                    n.parent().parent().parent().find(".saves").html(t)
+                    n.parent().parent().parent().find(".saves").html(t);
                 }
             }), !1
-        })
-    });</script>
+        });
+    });
+</script>
 <?php
 $cats = array();
 $cats[] = $catid;
@@ -97,7 +98,6 @@ while ($row = mysqli_fetch_array($result)) {
     $product_description = $row['product_description'];
     $product_name = $row['product_name'];
     $product_permalink = $row['product_permalink'];
-//    $view_count = $row['product_views'];
     ?>
     <div <?php if ($count > 3) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";
@@ -113,10 +113,9 @@ while ($row = mysqli_fetch_array($result)) {
             </a>
             <div class="col-share">
                 <?php if (!isset($_SESSION['username'])) { ?>
-                    <a class="btn btn-default btn-lg btn-danger btn-font"
-                       onclick="openLogin()"><?php echo $txt_save; ?></a>
+                    <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
                 <?php } else {
-                    $user_sql = $mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$listing_id' AND user_id='$user_id'");
+                    $user_sql = $mysqli->query("SELECT * FROM mp_saves WHERE product_id='$listing_id' AND user_id='$user_id'");
                     $count_save = mysqli_num_rows($user_sql);
                     $user_sql->close();
                     if ($count_save == 1) { ?>
@@ -135,7 +134,7 @@ while ($row = mysqli_fetch_array($result)) {
             $ActiveRow2 = mysqli_fetch_array($sql);
             $price_symbol = stripslashes($ActiveRow2['price_symbol']);
         } else {
-            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");;
+            printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
         }
         ?>
         <div class="col-bottom col-bottom-mod">
@@ -156,7 +155,6 @@ while ($row = mysqli_fetch_array($result)) {
                         <?php
                     }
                 } ?>
-<!--                <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;--><?php //echo $view_count; ?><!-- views</span>-->
             </div>
             <div class="col-right">
                 <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $row['product_affiliate_url']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
@@ -167,7 +165,8 @@ while ($row = mysqli_fetch_array($result)) {
 } ?>
 <nav id="page-nav"><a href="data_cat.php?page=2"></a></nav>
 <script async type="text/javascript" src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
-<script>$("#display-posts").infinitescroll({
+<script>
+    $("#display-posts").infinitescroll({
         navSelector: "#page-nav",
         nextSelector: "#page-nav a",
         itemSelector: ".col-box",
@@ -178,13 +177,13 @@ while ($row = mysqli_fetch_array($result)) {
         loading: {finishedMsg: "No more posts to load.", img: "assets/ajaxloader.gif"}
     }, function (a, t, i) {
         $(".col-link-data").hover(function () {
-            $(this).parent().find(".col-share-data").stop().animate({width: "90px"}, 300)
+            $(this).parent().find(".col-share-data").stop().animate({width: "90px"}, 300);
         }, function () {
-            $(this).parent().find(".col-share-data").stop().animate({width: "-0"}, 300)
+            $(this).parent().find(".col-share-data").stop().animate({width: "-0"}, 300);
         }), $(".col-share-data").hover(function () {
-            $(this).stop().animate({width: "90px"}, 300)
+            $(this).stop().animate({width: "90px"}, 300);
         }, function () {
-            $(this).stop().animate({width: "-0"}, 300)
+            $(this).stop().animate({width: "-0"}, 300);
         }), $(".saves-data").unbind("click"), $(function () {
             $(".saves-data").click(function () {
                 var a = $(this).data("id"), t = $(this).data("name"), i = "id=" + a, e = $(this);
@@ -194,7 +193,7 @@ while ($row = mysqli_fetch_array($result)) {
                     data: i,
                     cache: !1,
                     success: function (a) {
-                        e.html(a)
+                        e.html(a);
                     }
                 })), !1
             })
@@ -207,12 +206,13 @@ while ($row = mysqli_fetch_array($result)) {
                     data: i,
                     cache: !1,
                     success: function (a) {
-                        e.parent().parent().parent().find(".saves-data").html(a)
+                        e.parent().parent().parent().find(".saves-data").html(a);
                     }
                 })), !1
-            })
-        })
-    });</script>
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     function openLogin() {
         window.location = "login/";

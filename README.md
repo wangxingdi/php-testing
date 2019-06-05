@@ -25,7 +25,8 @@
 18. 分类bug和分类表字段问题解决;
 19. 营销product_hits字段删除,offer_link.php删除;
 20. product_views字段删除;
-21. 删除images表
+21. 删除images表;
+22. mp_ads表重命名;
 
 
 

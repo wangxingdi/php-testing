@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again</div>");
     }
 }
-if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
+if ($AdsSql = $mysqli->query("SELECT * FROM mp_ads WHERE ads_id='1'")) {
     $AdsRow = mysqli_fetch_array($AdsSql);
     $Ad1 = stripslashes($AdsRow['ads_ad1']);
     $Ad2 = stripslashes($AdsRow['ads_ad2']);
@@ -66,20 +66,16 @@ $price_symbol = stripslashes($settings['price_symbol']);
         <meta name="description" content="<?php echo strip_tags($category_description); ?>"/>
         <meta name="keywords" content="<?php echo $settings['keywords']; ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--Facebook Meta Tags-->
         <meta property="fb:app_id" content="<?php echo $settings['fbapp']; ?>"/>
         <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $current_category_slug; ?>/"/>
         <meta property="og:title" content="<?php echo $current_category_name; ?> | <?php echo $settings['name']; ?>"/>
         <meta property="og:description" content="<?php echo strip_tags($category_description); ?>"/>
         <!--<meta property="og:image"           content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
-        <!--End Facebook Meta Tags-->
-        <!--Twitter Meta Tags-->
         <meta name="twitter:card" content="summary_large_image"/>
         <!--<meta property="og:image" content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
         <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>/<?php echo $current_category_slug; ?>/"/>
         <meta property="og:title" content="<?php echo $current_category_name; ?> | <?php echo $settings['name']; ?>"/>
         <meta property="og:description" content="<?php echo strip_tags($category_description); ?>"/>
-        <!--End Twitter Meta Tags-->
         <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="css/main.php" rel="stylesheet" type="text/css">
         <link href="css/test1.css" rel="stylesheet" type="text/css">
@@ -159,7 +155,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
                         <span class="icon"><i class="fa fa-home"></i></span><span><?php echo $txt_home; ?></span>
                     </a>
                 </li>
-                <!--主分类菜单-->
                 <?php
                 if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null and is_featured = 1 ORDER BY show_order ASC")) {
                     while ($categories_row = mysqli_fetch_array($categories_result_set)) {
@@ -204,7 +199,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
             </ul>
         </nav>
     </div>
-    <!-- 移动端 -->
     <div id="mobile-nav">
         <ul id="mobile-stick-top">
             <li>

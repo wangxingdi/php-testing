@@ -193,11 +193,8 @@
 
     <script>
         window.onload = function () {
-            /*var error = Snap.select("#error");
-            var hole = Snap.select("#svg-hole");*/
             var hand = Snap.select("#svg-hand");
             var mask = Snap.select("#svg-mask");
-
             function onSVGLoaded() {
                 function animOn() {
                     hand.animate({
@@ -207,7 +204,6 @@
                         transform: "t-10,300, r0"
                     }, 4500, mina.easeinout);
                 };
-
                 function animOut() {
                     hand.animate({
                         transform: "t-10,-305, r0"
@@ -216,7 +212,6 @@
                         transform: "t10,305, r0"
                     }, 4500, mina.easeinout);
                 };
-
                 function open() {
                     clearTimeout(timer);
                     hand.animate({
@@ -226,9 +221,7 @@
                         transform: "t0,300"
                     }, 800, mina.backout);
                 };
-
                 timer = setTimeout(open, 1000);
-
                 hand.attr({
                     mask: mask
                 });
@@ -236,5 +229,4 @@
             onSVGLoaded();
         };
     </script>
-
 <?php include('footer.php'); ?>

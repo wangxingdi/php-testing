@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
         printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");
     }
 }
-if ($AdsSql = $mysqli->query("SELECT * FROM mp_siteads WHERE ads_id='1'")) {
+if ($AdsSql = $mysqli->query("SELECT * FROM mp_ads WHERE ads_id='1'")) {
     $AdsRow = mysqli_fetch_array($AdsSql);
     $Ad1 = stripslashes($AdsRow['ads_ad1']);
     $Ad2 = stripslashes($AdsRow['ads_ad2']);
@@ -47,21 +47,16 @@ $price_symbol = stripslashes($settings['price_symbol']);
         <meta name="description" content="Unique gifts under $20 to buy"/>
         <meta name="keywords" content="gifts under $20"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--Facebook Meta Tags-->
         <meta property="fb:app_id" content="<?php echo $settings['fbapp']; ?>"/>
         <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>"/>
         <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
         <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
         <!--<meta property="og:image"           content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
-        <!--End Facebook Meta Tags-->
-
-        <!--Twitter Meta Tags-->
         <meta name="twitter:card" content="summary_large_image"/>
         <!--<meta property="og:image" content="<?php /*echo $protocol . $settings['siteurl']; */ ?>/images/logo.png" />-->
         <meta property="og:url" content="<?php echo $protocol . $settings['siteurl']; ?>"/>
         <meta property="og:title" content="<?php echo $settings['name']; ?>"/>
         <meta property="og:description" content="<?php echo $settings['descrp']; ?>"/>
-        <!--End Twitter Meta Tags-->
         <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="css/main.php" rel="stylesheet" type="text/css">
         <link href="css/test1.css" rel="stylesheet" type="text/css">
@@ -71,15 +66,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
     </head>
 <body>
 <div id="fb-root"></div>
-<!--
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
--->
 <div id="cv-top-overlay"></div>
 <header id="masthead">
     <div id="nav-container">
@@ -97,7 +83,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
             <a class="auto-localize" id="center-logo" href="<?php echo $protocol . $settings['siteurl']; ?>" target="_self">
                 <img src="https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=bf24ca75d92a60595245e91c180418a3/8718367adab44aedc0589858bd1c8701a18bfb7c.jpg" alt="<?php echo $settings['name']; ?>">
             </a>
-            <!-- MOBILE LOGIN START -->
             <div>
                 <ul class="navbar-nav navbar-right user-icon">
                     <li id="dropdown" class="dropdown">
@@ -126,8 +111,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
                     </li>
                 </ul>
             </div>
-            <!-- MOBILE LOGIN END -->
-            <!-- LOGIN/REGISTRATION CODE START--->
             <ul id="navbarRight" class="navbar-nav navbar-right">
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <li><a href="login/">Log In</a> | <a href="register/">Register</a></li>
@@ -144,8 +127,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
                 <?php } ?>
             </ul>
         </div>
-        <!-- LOGIN/REGISTRATION CODE END--->
-        <!-- MAIN MENU START -->
         <nav class="nav" id="menu" ng-hide="hide_header">
             <button class="navtoggle" type="button" id="menutoggle" aria-hidden="true"><i class="fa fa-bars"></i></button>
             <ul>
@@ -196,8 +177,6 @@ $price_symbol = stripslashes($settings['price_symbol']);
             </ul>
         </nav>
     </div>
-    <!-- MAIN MENU END -->
-    <!-- END OF HEADER NAVIGATION ON DESKTOP-->
     <div id="mobile-nav">
         <ul id="mobile-stick-top">
             <li>
