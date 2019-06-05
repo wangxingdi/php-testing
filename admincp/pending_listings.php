@@ -218,7 +218,7 @@
                             <button class="btn btn-danger btnDelete">Delete</button>
                             <button class="btn btn-info btnActivate">Activate</button>
                             <a class="btn btn-success btnEdit"
-                               href="edit_product.php?id=<?php echo $products_row['product_id']; ?>">Edit</a>
+                               href="edit_product.php?product_id_id=<?php echo $products_row['product_id']; ?>">Edit</a>
                         </td>
 
                     </tr>

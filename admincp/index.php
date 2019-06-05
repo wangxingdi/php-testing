@@ -105,7 +105,7 @@
                     ?>
                             <tr>
                                 <td>
-                                    <a href="edit_product.php?id=<?php echo $id;?>">
+                                    <a href="edit_product.php?product_id=<?php echo $id;?>">
                                         <img style="margin:0 auto;" src="../cache/timthumb.php?src=<?php echo $external_link;?>&amp;h=50&amp;w=50&amp;q=60" alt="<?php echo $title;?>" class="img-responsive" />
                                     </a>
                                 </td>
