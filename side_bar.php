@@ -10,7 +10,7 @@
 
 <?php
   
-if($Pop = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY hits DESC LIMIT 3")){
+if($Pop = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_saves DESC LIMIT 3")){
 
    while($PopRow = mysqli_fetch_array($Pop)){
      $PLink = $PopRow ['pname'];
@@ -24,7 +24,7 @@ if($Pop = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY hits DE
 ?> 
 <div class="side-bar-posts wow fadeInUp">
 <a href="<?php echo $PLink;?>/">
-<img src="images/resizer/336x180/r/<?php echo $PopRow['image'];?>" alt="<?php echo $PopRow['title'];?>" class="img-responsive side-img">
+    <img class="img-responsive side-img" src="../cache/timthumb.php?src=./images/<?php echo $PopRow['product_image']; ?>&amp;h=180&amp;w=336&amp;q=100" alt="<?php echo $PopRow['title']; ?>">
 </a>
 <a href="<?php echo $PLink;?>/"><h3 class="side-bar-text"><?php echo $tlong;?></h3></a>
 </div><!--side-bar-posts-->

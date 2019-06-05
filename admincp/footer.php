@@ -1,9 +1,5 @@
-<footer class="main-footer">
-
-
-</footer><!--main-footer-->
-
-</div><!--container-fluid-->
-</div><!--wrap-->
+<footer class="main-footer"></footer>
+</div>
+</div>
 </body>
 </html>

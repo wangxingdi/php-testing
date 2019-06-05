@@ -1,136 +1,92 @@
 <?php
 include('../db.php');
-if ($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")) {
-    $settings = mysqli_fetch_array($squ);
-    $Active = $settings['active'];
-    $squ->close();
-} else {
-    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
-}
 $upload_directory = '../images/';
-if (!@file_exists($upload_directory)) {
-    //destination folder does not exist
-    die("Make sure Upload directory exist!");
-}
 if ($_POST) {
     if (!isset($_POST['category']) || strlen($_POST['category']) < 1 || $_POST['category'] < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please select a category.</div>');
+        die('<div class="alert alert-danger" role="alert">请先选择一个分类。</div>');
     }
-    if (!isset($_POST['mName']) || strlen($_POST['mName']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a title.</div>');
+    if (!isset($_POST['product_name']) || strlen($_POST['product_name']) < 1) {
+        die('<div class="alert alert-danger" role="alert">请输入名称。</div>');
     }
-    if (!isset($_POST['meta_desc']) || strlen($_POST['meta_desc']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a meta description.</div>');
+    if (!isset($_POST['product_meta_description']) || strlen($_POST['product_meta_description']) < 1) {
+        die('<div class="alert alert-danger" role="alert">请输入Meta信息描述。</div>');
     }
-    if (!isset($_POST['aff']) || strlen($_POST['aff']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please enter product purchase link.</div>');
+    /*if (!isset($_POST['product_affiliate_url']) || strlen($_POST['product_affiliate_url']) < 1) {
+        die('<div class="alert alert-danger" role="alert">请输入产品推广链接。</div>');
     }
-    if (!isset($_POST['aff']) || strlen($_POST['aff']) > 1) {
-        $CheckLink = $mysqli->escape_string($_POST['aff']);
+    if (!isset($_POST['product_affiliate_url']) || strlen($_POST['product_affiliate_url']) > 1) {
+        $CheckLink = $mysqli->escape_string($_POST['product_affiliate_url']);
         if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $CheckLink)) {
             //do nothing
         } else {
-            die('<div class="alert alert-danger" role="alert">Please enter full product purchase link.</div>');
+            die('<div class="alert alert-danger" role="alert">请输入完整的产品推广链接。</div>');
         }
+    }*/
+    if (!isset($_POST['product_description']) || strlen($_POST['product_description']) < 1) {
+        die('<div class="alert alert-danger" role="alert">请输入产品描述。</div>');
     }
-    if (!isset($_POST['disc']) || strlen($_POST['disc']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a small description.</div>');
+    if (!isset($_FILES['product_image'])) {
+//        die('<div class="alert alert-danger" role="alert">需要上传图片或者输入外部图片链接</div>');
+        die('<div class="alert alert-danger" role="alert">请选择一张图片(推荐300px*250px)。</div>');
     }
-    if (!isset($_FILES['mFile'])) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add a image</div>');
+    /*if (!isset($_POST['product_price']) || strlen($_POST['product_price']) < 1) {
+        die('<div class="alert alert-danger" role="alert">请输入产品价格。</div>');
+    }*/
+    if ($_FILES['product_image']['error']) {
+        die(upload_errors($_FILES['product_image']['error']));
     }
-    if (!isset($_POST['price']) || strlen($_POST['price']) < 1) {
-        //required variables are empty
-        die('<div class="alert alert-danger" role="alert">Please add price.</div>');
-    }
-    if ($_FILES['mFile']['error']) {
-        //File upload error encountered
-        die(upload_errors($_FILES['mFile']['error']));
-    }
-    //uploaded file name
-    $image_name = strtolower($_FILES['mFile']['name']);
-    //file extension
-//    $ImageExt = substr($FileName, strrpos($FileName, '.'));
-    //file type
-    $file_type = $_FILES['mFile']['type'];
-    //file size
-//    $FileSize = $_FILES['mFile']["size"];
-    //Random number to make each filename unique.
-//    $RandNumber = rand(0, 9999999999);
     $year = date('Y');
     $month = date('m');
-    $Date = date("F j, Y");
-    // file title
-    $FileTitle = $mysqli->escape_string($_POST['mName']);
-    $image_path = $year.'/'.$month."/".$image_name;
-//    $pname = preg_replace("![^a-z0-9]+!i", "-", $FileTitle);
-//    $pname = urlencode($pname);
-    $pname = strtolower($FileTitle);
-//    $pname = strip_tags($pname);
+    $date = date("F j, Y");
+    $image_name = strtolower($_FILES['product_image']['name']);
+    $image_path = $year . '/' . $month . "/" . $image_name;
+    $file_type = $_FILES['product_image']['type'];
     if (isset($_POST['category-sub']) && strlen($_POST['category-sub']) > 0 && $_POST['category-sub'] > 0) {
-        // sub category
         $Category = $mysqli->escape_string($_POST['category-sub']);
     } else {
-        // category
         $Category = $mysqli->escape_string($_POST['category']);
     }
-    if ($sql_cname2 = $mysqli->query("SELECT cname2 FROM categories WHERE id='$Category' ")) {
-        $cname2_row = mysqli_fetch_array($sql_cname2);
-        $cname2 = $cname2_row['cname2'];
-    } else {
-        die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
-    }
-    // afflite url
-    $AffURL = $mysqli->escape_string($_POST['aff']);
-    // description
-    $Description = $mysqli->escape_string($_POST['disc']);
-    // price
-    $Price = $mysqli->escape_string($_POST['price']);
-    // price
-    $MetaDescription = $mysqli->escape_string($_POST['meta_desc']);
-    $external = $mysqli->escape_string($_POST['external']);
+//    if ($categories_result_set = $mysqli->query("SELECT category_slug FROM mp_categories WHERE category_id='$Category' ")) {
+//        $categories_row = mysqli_fetch_array($categories_result_set);
+//        $category_slug = $categories_row['category_slug'];
+//    } else {
+//        die('<div class="alert alert-danger" role="alert">获取分类代码失败，请检查您的分类配置。</div>');
+//    }
+
+    $product_name = $mysqli->escape_string($_POST['product_name']);
+    $product_affiliate_url = $mysqli->escape_string($_POST['product_affiliate_url']);
+    $product_description = $mysqli->escape_string($_POST['product_description']);
+    $product_price = $mysqli->escape_string($_POST['product_price']);
+    $product_meta_description = $mysqli->escape_string($_POST['product_meta_description']);
+    $product_permalink = $mysqli->escape_string($_POST['product_permalink']);
+    $product_external_link = $mysqli->escape_string($_POST['product_external_link']);
     switch (strtolower($file_type)) {
-        //allowed file types
         case 'image/png':
+            break;
         case 'image/gif':
+            break;
         case 'image/jpeg':
             break;
         default:
-            //output error
-            die('<div class="alert alert-danger" role="alert">Unsupported Image File. Please upload JPEG, PNG or GIF files</div>');
+            die('<div class="alert alert-danger" role="alert">仅支持JPEG，PNG或者GIF类型的文件。</div>');
     }
-    /*function clean($string){
-        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
-    }*/
-
-    //Image File Title will be used as new File name
-//    $NewFileName = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), strtolower($FileTitle));
-//    $NewFileName = clean($NewFileName);
-//    $NewFileName = $NewFileName . '_' . $RandNumber . $ImageExt;
-    //Rename and save uploded image file to destination folder.
-    if (move_uploaded_file($_FILES['mFile']["tmp_name"], $upload_directory . $image_path)) {
-        // Insert info into database table.. do w.e!
-        if (!$mysqli->query("INSERT INTO listings(title, aff_url, discription, price, image, catid, date, saves, uid, feat, active, meta_description, pname, cname, external_link) VALUES ('$FileTitle', '$AffURL','$Description','$Price','$image_path','$Category','$Date','0','0','0','1', '$MetaDescription', '$pname', '$cname2', '$external')")) {
+    if (move_uploaded_file($_FILES['product_image']["tmp_name"], $upload_directory . $image_path)) {
+        if (!$mysqli->query("INSERT INTO mp_products(product_name, product_affiliate_url, product_description, product_price, product_image, category_id, product_load_date, product_permalink, product_meta_description, product_external_link) VALUES 
+                                                            ('$product_name', '$product_affiliate_url','$product_description','$product_price','$image_path','$Category','$date','$product_permalink', '$product_meta_description', '$product_external_link')")) {
             echo "Error : " . $mysqli->error;
         }
         ?>
         <script>
-            $('#AddProduct').delay(1000).resetForm(1000);
+            $('#form-add-product').delay(1000).resetForm(1000);
         </script>
         <?php
-        die('<div class="alert alert-success" role="alert">Product added successfully.</div>');
+        die('<div class="alert alert-success" role="alert">商品添加成功。</div>');
     } else {
-        die('<div class="alert alert-danger" role="alert">There seems to be a problem. please try again.</div>');
+        die('<div class="alert alert-danger" role="alert">图片上传遇到问题，请仔细检查。</div>');
     }
 }
-function upload_errors($err_code){
+function upload_errors($err_code)
+{
     switch ($err_code) {
         case UPLOAD_ERR_INI_SIZE:
             return '<div class="alert alert-danger" role="alert">Image file size is too big. Please try a smaller image</div>';

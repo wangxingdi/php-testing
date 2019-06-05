@@ -13,15 +13,15 @@
   <li>Article Listings</li>
   <li>Posts</li>
   <li class="active">Edit Posts</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
   <h3>Edit Posts <small>Edit/update posts</small></h3>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
 <link href="//oss.maxcdn.com/summernote/0.5.1/summernote.css" rel="stylesheet">
 <script src="//oss.maxcdn.com/summernote/0.5.1/summernote.min.js"></script>
 <script type='text/javascript'>//<![CDATA[ 
@@ -66,7 +66,7 @@ function afterSuccess()
 
 $id = $mysqli->escape_string($_GET['id']); 
 
-if($Post = $mysqli->query("SELECT * FROM posts WHERE id='$id'")){
+if($Post = $mysqli->query("SELECT * FROM mp_posts WHERE id='$id'")){
 
     $PostRow = mysqli_fetch_array($Post);
   

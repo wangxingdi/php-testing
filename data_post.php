@@ -11,7 +11,7 @@ error_reporting(E_ALL ^ E_NOTICE);
  $page = $mysqli->escape_string($_GET["page"]);
  $start = ($page - 1) * 9;
 
-    $sql_posts = $mysqli->query("SELECT * FROM posts WHERE active=1 ORDER BY id DESC LIMIT $start, 9");
+    $sql_posts = $mysqli->query("SELECT * FROM mp_posts WHERE active=1 ORDER BY id DESC LIMIT $start, 9");
     
     $NumResults = mysqli_num_rows($sql_posts);
     
@@ -46,7 +46,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 <article class="blog-item ng-scope wow fadeIn animation-off-mobile">
 
-<div class="image" style="float: left; "><a href="view_post.php?link=<?php echo $PageLink; ?>"><img ng-src="timthumb.php?src=http://<?php echo $settings['siteurl'];?>/images/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>" src="timthumb.php?src=https://<?php echo $settings['siteurl'];?>/images/<?php echo $row['image'];?>&amp;h=178&amp;w=300&amp;q=100"></a></div>
+<div class="image" style="float: left; "><a href="view_post.php?link=<?php echo $PageLink; ?>"><img ng-src="./cache/timthumb.php?src=http://<?php echo $settings['siteurl'];?>/images/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>" src="./cache/timthumb.php?src=https://<?php echo $settings['siteurl'];?>/images/<?php echo $row['image'];?>&amp;h=178&amp;w=300&amp;q=100"></a></div>
 
 <div class="blog-item-header" style="float: left; padding-right: 10px"><h3><a href="view_post.php?link=<?php echo $PageLink; ?>" class="ng-binding"><?php echo $tlong;?>
 </a></h3>

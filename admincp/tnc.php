@@ -12,14 +12,14 @@
   <li><i class="fa fa-home"></i></li>
   <li>Manage Pages</li>
   <li class="active">Terms of Use</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
   <h3>Terms of Use <small>Update terms of use page here</small></h3>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
 <link href="//oss.maxcdn.com/summernote/0.5.1/summernote.css" rel="stylesheet">
 <script src="//oss.maxcdn.com/summernote/0.5.1/summernote.min.js"></script>
 
@@ -63,7 +63,7 @@ function afterSuccess()
 
 <?php 
 
-if($Pages = $mysqli->query("SELECT * FROM pages WHERE id='3'")){
+if($Pages = $mysqli->query("SELECT * FROM mp_pages WHERE id='3'")){
 
     $PageRow = mysqli_fetch_array($Pages);
 	

@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 $term = $mysqli->escape_string(trim($_GET['term']));
 $user_id = $_SESSION['user_id'];
-if($sql = $mysqli->query("SELECT * FROM settings WHERE id=1"))
+if($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1"))
  {
 
   $ActiveRow2 = mysqli_fetch_array($sql);
@@ -101,7 +101,7 @@ return false;
 <?php
 
 
-  $result = $mysqli->query("SELECT * FROM listings WHERE (title like '%$term%' OR discription like '%$term%') AND active='1' ORDER BY id DESC LIMIT 0, 27");
+  $result = $mysqli->query("SELECT * FROM mp_products WHERE (product_name like '%$term%' OR product_description like '%$term%') AND product_state='1' ORDER BY product_id DESC LIMIT 0, 27");
   
   $NumResults = mysqli_num_rows($result);
   
@@ -146,15 +146,15 @@ return false;
 <a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a>
 
 <div class="col-holder">
-<a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
-<img class="img-responsive" src="images/resizer/301x250/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+<a class="col-link" href="<?php echo $row['product_affiliate_url'];?>" target="_blank">
+    <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
 </a>
 <div class="col-share">
 <?php if(!isset($_SESSION['username'])){?>
 <a class="btn btn-default btn-lg btn-danger btn-font" onclick="openLogin()"><?php echo $txt_save; ?></a>
 <?php }else{
 
-$user_sql=$mysqli->query("SELECT * FROM saves WHERE listing_id='$listing_id' AND user_id='$user_id'");
+$user_sql=$mysqli->query("SELECT * FROM mp_saves WHERE product_id='$listing_id' AND user_id='$user_id'");
 
 $count_save=mysqli_num_rows($user_sql);
 
@@ -210,7 +210,7 @@ if($count_save==1)
 
 <nav id="page-nav"><a href="data_search.php?page=2&term=<?php echo $term;?>"></a></nav>
 
-<script src="js/jquery.infinitescroll.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
     <script>
     
         $('#display-posts').infinitescroll({
@@ -223,7 +223,7 @@ if($count_save==1)
         hideNav : '#page-nav',
         loading: {
                         finishedMsg: 'No more posts to load.',
-                        img: 'templates/default/images/ajaxloader.GIF'
+                        img: 'assets/ajaxloader.gif'
     }
     }, function(newElements, data, url){
         

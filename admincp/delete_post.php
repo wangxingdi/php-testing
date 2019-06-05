@@ -4,7 +4,7 @@ include("../db.php");
 
 $del = $mysqli->escape_string($_POST['id']);
 
-if($ImageInfo = $mysqli->query("SELECT * FROM posts WHERE id='$del'")){
+if($ImageInfo = $mysqli->query("SELECT * FROM mp_posts WHERE id='$del'")){
 
     $GetInfo = mysqli_fetch_array($ImageInfo);
 	
@@ -26,7 +26,7 @@ unlink("../images/$Image");
 }
 
 
-$DeletePosts = $mysqli->query("DELETE FROM posts WHERE id='$del'");
+$DeletePosts = $mysqli->query("DELETE FROM mp_posts WHERE id='$del'");
 
 
 echo '<div class="alert alert-success" role="alert">Post has been deleted successfully!</div>';

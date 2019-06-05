@@ -1,70 +1,69 @@
 <?php include("header.php"); ?>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
+    <script>
+        $(function () {
+            $(":file").filestyle({
+                iconName: "glyphicon-picture",
+                buttonText: "请选择"
+            });
+        });
+        $(document).ready(function () {
+            $('#form-add-product').on('submit', function (e) {
+                e.preventDefault();
+                $('#submit').attr('disabled', '');
+                $("#output").html('<div class="alert alert-info" role="alert">请稍等…</span></div>');
+                $(this).ajaxSubmit({
+                    target: '#output',
+                    success: afterSuccess
+                });
+            });
+        });
+        function afterSuccess() {
+            $('#submit').removeAttr('disabled');
+        }
+        function countChar(val) {
+            var len = val.value.length;
+            if (len >= 125) {
+                val.value = val.value.substring(0, 125);
+            } else {
+                $('#charNum').text(125 - len);
+            }
+        }
+    </script>
     <section class="col-md-2">
         <?php include("left_menu.php"); ?>
-    </section><!--col-md-2-->
+    </section>
     <section class="col-md-10">
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i></li>
-            <li class="active">Add New Product</li>
-            <span class="theme-label">Amazon Dominator v<?php echo $Settings['version']; ?></span>
+            <li class="active">新增商品</li>
+            <span class="theme-label">MarketPress v<?php echo $version; ?></span>
         </ol>
         <div class="page-header">
-            <h3>Add New Product
-                <small>Add products</small>
+            <h3>商品信息录入
+                <small>挑选一个令人惊奇的商品</small>
             </h3>
         </div>
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-
-        <script>
-            $(function () {
-                $(":file").filestyle({iconName: "glyphicon-picture", buttonText: "Select Photo"});
-            });
-            $(document).ready(function () {
-                $('#AddProduct').on('submit', function (e) {
-                    e.preventDefault();
-                    $('#submit').attr('disabled', ''); // disable upload button
-                    //show uploading message
-                    $("#output").html('<div class="alert alert-info" role="alert">Updating... Please Wait...</span></div>');
-                    $(this).ajaxSubmit({
-                        target: '#output',
-                        success: afterSuccess //call function after success
-                    });
-                });
-            });
-            function afterSuccess() {
-                $('#submit').removeAttr('disabled'); //enable submit button
-                //$('#output').html('');
-            }
-            function countChar(val) {
-                var len = val.value.length;
-                if (len >= 250) {
-                    val.value = val.value.substring(0, 250);
-                } else {
-                    $('#charNum').text(250 - len);
-                }
-            }
-        </script>
         <section class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div id="output"></div>
-                    <form action="submit_product.php" id="AddProduct" enctype="multipart/form-data" method="post">
+                    <form action="submit_product.php" id="form-add-product" enctype="multipart/form-data" method="post">
                         <div class="form-group">
-                            <label for="category">Category</label>
+                            <label for="category">一级分类</label>
                             <select name="category" class="form-control" id="category">
-                                <option value="0">Select a Category</option>
+                                <option value="0">请选择</option>
                                 <?php
-                                if ($ProductCat = $mysqli->query("SELECT * FROM categories WHERE is_sub_cat=0 ORDER BY cname ASC")) {
-                                    while ($ProductCatRow = mysqli_fetch_array($ProductCat)) {
+                                if ($categories_result_set = $mysqli->query("SELECT * FROM mp_categories WHERE parent_id is null ORDER BY show_order ASC")) {
+                                    while ($categories_row = mysqli_fetch_array($categories_result_set)) {
                                         ?>
-                                        <option value="<?php echo $ProductCatRow['id']; ?>"><?php echo $ProductCatRow['cname']; ?></option>
+                                        <option value="<?php echo $categories_row['category_id']; ?>"><?php echo $categories_row['category_name']; ?></option>
                                         <?php
                                     }
-                                    $ProductCat->close();
+                                    $categories_result_set->close();
                                 } else {
-                                    printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please try again.</div>");;
+                                    printf("<div class='alert alert-danger alert-pull'>类别表似乎有些问题，请检查一下。</div>");;
                                 }
                                 ?>
                             </select>
@@ -85,46 +84,44 @@
                         </script>
                         <div id="sub-cats" class="form-group"></div>
                         <div class="form-group">
-                            <label for="mName">Title</label>
-                            <input type="text" name="mName" id="mName" class="form-control"
-                                   placeholder="Add a catchy title">
+                            <label for="product_name">产品名称</label>
+                            <input type="text" name="product_name" id="product_name" class="form-control" placeholder="请输入产品名称">
                         </div>
                         <div class="form-group">
-                            <label for="aff">Product affiliate / purchase link</label>
-                            <input type="text" name="aff" id="aff" class="form-control"
-                                   placeholder="Your Affiliate Link to the product">
+                            <label for="product_affiliate_url">产品推荐链接</label>
+                            <input type="text" name="product_affiliate_url" id="product_affiliate_url" class="form-control" placeholder="请输入产品推广链接">
                         </div>
                         <div class="form-group">
-                            <label for="disc">Description</label>
-                            <textarea name="disc" id="disc" cols=40 rows=5 class="form-control"
-                                      onkeyup="countChar(this)"
-                                      placeholder="Product description (Maximum 250 characters)"></textarea>
-                            <span id="charNum">250</span> out of 250 characters left
+                            <label for="product_description">产品介绍</label>
+                            <textarea name="product_description" id="product_description" cols=40 rows=5 class="form-control" onkeyup="countChar(this)" placeholder="请输入产品介绍"></textarea>
+                            建议录入文字长度在125内，还剩余<span id="charNum">125</span>个文字
                         </div>
                         <div class="form-group">
-                            <label for="file">Product Image</label>
-                            <input type='file' class="file" name="mFile" id="mFile"/>
+                            <label for="product_image">产品图片 (若图片没有外部链接，则加载此图片，请不要重名)</label>
+                            <input type='file' class="file" name="product_image" id="product_image"/>
                         </div>
                         <div class="form-group">
-                            <label for="external">External Link</label>
-                            <input type="text" name="external" id="external" class="form-control"
-                                   placeholder="Your external Link of the image">
+                            <label for="product_external_link">产品图片外部链接</label>
+                            <input type="text" name="product_external_link" id="product_external_link" class="form-control" placeholder="优先从外部链接加载图片">
                         </div>
                         <div class="form-group">
-                            <label for="price">Price (Without &#36; sign):</label>
-                            <input type="text" name="price" id="price" class="form-control" placeholder="Product price">
+                            <label for="product_price">产品价格:</label>
+                            <input type="text" name="product_price" id="product_price" class="form-control" placeholder="单位元，精确到两位小数">
                         </div>
                         <div class="form-group">
-                            <label for="meta_desc">Meta Description</label>
-                            <textarea name="meta_desc" id="meta_desc" cols=40 rows=3 class="form-control"
-                                      placeholder="Add an SEO friendly meta description here.."></textarea>
+                            <label for="product_permalink">固定链接:</label>
+                            <input type="text" name="product_permalink" id="product_permalink" class="form-control" placeholder="录入利于SEO的固定链接">
                         </div>
-                    </div><!-- panel body -->
-                    <div class="panel-footer clearfix">
-                        <button type="submit" id="submitButton" class="btn btn-default btn-success btn-lg pull-right">Add Product</button>
-                    </div><!--panel-footer clearfix-->
+                        <div class="form-group">
+                            <label for="product_meta_description">Meta描述</label>
+                            <textarea name="product_meta_description" id="product_meta_description" cols=40 rows=3 class="form-control" placeholder="录入SEO优化meta描述"></textarea>
+                        </div>
+                </div>
+                <div class="panel-footer clearfix">
+                    <button type="submit" id="submitButton" class="btn btn-default btn-success btn-lg pull-right">新增商品</button>
+                </div>
                 </form>
-            </div><!--panel panel-default-->
+            </div>
         </section>
-    </section><!--col-md-10-->
+    </section>
 <?php include("footer.php"); ?>

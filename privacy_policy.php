@@ -14,7 +14,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 <?php
 
-if($pages = $mysqli->query("SELECT * FROM  pages WHERE id='2'")){
+if($pages = $mysqli->query("SELECT * FROM  mp_pages WHERE id='2'")){
 
     $pagerow = mysqli_fetch_array($pages);
 

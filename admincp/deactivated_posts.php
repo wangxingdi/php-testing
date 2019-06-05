@@ -11,7 +11,7 @@
   <li><i class="fa fa-home"></i></li>
   <li>Article Listings</li>
   <li class="active">Deactivated Posts</li>
-  <span class="theme-label">Amazon Dominator v<?php echo $Settings['version'];?></span>
+  <span class="theme-label">MarketPress v<?php echo $Settings['version'];?></span>
 </ol>
 
 <div class="page-header">
@@ -84,7 +84,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 // How many adjacent pages should be shown on each side?
 	$adjacents = 5;
 	
-	$query = $mysqli->query("SELECT COUNT(*) as num FROM posts WHERE active=2 ORDER BY id DESC");
+	$query = $mysqli->query("SELECT COUNT(*) as num FROM mp_posts WHERE active=2 ORDER BY id DESC");
 	
 	//$query = $mysqli->query("SELECT COUNT(*) as num FROM photos WHERE  photos.active=1 ORDER BY photos.id DESC");
 	
@@ -100,7 +100,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 	else
 		$start = 0;								//if no page var is given, set start to 0
  	/* Get data. */
-	$result = $mysqli->query("SELECT * FROM posts WHERE active=2 ORDER BY id DESC LIMIT $start, $limit");
+	$result = $mysqli->query("SELECT * FROM mp_posts WHERE active=2 ORDER BY id DESC LIMIT $start, $limit");
 	 
 	//$result = $mysqli->query($sql);
 	
@@ -189,7 +189,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 		$pagination.= "</ul>\n";		
 	}
 	
-	$q= $mysqli->query("SELECT * FROM posts WHERE active=2 ORDER BY id DESC limit $start,$limit");
+	$q= $mysqli->query("SELECT * FROM mp_posts WHERE active=2 ORDER BY id DESC limit $start,$limit");
 
 
 	$numr = mysqli_num_rows($q);
@@ -239,7 +239,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 ?>        
 
             <tr class="btnDelete" data-id="<?php echo $Row['id'];?>">
-				<td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><img src="timthumb.php?src=http://<?php echo $SiteLink;?>/images/<?php echo $Row['image'];?>&amp;h=50&amp;w=50&amp;q=100" alt="<?php echo $LongTitle;?>" class="img-responsive"></a></td>
+				<td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><img src="../cache/timthumb.php?src=http://<?php echo $SiteLink;?>/images/<?php echo $Row['image'];?>&amp;h=50&amp;w=50&amp;q=60" alt="<?php echo $LongTitle;?>" class="img-responsive"></a></td>
                 
                 <td><a data-toggle="modal" href="preview.php?id=<?php echo $Row['id'];?>" data-target="#ProductModal"><?php echo ucfirst($SortTitle);?></a></td>
 

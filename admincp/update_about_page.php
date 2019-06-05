@@ -9,7 +9,7 @@ if($_POST)
 	$Page			= $mysqli->escape_string($_POST['inputPage']);
 	
 	
-	$mysqli->query("UPDATE pages SET page='$Page' WHERE id=1");
+	$mysqli->query("UPDATE mp_pages SET page='$Page' WHERE id=1");
 	
 	
 		die('<div class="alert alert-success" role="alert">About page updated successfully.</div>');

@@ -1,23 +1,13 @@
 <?php
 
 include('../db.php');
-
-
 $id = $mysqli->escape_string($_GET['id']);
-
-//Get Photo Info
-
-if($results = $mysqli->query("SELECT * FROM listings WHERE id='$id'")){
-
-    $row = mysqli_fetch_array($results);
-	
-	$ImageFile = $row['image'];
-	
-    $results->close();
-	
+if($products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_id='$id'")){
+    $products_row = mysqli_fetch_array($products_result_set);
+	$ImageFile = $products_row['product_image'];
+    $products_result_set->close();
 }else{
-    
-	 printf("<div class='alert alert-danger alert-pull'>There seems to be an issue. Please Trey again</div>");;
+	 printf("<div class='alert alert-danger alert-pull'>产品查询失败(update_product.php)</div>");
 }
 
 $UploadDirectory	= '../images/'; //Upload Directory, ends with slash & make sure folder exist
@@ -91,7 +81,7 @@ if($_POST)
     $pname              = strtolower($pname);
     $pname              = strip_tags($pname);
 	$Category           = $mysqli->escape_string($_POST['category']); // category 
-	if($sql_cname2 = $mysqli->query("SELECT cname2 FROM categories WHERE id='$Category' "))
+	if($sql_cname2 = $mysqli->query("SELECT cname2 FROM mp_categories WHERE category_id='$Category' "))
 	{
 		$cname2_row = mysqli_fetch_array($sql_cname2);
 		$cname2 = $cname2_row['cname2'];

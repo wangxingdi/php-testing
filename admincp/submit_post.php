@@ -2,7 +2,7 @@
 
 include('../db.php');
 
-if($squ = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+if($squ = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
 
     $settings = mysqli_fetch_array($squ);
     
@@ -69,7 +69,7 @@ if($_POST)
     $Link               = urlencode($Link);
     $Link               = strip_tags($Link);
 
-    if($sql = $mysqli->query("SELECT COUNT(link) AS count FROM posts WHERE link = '$Link' "))
+    if($sql = $mysqli->query("SELECT COUNT(link) AS count FROM mp_posts WHERE link = '$Link' "))
     {
         $sqlRow = mysqli_fetch_array($sql);
         $count = $sqlRow['count'];
@@ -112,7 +112,7 @@ if($_POST)
    if(move_uploaded_file($_FILES['mFile']["tmp_name"], $UploadDirectory . $NewFileName ))
    {
 
-    $mysqli->query("INSERT INTO posts(title, description, meta_description, date, image, active, link) VALUES ('$FileTitle', '$Description', '$MetaDescription', '$Date', '$NewFileName', 1, '$Link')");
+    $mysqli->query("INSERT INTO mp_posts(title, description, meta_description, date, image, active, link) VALUES ('$FileTitle', '$Description', '$MetaDescription', '$Date', '$NewFileName', 1, '$Link')");
 
 ?>
 

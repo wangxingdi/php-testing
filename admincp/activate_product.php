@@ -1,11 +1,6 @@
 <?php
-
 include("../db.php");
-
-$id = $mysqli->escape_string($_POST['id']);
-
-$update = $mysqli->query("UPDATE listings SET active='1', feat='0' WHERE id='$id'");
-
-echo '<div class="alert alert-success" role="alert">Product listing successfully activated</div>';
-
+$product_id = $mysqli->escape_string($_POST['id']);
+$update = $mysqli->query("UPDATE mp_products SET product_state='1' WHERE product_id='$product_id'");
+echo '<div class="alert alert-success" role="alert">激活产品成功</div>';
 ?>

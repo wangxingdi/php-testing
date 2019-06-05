@@ -43,9 +43,7 @@ return false;
 <div class="other-titles"><h1 style="margin-top:15px;">My Wish List</h1></div>
 
 <?php
-  //$result = $mysqli->query("SELECT * FROM listings WHERE active=1 ORDER BY id DESC LIMIT 0, 9");
-  
-  $result = $mysqli->query("SELECT * FROM saves LEFT JOIN listings ON saves.listing_id=listings.id WHERE saves.user_id=$Uid ORDER BY saves.save_id DESC LIMIT 0, 9");
+  $result = $mysqli->query("SELECT * FROM mp_saves LEFT JOIN mp_products ON mp_saves.product_id=mp_products.product_id WHERE mp_saves.user_id=$Uid ORDER BY mp_saves.save_id DESC LIMIT 0, 9");
   
   $NumResults = mysqli_num_rows($result);
   
@@ -84,7 +82,7 @@ return false;
 <a class="remove-product fa fa-remove" data-id="<?php echo $row['id'];?>" data-name="remove-save"></a>
 
 <a href="<?php echo $PageLink;?>/">
-<img class="img-responsive" src="images/resizer/500x500/r/<?php echo $row['image'];?>" alt="<?php echo $LongTitle;?>">
+    <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=500&amp;w=500&amp;q=100" alt="<?php echo $LongTitle;?>">
 </a>
 
 <a href="<?php echo $PageLink;?>/"><h2 class="title-bottom"><?php echo $tlong;?></h2></a>
@@ -97,7 +95,7 @@ return false;
 
 <nav id="page-nav"><a href="data_wish_list.php?page=2&user=<?php echo $Uid;?>"></a></nav>
 
-<script src="js/jquery.infinitescroll.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
   <script>
   
   
@@ -107,7 +105,7 @@ return false;
         itemSelector : '.col-box',     //
     loading: {
                   finishedMsg: 'No more posts to load.',
-                  img: 'templates/default/images/ajaxloader.GIF'
+                  img: 'assets/ajaxloader.gif'
   }
   }, function(newElements, data, url){
     

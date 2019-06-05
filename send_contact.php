@@ -33,7 +33,7 @@ if($_POST['submit'])
 		die('<div class="alert alert-danger">Message cannot be blank.</div>');
 	}
 
-if($SettingsSql = $mysqli->query("SELECT * FROM settings WHERE id='1'")){
+if($SettingsSql = $mysqli->query("SELECT * FROM mp_options WHERE id='1'")){
 
     $settings = mysqli_fetch_array($SettingsSql);
 
