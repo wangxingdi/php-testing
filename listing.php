@@ -84,13 +84,13 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                                 <?php
                             }
                         } ?>
-                        <span class="info-saves"> &nbsp;
-                            <i class="fas fa-eye"></i>&nbsp;&nbsp;
-                            <?php echo $product_views; ?> views
-                        </span>
+<!--                        <span class="info-saves"> &nbsp;-->
+<!--                            <i class="fas fa-eye"></i>&nbsp;&nbsp;-->
+<!--                            --><?php //echo $product_views; ?><!-- views-->
+<!--                        </span>-->
                     </div>
                 </div>
-                <a class="col-link" href="offer_link.php?id=<?php echo $products_row['product_id']; ?>" target="_blank">
+                <a class="col-link" href="<?php echo $products_row['product_affiliate_url']; ?>" target="_blank">
                     <img src=<?php echo $products_row['product_external_link']; ?> alt="<?php echo $products_row['product_name']; ?>" class="img-responsive slide-img" style="width: 650px; height: 550px;">
                 </a>
                 <div class="col-share">
@@ -164,7 +164,7 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                         });
                     </script>
                     <a class="btn-product btn-product-mod btn btn-warning btn-block btn-lg btn-font btn-pull btn-pull-mod btn-checkout"
-                       href="offer_link.php?id=<?php echo $products_row['product_id']; ?>" target="_blank">
+                       href="<?php echo $products_row['product_affiliate_url']; ?>" target="_blank">
                         <i class="fas fa-money-check-alt"></i> <?php echo $settings['buy_button']; ?>
                     </a>
                     <br/>
@@ -207,7 +207,7 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                 $tlong = $RelTitle;
             }
             $RelLink = $RelRow['product_permalink'];
-            $view_count = $RelRow['product_views'];
+//            $view_count = $RelRow['product_views'];
             ?>
             <div class="col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn">
                 <a href="<?php echo $RelLink; ?>/"><h2 class="title-bottom"><?php echo $tlong; ?></h2></a>
@@ -262,15 +262,15 @@ if ($sql = $mysqli->query("SELECT * FROM mp_options WHERE id=1")) {
                                 <?php
                             }
                         } ?>
-                        <span class="info-saves"> &nbsp;
-                            <i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views
-                        </span>
+<!--                        <span class="info-saves"> &nbsp;-->
+<!--                            <i class="fas fa-eye"></i>&nbsp;&nbsp;--><?php //echo $view_count; ?><!-- views-->
+<!--                        </span>-->
                     </div>
                     <div class="col-right">
-                        <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $RelRow['product_id']; ?>" target="_blank"><?php echo $settings['buy_button']; ?></a>
+                        <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $RelRow['product_affiliate_url']; ?>" target="_blank"><?php echo $settings['buy_button']; ?></a>
                     </div>
-                </div><!-- /.col-bottom -->
-            </div><!-- /.col-box -->
+                </div>
+            </div>
             <?php
         }
         $RelSql->close();

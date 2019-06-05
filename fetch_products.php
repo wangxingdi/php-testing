@@ -75,7 +75,7 @@ if ($sort == "n") {
     $result = $mysqli->query("SELECT * FROM mp_products WHERE category_id IN (" . $cat_str . ")  AND product_state=1 AND CAST(product_price AS UNSIGNED) BETWEEN '$min' AND '$max' ORDER BY product_id DESC LIMIT 0, 27");
 } else if ($sort == "p") {
     $sortpage = "popular";
-    $result = $mysqli->query("SELECT * FROM mp_products WHERE category_id IN (" . $cat_str . ") AND product_state=1 AND CAST(product_price AS UNSIGNED) BETWEEN '$min' AND '$max' ORDER BY product_views DESC LIMIT 0, 27");
+    $result = $mysqli->query("SELECT * FROM mp_products WHERE category_id IN (" . $cat_str . ") AND product_state=1 AND CAST(product_price AS UNSIGNED) BETWEEN '$min' AND '$max' ORDER BY product_saves DESC LIMIT 0, 27");
 } else if ($sort == "l") {
     $sortpage = "low";
     $result = $mysqli->query("SELECT * FROM mp_products WHERE category_id IN (" . $cat_str . ") AND product_state=1 AND CAST(product_price AS UNSIGNED) BETWEEN '$min' AND '$max' ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 27");
@@ -97,7 +97,7 @@ while ($row = mysqli_fetch_array($result)) {
     $product_description = $row['product_description'];
     $product_name = $row['product_name'];
     $product_permalink = $row['product_permalink'];
-    $view_count = $row['product_views'];
+//    $view_count = $row['product_views'];
     ?>
     <div <?php if ($count > 3) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";
@@ -108,7 +108,7 @@ while ($row = mysqli_fetch_array($result)) {
             <h2><?php echo $product_name; ?></h2>
         </a>
         <div class="col-holder">
-            <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
+            <a class="col-link" href="<?php echo $row['product_affiliate_url']; ?>" target="_blank">
                 <img class="img-responsive" src=<?php echo $row['product_external_link']; ?> alt="<?php echo $product_name; ?>">
             </a>
             <div class="col-share">
@@ -156,10 +156,10 @@ while ($row = mysqli_fetch_array($result)) {
                         <?php
                     }
                 } ?>
-                <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
+<!--                <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;--><?php //echo $view_count; ?><!-- views</span>-->
             </div>
             <div class="col-right">
-                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $row['product_affiliate_url']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
             </div>
         </div>
     </div>

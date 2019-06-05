@@ -146,7 +146,7 @@ return false;
 <a href="<?php echo $PageLink;?>/"><h2><?php echo $tlong;?></h2></a>
 
 <div class="col-holder">
-<a class="col-link" href="offer_link.php?id=<?php echo $row['id'];?>" target="_blank">
+<a class="col-link" href="<?php echo $row['product_affiliate_url'];?>" target="_blank">
     <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
 </a>
 <div class="col-share">

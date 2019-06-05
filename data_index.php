@@ -34,7 +34,7 @@ $start = ($page - 1) * 3;
       $product_description = $row['product_description'];
       $product_name = $row['product_name'];
       $product_permalink = $row['product_permalink'];;
-      $product_views = $row['product_views'];
+//      $product_views = $row['product_views'];
       $img_path = $row['product_external_link'];
       $upload_directory = 'images/';
       if(empty($img_path)){
@@ -44,7 +44,7 @@ $start = ($page - 1) * 3;
 <div class="col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile"  style="padding-left:15px; padding-right:15px;">
 <a href="<?php echo $product_permalink;?>.html" target="_blank"><h2><?php echo $product_name;?></h2></a>
 <div class="col-holder">
-<a class="col-link col-link-data" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank">
+<a class="col-link col-link-data" href="<?php echo $row['product_affiliate_url'];?>" target="_blank">
     <img class="img-responsive" src=<?php echo $img_path; ?> alt="<?php echo $product_name; ?>">
 </a>
 <div class="col-share col-share-data">
@@ -83,10 +83,12 @@ if($count_save_data==1)
 <?php
   }
  }?>
-<span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $product_views; ?> views</span>
+<!--<span class="info-saves"> &nbsp;-->
+<!--    <i class="fas fa-eye"></i>&nbsp;&nbsp;--><?php //echo $product_views; ?><!-- views-->
+<!--</span>-->
 </div>
 <div class="col-right">
-<a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="offer_link.php?id=<?php echo $row['product_id'];?>" target="_blank"><?php echo $buy_button;?></a>
+<a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $row['product_affiliate_url'];?>" target="_blank"><?php echo $buy_button;?></a>
 </div>
 </div>
 </div>

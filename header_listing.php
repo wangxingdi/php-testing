@@ -52,8 +52,8 @@ if (isset($_GET['pname'])) {
             $product_description = $products_row['product_description'];
             $product_meta_description = $products_row['product_meta_description'];
             $product_permalink = $products_row['product_permalink'];
-            $product_views = $products_row['product_views'];
-            $mysqli->query("UPDATE mp_products SET product_views=product_views+1 WHERE product_permalink='$product_permalink'");
+//            $product_views = $products_row['product_views'];
+//            $mysqli->query("UPDATE mp_products SET product_views=product_views+1 WHERE product_permalink='$product_permalink'");
             $saves_result_set = $mysqli->query("SELECT * FROM mp_saves WHERE listing_id='$product_id' AND user_id='$Uid'");
             $count_save_listing = mysqli_num_rows($saves_result_set);
             $saves_result_set->close();

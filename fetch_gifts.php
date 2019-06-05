@@ -63,7 +63,7 @@ if ($sort == "n") {
     $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_id DESC LIMIT 0, 27");
 } else if ($sort == "p") {
     $sortpage = "popular";
-    $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_views DESC LIMIT 0, 27");
+    $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_saves DESC LIMIT 0, 27");
 } else {
     $sortpage = "none";
     $result = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 AND CAST(product_price AS UNSIGNED) <= '$gifts_under_limit' ORDER BY product_id DESC LIMIT 0, 27");
@@ -93,7 +93,7 @@ while ($row = mysqli_fetch_array($result)) {
         $tlong = $LongTitle;
     }
     $PageLink = $row['product_permalink'];
-    $view_count = $row['product_views'];
+//    $view_count = $row['product_views'];
     ?>
     <div <?php if ($count > 3) {
         echo "class='col-sm-12 col-sm-12-mod col-xs-12 col-md-4 col-lg-4 col-box wow fadeIn animation-off-mobile'";
@@ -102,7 +102,7 @@ while ($row = mysqli_fetch_array($result)) {
     } ?> style="padding-left:15px; padding-right:15px;">
         <a href="<?php echo $PageLink; ?>/"><h2><?php echo $tlong; ?></h2></a>
         <div class="col-holder">
-            <a class="col-link" href="offer_link.php?id=<?php echo $row['product_id']; ?>" target="_blank">
+            <a class="col-link" href="<?php echo $row['product_affiliate_url']; ?>" target="_blank">
                 <img class="img-responsive" src="../cache/timthumb.php?src=./images/<?php echo $row['product_image']; ?>&amp;h=250&amp;w=300&amp;q=100" alt="<?php echo $LongTitle; ?>">
             </a>
             <div class="col-share">
@@ -152,12 +152,11 @@ while ($row = mysqli_fetch_array($result)) {
                         <?php
                     }
                 } ?>
-                <span class="info-saves"> &nbsp;<i
-                            class="fas fa-eye"></i>&nbsp;&nbsp;<?php echo $view_count; ?> views</span>
+<!--                <span class="info-saves"> &nbsp;<i class="fas fa-eye"></i>&nbsp;&nbsp;--><?php //echo $view_count; ?><!-- views</span>-->
             </div>
-            <div class="col-right"><a class="btn btn-default btn-warning pull-right btn-font btn-checkout"
-                                      href="offer_link.php?id=<?php echo $row['product_id']; ?>"
-                                      target="_blank"><?php echo $settingsRow['buy_button']; ?></a></div>
+            <div class="col-right">
+                <a class="btn btn-default btn-warning pull-right btn-font btn-checkout" href="<?php echo $row['product_affiliate_url']; ?>" target="_blank"><?php echo $settingsRow['buy_button']; ?></a>
+            </div>
         </div>
     </div>
     <?php

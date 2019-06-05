@@ -38,25 +38,25 @@
                                 }
                             ?>
                             <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-line"></i> <?php echo "NULL";?> 网站访问量</span></li>
-                            <?php
+                            <?php /*
                                 if($products_view_result_set = $mysqli->query("SELECT SUM(product_views) AS VIEWS FROM mp_products")){
                                     $products_view_num = mysqli_fetch_array($products_view_result_set);
-                            ?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-pie"></i> <?php echo $products_view_num['VIEWS'];?> 产品访问量</span></li>
-                            <?php
+                            */?>
+                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-chart-pie"></i> <?php echo "NULL";?> 产品访问量</span></li>
+                            <?php /*
                                     $products_view_result_set->close();
                                 }else{
                                     printf("<div class='alert alert-danger alert-pull'>查询产品访问量出现异常</div>");
                                 }
                                 if($products_click_result_set = $mysqli->query("SELECT SUM(product_hits) AS HITS FROM mp_products")){
                                     $products_click_num = mysqli_fetch_array($products_click_result_set);
-                            ?>
-                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-dollar-sign"></i> <?php echo $products_click_num['HITS'];?> 营销点击量</span></li>
-                            <?php
+                            */?>
+                                    <li><span><i style="padding-right:5px;font-size:18px;" class="fas fa-dollar-sign"></i> <?php echo "NULL";?> 营销点击量</span></li>
+                            <?php /*
                                     $products_click_result_set->close();
                                 }else{
                                     printf("<div class='alert alert-danger alert-pull'>查询产品营销量出现异常</div>");
-                                }
+                                } */
                                 if($saves_result_set = $mysqli->query("SELECT save_id FROM mp_saves")){
                                     $saves_num = $saves_result_set->num_rows;
                             ?>

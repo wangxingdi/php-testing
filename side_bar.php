@@ -10,7 +10,7 @@
 
 <?php
   
-if($Pop = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_hits DESC LIMIT 3")){
+if($Pop = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_saves DESC LIMIT 3")){
 
    while($PopRow = mysqli_fetch_array($Pop)){
      $PLink = $PopRow ['pname'];
