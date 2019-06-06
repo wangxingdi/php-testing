@@ -1,6 +1,6 @@
 <?php include("header.php"); ?>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
     <section class="col-md-2">
         <?php include("left_menu.php"); ?>
     </section>
@@ -15,7 +15,7 @@
                 <small>Update website advertisements</small>
             </h3>
         </div>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
         <script>
             $(function () {
                 $(":file").filestyle({iconName: "glyphicon-picture", buttonText: "Select Featured Image"});

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Page not found - Error 404!</title>
-        <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
     </head>
     <body>
     <div class="container" style="margin-bottom: 30px;">

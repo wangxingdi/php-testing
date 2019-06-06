@@ -55,7 +55,7 @@ error_reporting(E_ALL ^ E_NOTICE);
                 <nav id="page-nav">
                     <a href="data_post.php?page=2"></a>
                 </nav>
-                <script src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
                 <script>
                     $(".blog").infinitescroll({
                             navSelector: "#page-nav",

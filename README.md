@@ -30,18 +30,23 @@
 22. mp_ads表重命名;
 
 ##已完成-第二阶段
-
+1. 静态文件采用国外cdn;
 
 
 ## 说明
 1. 静态文件版本
-https://cdn.jsdelivr.net/npm/jquery-form@4.2.2/dist/jquery.form.min.js
-https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js
-https://cdn.jsdelivr.net/npm/bootstrap-filestyle@1.2.1/src/bootstrap-filestyle.min.js
-https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js
-https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js
-https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js
-https://cdn.staticfile.org/jquery-timeago/1.6.6/jquery.timeago.min.js
-https://cdn.jsdelivr.net/npm/jquery-shake@1.0.0/jquery.ui.shake.min.js
-https://cdn.staticfile.org/jqueryui/1.12.1/jquery-ui.min.js
-https://cdn.staticfile.org/wow/1.1.2/wow.min.js
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js
+https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.6/jquery.timeago.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js
+https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js
+https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js
+https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css
+https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css
+
+(cdnjs缺少)https://cdn.jsdelivr.net/npm/jquery-shake@1.0.0/jquery.ui.shake.min.js

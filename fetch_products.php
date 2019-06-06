@@ -164,7 +164,7 @@ while ($row = mysqli_fetch_array($result)) {
     <?php
 } ?>
 <nav id="page-nav"><a href="data_cat.php?page=2"></a></nav>
-<script async type="text/javascript" src="https://cdn.staticfile.org/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
 <script>
     $("#display-posts").infinitescroll({
         navSelector: "#page-nav",
@@ -218,4 +218,4 @@ while ($row = mysqli_fetch_array($result)) {
         window.location = "login/";
     }
 </script>
-<script async src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

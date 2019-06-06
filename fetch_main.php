@@ -219,7 +219,7 @@ while ($products_row = mysqli_fetch_array($products_result_set)) {
         })
     });
 </script>
-<script aysnc src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script aysnc src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     function openLogin() {
         window.location = "login/";
