@@ -126,15 +126,12 @@
 }
 /*product introduce*/
 .col-box p {
-    padding: 7px 0;
     font-size: 13px;
-    margin-top: 0px;
+    margin-top: 5px;
     margin-bottom: 5px;
     line-height: 20px;
     text-align: justify
 }
-
-
 
 @font-face {
     font-family: Oswald;
