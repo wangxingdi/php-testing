@@ -37,7 +37,7 @@ if ($_POST) {
     }
     $year = date('Y');
     $month = date('m');
-    $date = date("F j, Y");
+//    $date = date("F j, Y");
     $image_name = strtolower($_FILES['product_image']['name']);
     $image_path = $year . '/' . $month . "/" . $image_name;
     $file_type = $_FILES['product_image']['type'];
@@ -71,8 +71,8 @@ if ($_POST) {
             die('<div class="alert alert-danger" role="alert">仅支持JPEG，PNG或者GIF类型的文件。</div>');
     }
     if (move_uploaded_file($_FILES['product_image']["tmp_name"], $upload_directory . $image_path)) {
-        if (!$mysqli->query("INSERT INTO mp_products(product_name, product_affiliate_url, product_description, product_price, product_image, category_id, product_load_date, product_permalink, product_meta_description, product_external_link) VALUES 
-                                                            ('$product_name', '$product_affiliate_url','$product_description','$product_price','$image_path','$Category','$date','$product_permalink', '$product_meta_description', '$product_external_link')")) {
+        if (!$mysqli->query("INSERT INTO mp_products(product_name, product_affiliate_url, product_description, product_price, product_image, category_id, product_permalink, product_meta_description, product_external_link) VALUES 
+                                                            ('$product_name', '$product_affiliate_url','$product_description','$product_price','$image_path','$Category','$product_permalink', '$product_meta_description', '$product_external_link')")) {
             echo "Error : " . $mysqli->error;
         }
         ?>

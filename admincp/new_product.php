@@ -24,10 +24,10 @@
         }
         function countChar(val) {
             var len = val.value.length;
-            if (len >= 125) {
-                val.value = val.value.substring(0, 125);
+            if (len >= 300) {
+                val.value = val.value.substring(0, 300);
             } else {
-                $('#charNum').text(125 - len);
+                $('#charNum').text(300 - len);
             }
         }
     </script>
@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <label for="product_description">产品介绍</label>
                             <textarea name="product_description" id="product_description" cols=40 rows=5 class="form-control" onkeyup="countChar(this)" placeholder="请输入产品介绍"></textarea>
-                            建议录入文字长度在125内，还剩余<span id="charNum">125</span>个文字
+                            建议录入文字长度在300内，还剩余<span id="charNum">300</span>个文字
                         </div>
                         <div class="form-group">
                             <label for="product_image">产品图片 (若图片没有外部链接，则加载此图片，请不要重名)</label>
