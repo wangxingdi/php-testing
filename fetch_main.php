@@ -61,19 +61,19 @@ if ($settings_result_set = $mysqli->query("SELECT * FROM mp_options WHERE id='1'
 <?php
 if ($sort == "n") {
     $sortpage = "newest";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 3");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 9");
 } else if ($sort == "p") {
     $sortpage = "popular";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_saves DESC LIMIT 0, 3");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_saves DESC LIMIT 0, 9");
 } else if ($sort == "l") {
     $sortpage = "low";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 3");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) DESC LIMIT 0, 9");
 } else if ($sort == "h") {
     $sortpage = "high";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 3");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY CAST(product_price AS DECIMAL(10,2)) ASC LIMIT 0, 9");
 } else {
     $sortpage = "none";
-    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 3");
+    $products_result_set = $mysqli->query("SELECT * FROM mp_products WHERE product_state=1 ORDER BY product_id DESC LIMIT 0, 9");
 }
 $products_num = mysqli_num_rows($products_result_set);
 if ($products_num < 1) {
